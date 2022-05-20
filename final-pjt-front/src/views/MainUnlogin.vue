@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img src="../assets/logo.png" alt="asd">
     <p>심심하신가요?</p>
     <p>장르 월드컵을 통해 당신에게 맞는</p>
     <p>영화를 추천 받으세요!</p>
@@ -14,7 +13,7 @@ export default {
   name: 'MainUnlogin',
   methods: {
     login(){
-      router.push('login')
+      router.push({name:'login'})
     }
   },
 };
