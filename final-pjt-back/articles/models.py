@@ -4,7 +4,7 @@ from django.conf import settings
 # Create your models here.
 
 class Review(models.Model):
-    
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     movie_id = models.IntegerField()
@@ -16,7 +16,7 @@ class Review(models.Model):
     rate = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
 
 
 
