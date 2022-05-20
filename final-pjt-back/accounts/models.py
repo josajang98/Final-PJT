@@ -12,6 +12,7 @@ class WishList(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     movie_id = models.IntegerField()
+    poster_path = models.CharField(max_length=100)
 
 
 
