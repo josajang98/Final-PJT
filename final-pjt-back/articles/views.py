@@ -14,11 +14,12 @@ def review_create(request, movie_pk):
 
     user = request.user
     serializer = ReviewSerializer(data=request.data)
-    reviews = get_object_or_404(Review)
-
+    # print(serializer)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(movie_pk=movie_pk, user=user)
+        print('123asdf')
+        serializer.save(user=user)
         
+        reviews = get_list_or_404(Review)
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
