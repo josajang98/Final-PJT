@@ -3,6 +3,16 @@
     <nav>
       <router-link to="/"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
+    <nav>
+      <router-link :to="{ name: 'articles'}">
+        <img src="./assets/logo.png" alt="asd">
+      </router-link> 
+      <div>
+        <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
+        <router-link :to="{ name: 'pickmovie'}">내가 찜한 목록</router-link> 
+        <router-link :to="{ name: 'articles'}"></router-link> 
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
