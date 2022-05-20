@@ -2,17 +2,31 @@
 
 # final-pjt
 
-제목
+| 항목        | 설명                                                         |
+| ----------- | ------------------------------------------------------------ |
+| 팀명        | 잘굴러가유<br /><img src="README.assets/KakaoTalk_20220516_170422236.jpg" style="zoom: 10%;" /> |
+| 팀원        | 강장호,권다솜,조항주                                         |
+| 역할        | front : 권다솜, 조항주<br />back : 강장호                    |
+| 프로젝트 명 | 잘골라줘유<br />![](README.assets/Free_Sample_By_Wix.jpg)    |
 
 ## 1.목표
 
+`잘골라줘유`를 사용하는 user 개인의 취향을 반영하여 영화를 추천한다.
+
 ## 2.준비사항
+
+- 언어 : django, vue, python, javascript
+- 도구 : vscode, chrome, figma, ERDCloud, TMDB API, git, Typora
 
 ## 3.프로젝트 컨셉 주요기능
 
+- 컨셉 : 잘 골라주는 사이트
+
+- 주요 기능 : 장르 월드컵
+
 ## 4.요구사항
 
-accounts
+**[ accounts ]**
 
 | HTTP method | URL 패턴            | component       | 설명                   |
 | ----------- | ------------------- | :-------------- | ---------------------- |
@@ -24,7 +38,7 @@ accounts
 | POST        | /accounts/signup    |                 | 회원가입 요청          |
 | GET         | /accounts/{user_id} |                 | 유저페이지 렌더링      |
 
-articles
+**[ articles ]**
 
 | HTTP method | URL 패턴                                 | component            | 설명                          |
 | ----------- | ---------------------------------------- | :------------------- | ----------------------------- |
@@ -67,7 +81,14 @@ articles(유배)
 #### 오늘의 진행과정
 
 1. 피그마(툴)를 사용하여 웹 레이아웃 작성
+
+   ![](README.assets/SmartSelectImage_2022-05-20-16-34-50.png)
+
+   ![](README.assets/SmartSelectImage_2022-05-20-16-37-09.png)
+
 2. ERDCloud를 사용하여 ERD 작성
+
+   ![](README.assets/SmartSelectImage_2022-05-20-16-38-18.png)
 
 #### 오늘의 위기
 
@@ -75,6 +96,8 @@ articles(유배)
    - 해결방법 : 몸으로 부딪힌다... (with. 구선생님)
 2. `진행과정1` 메인 색상 팔레트 결정 난제
    - 해결방법 : 여러색상을 적용하여 제일 나은 색 조합을 선택함 -> 테마는 학교 칠판
+
+---
 
 ### 0519 
 
@@ -87,6 +110,8 @@ articles(유배)
 
 1. `진행과정2` movie 데이터를 db에 저장하지 않아 fk 설정에 어려움 발생 
    - 해결방법 : review model에서 movie_id 필드를 fk로 안하고 int로 설정 후 우리가 fk처럼 사용하기로 정함
+
+---
 
 ### 0520
 
@@ -106,14 +131,12 @@ articles(유배)
 
 2. Components 재확인 및 model & ERD 수정
 
-   - 배우를 검색 -> 배우가 출연한 영화 정보 추출 : 배우 id 필요하고, get movie credits 사용하면 될 듯
-
    - 메인 페이지 : 베너는 넷플릭스처럼 한가지만 보임 (영화 제목 + 포스터)
 
-3. front(조항주,권다솜) 와 back(강장호)으로 역할을 나눠 로그인 기능 생성
+3. front(조항주,권다솜) 와 back(강장호)으로 역할 분담
 
-   - front : login / logout / signup
-   - back :
+   - front(vue) : login / logout / signup
+   - back(django) : login / logout / signup / profile(without articles)
 
 #### 오늘의 위기
 
@@ -121,3 +144,6 @@ articles(유배)
    - 해결방법 : default=0 속성을 준다.
 2. `진행과정3` vue : login 하는 과정에서 이해가 부족함
    - 해결방법 : 유튜브 라이브 교수님 코드를 천천히 살펴봄.
+
+---
+
