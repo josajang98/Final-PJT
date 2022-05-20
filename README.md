@@ -40,18 +40,20 @@
 
 **[ articles ]**
 
-| HTTP method | URL 패턴                                 | component            | 설명                          |
-| ----------- | ---------------------------------------- | :------------------- | ----------------------------- |
-| GET         | /articles                                | MainLogin.vue        | 메인페이지 렌더링             |
-| GET         | /articles/genrewc                        | Genrewc.vue          | 장르월드컵 페이지 렌더링      |
-| GET         | /articles/genrewc/{genre_id}             | GenrewcResult.vue    | 장르월드컵 결과 페이지 렌더링 |
-| POST        | /articles/genrewc/{genre_id}             |                      | db에 유저의 장르 id 저장      |
-| GET         | /articles/{movie_id}                     |                      | 영화 상세페이지 렌더링        |
-| POST        | /articles/{movie_id}/create              |                      | 리뷰생성 요청                 |
-| POST        | /articles/{movie_id}/{review_id}/like    |                      | 리뷰 좋아요 요청              |
-| GET         | /articles/{movie_id}/{review_id}/update/ | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
-| POST        | /articles/{movie_id}/{review_id}/update/ |                      | 리뷰수정 요청                 |
-| POST        | /articles/{movie_id}/{review_id}/delete/ |                      | 리뷰삭제 요청                 |
+| HTTP method | URL 패턴                                | component            | 설명                          |
+| ----------- | --------------------------------------- | :------------------- | ----------------------------- |
+| GET         | /articles                               | MainLogin.vue        | 메인페이지 렌더링             |
+| GET         | /articles/genrewc                       | Genrewc.vue          | 장르월드컵 페이지 렌더링      |
+| GET         | /articles/genrewc/{genre_id}            | GenrewcResult.vue    | 장르월드컵 결과 페이지 렌더링 |
+| POST        | /articles/genrewc/{genre_id}            |                      | db에 유저의 장르 id 저장      |
+| GET         | /articles/{movie_id}                    |                      | 영화 상세페이지 렌더링        |
+| POST        | /articles/{movie_id}                    |                      | 리뷰생성 요청                 |
+| POST        | /articles/{movie_id}/like/{review_id}   |                      | 리뷰 좋아요 요청              |
+| GET         | /articles/{movie_id}/update/{review_id} | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
+| POST        | /articles/{movie_id}/update/{review_id} |                      | 리뷰수정 요청                 |
+| POST        | /articles/{movie_id}/delete/{review_id} |                      | 리뷰삭제 요청                 |
+| GET         | /articles/pickmovie                     |                      | 사용자가 찜한 영화            |
+| POST        | /articles/pickmovie                     |                      | 찜한 영화 사용자에 저장       |
 
 
 
@@ -138,12 +140,23 @@ articles(유배)
    - front(vue) : login / logout / signup
    - back(django) : login / logout / signup / profile(without articles)
 
+---
+
+**[ 야근 ]**
+
+4. front(조항주,권다솜) & back(강장호)
+   - front : 로그인 했을 때 보이는 메인 페이지 생성 [ navbar만 생성했음,,, search bar 어케하는거냐고,,,, ]
+   - back : 영화 리뷰 생성 [ 현재 진행상황 : 실패,,,:bomb: ]
+
 #### 오늘의 위기
 
 1. `진행과정2` django의 accounts/model.py에서 genre_id가 user를 생성할 때 에러가 발생함
    - 해결방법 : default=0 속성을 준다.
 2. `진행과정3` vue : login 하는 과정에서 이해가 부족함
    - 해결방법 : 유튜브 라이브 교수님 코드를 천천히 살펴봄.
+3. `진행과정4` front : views에 `Ariticles.vue`로 파일명을 정했을때, **Component name "Articles" should always be multi-word  vue/multi-word(컴포넌트 이름은 항상 여러 단어로 되어야 한다.)**
+   - 해결방법 : ArticlesView로 이름을 변경해줌.
+4. `진행과정4` back : review 생성이 안됨,,,,,,, 왜 안돼? ,,,,, 좀 잘 되면 얼마나 좋겠냐!!!!!!!
 
 ---
 
