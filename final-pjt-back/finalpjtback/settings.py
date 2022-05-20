@@ -37,6 +37,15 @@ INSTALLED_APPS = [
 
     # 3rd party
     'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    'allauth', 
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'corsheaders',
 
     # django
     'django.contrib.admin',
@@ -45,9 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,3 +144,22 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# 모두에게 교차출처 허용 (*)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# 교차출처 허용할 Domain
+# ['https://localhost:8080,']
+
+
+# DRF 인증 관련 설정
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        
+        # 'rest_framework.permissions.AllowAny', 모두에게 허용
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
