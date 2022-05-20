@@ -10,13 +10,12 @@ from .models import Review
 
 
 @api_view(['POST'])
-def review_create(request, movie_pk):
+def review_create(request):
 
     user = request.user
     serializer = ReviewSerializer(data=request.data)
-    # print(serializer)
+
     if serializer.is_valid(raise_exception=True):
-        print('123asdf')
         serializer.save(user=user)
         
         reviews = get_list_or_404(Review)
