@@ -178,22 +178,34 @@ articles(유배)
 
 #### 오늘의 진행과정
 
-1. review CRUD 구현 및 테스트
+##### django
 
-   ```python
-       def seleted_movie(reviews, movie_pk):
-           reviews_seleted_movie = []
-           for review in reviews:
-               if review.movie_id == movie_pk:
-                   reviews_seleted_movie.append(review)
-           return reviews_seleted_movie
-   ```
+- review CRUD 구현 및 테스트
 
-   - movie를 장고에 저장하지 않기때문에 orm함수를 사용할 수 없음
-   - 따라서 list전체를 받고 거기서 movie_pk값에 맞는 review들을 Response해주어야 함
-   - 그에 따른 함수를 구현 => movie_id와 movie_pk이 같은 값들을 리스트에 모아 json으로 보내준다
+  ```python
+      def seleted_movie(reviews, movie_pk):
+          reviews_seleted_movie = []
+          for review in reviews:
+              if review.movie_id == movie_pk:
+                  reviews_seleted_movie.append(review)
+          return reviews_seleted_movie
+  ```
 
-2. review_ like 구현
+  - movie를 장고에 저장하지 않기때문에 orm함수를 사용할 수 없음
+  - 따라서 list전체를 받고 거기서 movie_pk값에 맞는 review들을 Response해주어야 함
+  - 그에 따른 함수를 구현 => movie_id와 movie_pk이 같은 값들을 리스트에 모아 json으로 보내준다
+
+- review_ like 구현
+
+##### vue
+
+- ArticlesView 의 MainMovieCard 컴포넌트 구현
+  - dfs에 tmdb url 추가
+  - axios 요청으로 nowPlaying 데이터를 가져와서 lodash 랜덤으로 영화의 backdrop_path와 title를 가져와서 페이지에 보여줌
+
+#### 
+
+
 
 
 
