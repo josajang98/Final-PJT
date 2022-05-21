@@ -9,24 +9,39 @@ from .models import Review
 # Create your views here.
 
 
-@api_view(['POST'])
-def review_create(request):
+@api_view(['GET','POST'])
+def review_list_create(request,movie_pk):
 
-    user = request.user
-    serializer = ReviewSerializer(data=request.data)
-
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(user=user)
-        
+    if request.method == 'GET':
         reviews = get_list_or_404(Review)
+        # 같은 movie id만 넘겨줘야하는 로직을 만들어야함
+
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+    if request.method == 'POST':
+        user = request.user
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=user)
+            
+            reviews = get_list_or_404(Review)
+            serializer = ReviewSerializer(reviews, many=True)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-def review_update(reauest,):
-    pass
 
+@api_view(['PUT'])
+def review_update(request,movie_pk,review_pk):
+
+
+    review = get_object_or_404(Review, pk=review_pk)
+    print(review)
+
+    if request.method == 'PUT':
+        if request.user == review.user:
+            print(request.user)
+            print(review.user)
 
 
 
