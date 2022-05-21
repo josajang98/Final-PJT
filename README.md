@@ -152,11 +152,25 @@ articles(유배)
 
 1. `진행과정2` django의 accounts/model.py에서 genre_id가 user를 생성할 때 에러가 발생함
    - 해결방법 : default=0 속성을 준다.
+   
 2. `진행과정3` vue : login 하는 과정에서 이해가 부족함
    - 해결방법 : 유튜브 라이브 교수님 코드를 천천히 살펴봄.
+   
 3. `진행과정4` front : views에 `Ariticles.vue`로 파일명을 정했을때, **Component name "Articles" should always be multi-word  vue/multi-word(컴포넌트 이름은 항상 여러 단어로 되어야 한다.)**
    - 해결방법 : ArticlesView로 이름을 변경해줌.
+   
 4. `진행과정4` back : review 생성이 안됨,,,,,,, 왜 안돼? ,,,,, 좀 잘 되면 얼마나 좋겠냐!!!!!!!
+
+   - 해결방법 : 
+
+     ```python
+     reviews = get_list_or_404(Review)
+     serializer.save(user=user)
+     ```
+
+     리뷰모델이 비어있을 때 get_list_or_404를 호출하는 경우를 고려했음
+
+     serializer 데이터를 저장할 때 movie_id를 따로 인자로 받지 않게 수정
 
 ---
 
