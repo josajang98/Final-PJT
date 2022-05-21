@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <nav v-if="this.$store.accounts.state.user">
+    <nav v-if="!isLoggedIn">
       <router-link to="/"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
-    <nav v-if="!this.$store.state.user">
+    <nav v-if="isLoggedIn">
       <router-link :to="{ name: 'articles'}">
         <img src="./assets/logo.png" alt="asd">
       </router-link> 
-      <div class="collapse navbar-collapse">
+      <!-- <div class="collapse navbar-collapse"> -->
+      <div>
         <router-link :to="{ name: 'genrewc'}"><p>장르 월드컵</p></router-link> 
         <router-link :to="{ name: 'pickmovie'}"><p>내가 찜한 목록</p></router-link> 
         <!-- <div>
@@ -19,12 +20,26 @@
           </b-navbar>
         </div> -->
         <router-link :to="{ name: 'articles'}"><p>profile</p></router-link> 
+        <router-link :to="{ name: 'logout' }">Logout</router-link>
       </div>
     </nav>
     <router-view/>
   </div>
 </template>
 
+<script>
+
+  import { mapGetters } from 'vuex'
+
+  export default {
+    name: 'App',
+
+    computed: {
+      ...mapGetters(['isLoggedIn'])
+    },
+    
+  }
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
