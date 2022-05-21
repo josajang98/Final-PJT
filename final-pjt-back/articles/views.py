@@ -12,11 +12,20 @@ from .models import Review
 @api_view(['GET','POST'])
 def review_list_create(request,movie_pk):
 
-    if request.method == 'GET':
-        reviews = get_list_or_404(Review)
-        # 같은 movie id만 넘겨줘야하는 로직을 만들어야함
+    def seleted_movie(reviews, movie_pk):
+        reviews_seleted_movie = []
+        for review in reviews:
+            if review.movie_id == movie_pk:
+                reviews_seleted_movie.append(review)
 
-        serializer = ReviewSerializer(reviews, many=True)
+        return reviews_seleted_movie
+
+
+    if request.method == 'GET':
+
+        reviews = get_list_or_404(Review)
+        reviews_seleted_movie = seleted_movie(reviews, movie_pk)
+        serializer = ReviewSerializer(reviews_seleted_movie, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -25,24 +34,47 @@ def review_list_create(request,movie_pk):
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=user)
-            
             reviews = get_list_or_404(Review)
+            reviews_seleted_movie = seleted_movie(reviews, movie_pk)
+
             serializer = ReviewSerializer(reviews, many=True)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['PUT'])
-def review_update(request,movie_pk,review_pk):
+@api_view(['PUT','DELETE'])
+def review_update_delete(request,movie_pk,review_pk):
+
+    def seleted_movie(reviews, movie_pk):
+        reviews_seleted_movie = []
+        for review in reviews:
+            if review.movie_id == movie_pk:
+                reviews_seleted_movie.append(review)
+
+        return reviews_seleted_movie
 
 
     review = get_object_or_404(Review, pk=review_pk)
-    print(review)
 
+    # update
     if request.method == 'PUT':
         if request.user == review.user:
-            print(request.user)
-            print(review.user)
+            serializers = ReviewSerializer(instance=review, data=request.data)
+            if serializers.is_valid(raise_exception=True):
+                serializers.save()
+                reviews = get_list_or_404(Review)
+                reviews_seleted_movie = seleted_movie(reviews, movie_pk)
 
+                serializers = ReviewSerializer(reviews_seleted_movie, many=True)
+                return Response(serializers.data)
 
+    # delete
+    if request.method == 'DELETE':
+        if request.user == review.user:
+            review.delete()
+            reviews = get_list_or_404(Review)
+            reviews_seleted_movie = seleted_movie(reviews, movie_pk)
+
+            serializers = ReviewSerializer(reviews_seleted_movie, many=True)
+            return Response(serializers.data)
 
 
