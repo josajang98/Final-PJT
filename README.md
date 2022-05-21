@@ -40,20 +40,20 @@
 
 **[ articles ]**
 
-| HTTP method | URL 패턴                                | component            | 설명                          |
-| ----------- | --------------------------------------- | :------------------- | ----------------------------- |
-| GET         | /articles                               | MainLogin.vue        | 메인페이지 렌더링             |
-| GET         | /articles/genrewc                       | Genrewc.vue          | 장르월드컵 페이지 렌더링      |
-| GET         | /articles/genrewc/{genre_id}            | GenrewcResult.vue    | 장르월드컵 결과 페이지 렌더링 |
-| POST        | /articles/genrewc/{genre_id}            |                      | db에 유저의 장르 id 저장      |
-| GET         | /articles/{movie_id}                    |                      | 영화 상세페이지 렌더링        |
-| POST        | /articles/{movie_id}                    |                      | 리뷰생성 요청                 |
-| POST        | /articles/{movie_id}/like/{review_id}   |                      | 리뷰 좋아요 요청              |
-| GET         | /articles/{movie_id}/update/{review_id} | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
-| POST        | /articles/{movie_id}/update/{review_id} |                      | 리뷰수정 요청                 |
-| POST        | /articles/{movie_id}/delete/{review_id} |                      | 리뷰삭제 요청                 |
-| GET         | /articles/pickmovie                     |                      | 사용자가 찜한 영화            |
-| POST        | /articles/pickmovie                     |                      | 찜한 영화 사용자에 저장       |
+| HTTP method | URL 패턴                                  | component            | 설명                          |
+| ----------- | ----------------------------------------- | :------------------- | ----------------------------- |
+| GET         | /articles                                 | MainLogin.vue        | 메인페이지 렌더링             |
+| GET         | /articles/genrewc                         | Genrewc.vue          | 장르월드컵 페이지 렌더링      |
+| GET         | /articles/genrewc/{genre_id}              | GenrewcResult.vue    | 장르월드컵 결과 페이지 렌더링 |
+| POST        | /articles/genrewc/{genre_id}              |                      | db에 유저의 장르 id 저장      |
+| GET         | /articles/{movie_id}/reviews/             |                      | 영화 상세페이지 렌더링        |
+| POST        | /articles/{movie_id}reviews/              |                      | 리뷰생성 요청                 |
+| POST        | /articles/{movie_id}/like/{review_id}/    |                      | 리뷰 좋아요 요청              |
+| GET         | /articles/{movie_id}/reviews/{review_id}/ | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
+| POST        | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰수정 요청                 |
+| POST        | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰삭제 요청                 |
+| GET         | /articles/wishlist/                       |                      | 사용자가 찜한 영화            |
+| POST        | /articles/wishlist/                       |                      | 찜한 영화 사용자에 저장       |
 
 
 
@@ -173,4 +173,31 @@ articles(유배)
      serializer 데이터를 저장할 때 movie_id를 따로 인자로 받지 않게 수정
 
 ---
+
+### 0521
+
+#### 오늘의 진행과정
+
+1. review CRUD 구현 및 테스트
+
+   ```python
+       def seleted_movie(reviews, movie_pk):
+           reviews_seleted_movie = []
+           for review in reviews:
+               if review.movie_id == movie_pk:
+                   reviews_seleted_movie.append(review)
+           return reviews_seleted_movie
+   ```
+
+   - movie를 장고에 저장하지 않기때문에 orm함수를 사용할 수 없음
+   - 따라서 list전체를 받고 거기서 movie_pk값에 맞는 review들을 Response해주어야 함
+   - 그에 따른 함수를 구현 => movie_id와 movie_pk이 같은 값들을 리스트에 모아 json으로 보내준다
+
+2. review_ like 구현
+
+
+
+
+
+
 
