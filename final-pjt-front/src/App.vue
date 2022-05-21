@@ -1,16 +1,24 @@
 <template>
   <div id="app">
-    <nav>
+    <nav v-if="this.$store.accounts.state.user">
       <router-link to="/"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
-    <nav>
+    <nav v-if="!this.$store.state.user">
       <router-link :to="{ name: 'articles'}">
         <img src="./assets/logo.png" alt="asd">
       </router-link> 
-      <div>
-        <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
-        <router-link :to="{ name: 'pickmovie'}">내가 찜한 목록</router-link> 
-        <router-link :to="{ name: 'articles'}"></router-link> 
+      <div class="collapse navbar-collapse">
+        <router-link :to="{ name: 'genrewc'}"><p>장르 월드컵</p></router-link> 
+        <router-link :to="{ name: 'pickmovie'}"><p>내가 찜한 목록</p></router-link> 
+        <!-- <div>
+          <b-navbar type="light" variant="light">
+            <b-nav-form>
+              <b-form-input class="mr-sm-2" placeholder="Search"></b-form-input>
+              <b-button variant="outline-success" class="my-2 my-sm-0" type="submit">Search</b-button>
+            </b-nav-form>
+          </b-navbar>
+        </div> -->
+        <router-link :to="{ name: 'articles'}"><p>profile</p></router-link> 
       </div>
     </nav>
     <router-view/>
