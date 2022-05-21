@@ -14,7 +14,3 @@ class WishList(models.Model):
     movie_id = models.IntegerField()
     poster_path = models.CharField(max_length=100)
 
-
-
-
-#
