@@ -1,10 +1,12 @@
 <template>
   <div>
-    
+    <MainMovieCard></MainMovieCard>
   </div>
 </template>
 
 <script>
+import MainMovieCard from '@/components/MainMovieCard.vue'
+
 export default {
   name: 'ArticlesView',
 
@@ -13,7 +15,9 @@ export default {
       
     };
   },
-
+  components:{
+    MainMovieCard,
+  },
   mounted() {
     
   },

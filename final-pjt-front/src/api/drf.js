@@ -4,6 +4,10 @@ const ACCOUNTS = 'accounts/'
 const ARTICLES = 'articles/'
 const COMMENTS = 'comments/'
 
+
+const BASE_URL = 'https://api.themoviedb.org/3/'
+const api_key = 'ad488474335fabb016f15ea2b4edaaba'
+const language = 'ko-KR'
 export default {
   accounts: {
     login: () => HOST + ACCOUNTS + 'login/',
@@ -21,6 +25,12 @@ export default {
     article: articlePk => HOST + ARTICLES + `${articlePk}/`,
     likeArticle: articlePk => HOST + ARTICLES + `${articlePk}/` + 'like/',
     comments: articlePk => HOST + ARTICLES + `${articlePk}/` + COMMENTS,
+    comment: (articlePk, commentPk) =>
+      HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
+  },
+  tmdb: {
+    nowPlaying: () => BASE_URL + `movie/now_playing/?api_key=${api_key}&language=${language}`,
+
     comment: (articlePk, commentPk) =>
       HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
   },
