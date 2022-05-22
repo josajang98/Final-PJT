@@ -34,8 +34,6 @@ def wishlist_show_save(request):
         
         user = request.user
         movie_id = request.data['movie_id']
-
-
         wish_list = WishList.objects.all().filter(user_id=user)
 
         # 위시무비 id 값만 불러오기
