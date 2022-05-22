@@ -207,9 +207,42 @@ articles(유배)
 
 
 
+### 0522
 
+#### 오늘의 진행과정
 
+##### django
 
+- wish list show and save 구현 및 테스트
 
+  ```python
+  user = request.user
+  movie_id = request.data['movie_id']
+  wish_list = WishList.objects.all().filter(user_id=user)
+  
+  # 위시무비 id 값만 불러오기
+  wish_movie_id = []
+  for wish in wish_list:
+  	wish_movie_id.append(wish.movie_id)
+  
+  # wish_movie_id값안에 값이 있으면 ==> 삭제
+  if movie_id in wish_movie_id:
+  	wish_object = get_object_or_404(WishList,user_id=user,movie_id=movie_id)
+  	wish_object.delete()
+  	serializers = WishListSerializer(wish_object)
+  	return Response(serializers.data)
+  
+  else:
+      없으면 저장
+  
+  ```
 
+- 오늘의 위기
 
+  - movie_id값을 request로 받아오기 때문에 데이터에서 dictionary로 받아와야 함
+  - wish_list를 받아올때 get_list_or_404로 받아오지 못함
+    - 왜냐하면 새로운 유저가 찜을 눌렀을때 아무것도 없을시에 404에러가 뜨게 된다
+    - 이렇게 되면 안되기 때문에 빈리스트로 마무리를 시켜준다
+  - for문을 이용하여 movie id 값만 받아와서 비교한다.
+  - if 문을 사용해서 리스트에 있는 id값의 존재 여부를 비교한다.
+    - 리스트를 써도 되는 이유 : 한유저가 아무리 많은 영화를 눌러도 얼마 안될 것이기 때문에
