@@ -246,3 +246,54 @@ articles(유배)
   - for문을 이용하여 movie id 값만 받아와서 비교한다.
   - if 문을 사용해서 리스트에 있는 id값의 존재 여부를 비교한다.
     - 리스트를 써도 되는 이유 : 한유저가 아무리 많은 영화를 눌러도 얼마 안될 것이기 때문에
+
+##### vue
+
+- 데이터 흐름 변경
+  MainMovieCard 컴포넌트에서 axios 요청을 통해 데이터를 가져오던걸 부모 컴포넌트인 ArticleView 컴포넌트에서 가져와서 props로 전달해주는 방식으로 변경
+
+- ArticlesVies.vue의 getNowPlayingMovie() 메서드 분리
+  기존에 api요청을 보내서 현재 상영중인 영화를 가져오고 그 안에서 렌덤으로 데이터 하나를 저장했던 getNowPlayingMovie() 를 
+  현재 상영중인 영화 데이터를 저장하는 getNowPlayingMovieList()와 그 안에서 렌덤 영화를 저장하는 getRandMovieData()로 분리함
+
+- 오늘의 위기
+  created 라이프 싸이클 훅이 동기적으로 코드가 실행되지 않는거 같다,,, 현재 상영중인 영화 정보를 먼저 가져오고 랜덤 무비를 가져와야 되는데 그게 안돼
+
+  ```js
+  created(){
+      this.getNowPlayingMovieList()
+      this.getRandMovieData()
+    },
+  mounted() {
+      this.getRandMovieData()
+    },
+  ```
+
+  이런식으로 짜면 안돼 그래서 
+
+  ```vue
+  <template>
+    <div>
+      {{getRandMovieData()}}
+      <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle"></MainMovieCard>
+    </div>
+  </template>
+  ```
+
+  일단 임시로 이렇게 실행시켜놨습니다,,
+
+
+
+### 0523
+
+#### 오늘의 진행과정
+
+##### vue
+
+- 로그인 시에도 8080/ 로 접속했을 때 로그인 페이지가 렌더링 되는 문제 해결
+  MainUnlogin.vue 의 created 라이프사이클 훅에 로그인시 articles로 라우팅 되는 메서드를 걸어둠
+- 비로그인 시 /articles로 접속되는 문제 해결
+- 장르 영화 추천 목록 생성
+  
+- 배우 영화 추천 목록 생성
+- 현재 상영중 영화 추천 목록 생성

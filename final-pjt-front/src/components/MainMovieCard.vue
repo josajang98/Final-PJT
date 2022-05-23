@@ -1,7 +1,9 @@
 <template>
   <div>
     <img :src="backdropPath" alt="">
-    {{title}}
+    <p>
+      {{title}}
+    </p>
   </div>
 </template>
 
