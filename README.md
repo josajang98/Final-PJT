@@ -295,7 +295,75 @@ articles(유배)
 - review를 달때 한영화에 하나의 review만 쓸수 있도록 변경
 - review list에 평점 추가
 - 프로필 창에 좋아하는 리뷰, 좋아하는 리뷰의 개수, 내가 작성한 리뷰와 개수 추가
-- 
+
+**review list**
+
+```python
+# movie_id 모음
+review_movie_list = []
+for review_ojt in review_list:
+    review_movie_list.append(review_ojt.movie_id)
+        
+# 작성되어 있을시 data보냄
+if movie_pk in review_movie_list:
+    data = {
+        'exist':f'이미 작성하셨습니다'
+    }
+	return Response(data, status=status.HTTP_201_CREATED)
+
+# 작성 안되어 있을시 저장
+else:
+	serializer = ReviewSerializer(data=request.data)
+	if serializer.is_valid(raise_exception=True):
+		serializer.save(user=user)
+		reviews = get_list_or_404(Review)
+		reviews_selected_movie = seleted_movie(reviews, movie_pk)
+		serializer = ReviewSerializer(reviews, many=True)
+		return Response(serializer.data, status=status.HTTP_201_CREATED)
+```
+
+- movie id 값을 모아두고 for문을 통해서 movie_pk가 있는지 확인
+  - 있음 ==> 이미 작성 했다는 data를 보내준다
+  - 없음 ==> review list로 받아서 보내준다
+
+**rate**
+
+```python
+def rate_selected_movie(reviews, movie_pk):
+    rate_selected_movie = []
+    for review in reviews:
+        if review.movie_id == movie_pk:
+            rate_selected_movie.append(review.rate)
+            return rate_selected_movie
+
+rate_list = rate_selected_movie(reviews, movie_pk)
+average_rate = round(sum(rate_list)/len(rate_list),1)
+```
+
+- 선택된 movie들을 list에 담아 평균을 구해준다.
+
+
+
+**like_review, review_count in profile**
+
+```python
+like_review = ReviewSerializer(many=True, read_only=True)
+review_count = serializers.IntegerField(source='review_set.count',read_only=True)
+```
+
+- ReviewSerializer는 새로 calss를 만들어서 커스텀 해줌
+
+- ProfileSerializer에 이 두 값들을 추가 해준다
+
+
+
+**genre_save**
+
+```python
+serializers = UserSerializer(instance=user, data=request.data)
+```
+
+- 업데이트 구현할때와 마찬가로 instance=user를 넣음으로서 기존것들을 가져오고 업데이트만 시킨다.
 
 
 
