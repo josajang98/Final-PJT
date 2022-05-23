@@ -9,6 +9,8 @@ import MainMovieCard from '@/components/MainMovieCard.vue'
 import axios from 'axios'
 import drf from '@/api/drf'
 import _ from 'lodash'
+import { mapGetters } from 'vuex';
+import router from '@/router'
 
 const imgUrl='https://image.tmdb.org/t/p/w500/'
 export default {
@@ -26,11 +28,15 @@ export default {
     };
   },
   created(){
+    this.routingArticles(),
     this.getNowPlayingMovieList(),
     this.getPopularMovieList()
   },
   components:{
     MainMovieCard,
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn'])
   },
   mounted() {
     // this.getRandMovieData()
@@ -84,6 +90,10 @@ export default {
           console.error(err.response.data)
         })
     },
+    routingArticles(){
+      if (this.isLoggedIn === false)
+        router.push({name:'home'})
+    }
   },
 
 };
