@@ -6,6 +6,16 @@
       :movie="movie"
       :key="movie.id"
     ></MovieCard>
+    <MovieCard
+      v-for="movie in userLikeActorMovieList"
+      :movie="movie"
+      :key="movie.id"
+    ></MovieCard>
+    <MovieCard
+      v-for="movie in nowPlayingMovieList"
+      :movie="movie"
+      :key="movie.id"
+    ></MovieCard>
   </div>
 </template>
 
@@ -32,7 +42,7 @@ export default {
       mainMovietitle:'',
 
       // 사용자의 장르 영화
-      userLikeGenreId:'',
+      userLikeGenreId:'80',
       // 사용자가 찜한 목록 배우
       userLikeActor:'',
       userLikeActorId:572225,
@@ -59,18 +69,20 @@ export default {
     // this.getRandMovieData()
   },
   methods: {
-    getNowPlayingMovieList(){
-      axios({
-        url: drf.tmdb.nowPlaying(),
-        method: 'get',
+    async getNowPlayingMovieList(){
+      const res=await axios.get(drf.tmdb.nowPlaying())
+        
+      this.nowPlayingMovieList=res.data.results
+      this.getRandMovieData()
+      const indexList = _.sampleSize(_.range(0,19),count)
+      const movieListSlice=[]
+
+      indexList.forEach(el=>{
+        movieListSlice.push(res.data.results[el])
       })
-        .then(res=> {
-          this.nowPlayingMovieList=res.data.results
-          this.getRandMovieData()
-        })
-        .catch(err => {
-          console.error(err.response.data)
-        })
+      this.nowPlayingMovieList=movieListSlice
+      console.log(this.nowPlayingMovieList)
+        
     },
     getGenreMovie(){
       axios({
@@ -122,7 +134,7 @@ export default {
       let cnt = 0
       while (cnt < count){
         const response = await axios.get(drf.tmdb.popular(indexList[idx++]))
-        console.log(response.data)
+        
         response.data.results.forEach(element => {
           if (cnt >= count){
             return false
@@ -140,8 +152,16 @@ export default {
     // 장르 id 없을때,
     // 배우
     async getUserLikeActorMovieList(){
+      if (this.userLikeActorId===''){
+        return
+      }
       const response=await axios.get(drf.tmdb.person(this.userLikeActorId))
-      this.userLikeActorMovieList=response.data.cast
+      const indexList = _.sampleSize(_.range(0,response.data.cast.length),count)
+      indexList.forEach(el=>{
+        this.userLikeActorMovieList.push(response.data.cast[el])
+      })
+      
+      
     }
   },
 
