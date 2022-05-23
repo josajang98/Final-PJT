@@ -22,6 +22,7 @@ def review_list_create(request,movie_pk):
                 reviews_seleted_movie.append(review)
         return reviews_seleted_movie
 
+    
     # list
     if request.method == 'GET':
         reviews = get_list_or_404(Review)
@@ -31,15 +32,29 @@ def review_list_create(request,movie_pk):
 
     # create
     elif request.method == 'POST':
+        
         user = request.user
-        serializer = ReviewSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user=user)
-            reviews = get_list_or_404(Review)
-            reviews_seleted_movie = seleted_movie(reviews, movie_pk)
+        review_list = Review.objects.all().filter(user_id=user)
 
-            serializer = ReviewSerializer(reviews, many=True)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        review_movie_list = []
+        for review_ojt in review_list:
+            review_movie_list.append(review_ojt.movie_id)
+        
+        if movie_pk in review_movie_list:
+            data = {
+                'exist':f'이미 작성하셨습니다'
+            }
+            return Response(data, status=status.HTTP_201_CREATED)
+
+        else:
+            serializer = ReviewSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(user=user)
+                reviews = get_list_or_404(Review)
+                reviews_seleted_movie = seleted_movie(reviews, movie_pk)
+
+                serializer = ReviewSerializer(reviews, many=True)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['PUT','DELETE'])
