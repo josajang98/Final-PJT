@@ -19,6 +19,8 @@ import { mapGetters } from 'vuex';
 import router from '@/router'
 
 const imgUrl='https://image.tmdb.org/t/p/w500/'
+const count = 4
+
 export default {
   
   name: 'ArticlesView',
@@ -43,7 +45,7 @@ export default {
     this.routingArticles(),
     this.getNowPlayingMovieList(),
     this.getPopularMovieList(),
-    this.getUserLikeGenreMovieList(),
+    this.getUserLikeGenreMovieList()
     this.getUserLikeActorMovieList()
   },
   components:{
@@ -114,7 +116,7 @@ export default {
       if (this.userLikeGenreId===''){
         return
       }
-      const count = 4
+      
       const indexList = _.sampleSize(_.range(1,500),500)
       let idx = 0
       let cnt = 0
@@ -137,15 +139,9 @@ export default {
     },
     // 장르 id 없을때,
     // 배우
-    getUserLikeActorMovieList(){
-      axios({
-        url: drf.tmdb.person('63436'),
-        method: 'get',
-      })
-        .then(res=>{
-          console.log(res)
-        })
-      
+    async getUserLikeActorMovieList(){
+      const response=await axios.get(drf.tmdb.person(this.userLikeActorId))
+      this.userLikeActorMovieList=response.data.cast
     }
   },
 
