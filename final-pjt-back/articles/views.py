@@ -13,6 +13,7 @@ User = get_user_model()
 # 1. 토큰 값 없이 보내기 시도
 # 2. 영화 하나에 하나의 리뷰만 사용할 수 있도록 수정
 # 3. 평점 구현
+# 4. 평점 default = 0
 
 @api_view(['GET','POST'])
 def review_list_create(request,movie_pk):
@@ -23,7 +24,7 @@ def review_list_create(request,movie_pk):
             if review.movie_id == movie_pk:
                 reviews_selected_movie.append(review)
         return reviews_selected_movie
-    
+
     def rate_selected_movie(reviews, movie_pk):
         rate_selected_movie = []
         for review in reviews:
@@ -126,19 +127,10 @@ def like_review(request, movie_pk, review_pk):
 def genre_save(request, genre_pk):
 
     user = get_object_or_404(User,pk=request.user.pk)
-    genre_id = int(request.data['genre_id'])
-    
     serializers = UserSerializer(instance=user, data=request.data)
     if serializers.is_valid(raise_exception=True):
-        if genre_pk == genre_id:
-            serializers.save(genre_id=genre_pk)
-            return Response(serializers.data)
-
-        else:
-            data={
-                'error':'genre id와 url genre_pk값이 다릅니다.'
-            }
-            return Response(data)
+        serializers.save(genre_id=genre_pk)
+        return Response(serializers.data)
 
 
 

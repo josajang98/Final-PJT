@@ -21,7 +21,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     
     like_review = ReviewSerializer(many=True, read_only=True)
-    like_review_count = serializers.IntegerField(source='like_review.count',read_only=True)
+    # like_review_count = serializers.IntegerField(source='like_review.count',read_only=True)
 
 
     review_set = ReviewSerializer(many=True, read_only=True)
@@ -30,7 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # fields = '__all__'
-        fields = ('pk','username','review_set','review_count','like_review','like_review_count','genre_id',)
+        fields = ('pk','username','review_set','review_count','like_review','genre_id',)
 
 
 
