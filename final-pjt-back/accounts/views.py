@@ -6,7 +6,6 @@ from rest_framework.response import Response
 
 from .serializers import ProfileSerializer, WishListSerializer
 from .models import WishList
-from articles.models import Review
 
 
 User = get_user_model()

@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import get_list_or_404, get_object_or_404
+from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import  status
-from .serializers import ReviewSerializer
+from .serializers import ReviewSerializer, UserSerializer
 from .models import Review
-import statistics
+User = get_user_model()
 
 # Create your views here.
 
@@ -123,7 +124,23 @@ def like_review(request, movie_pk, review_pk):
 
 @api_view(['POST'])
 def genre_save(request, genre_pk):
-    pass
+
+    user = get_object_or_404(User,pk=request.user.pk)
+    genre_id = int(request.data['genre_id'])
+    
+    serializers = UserSerializer(instance=user, data=request.data)
+    if serializers.is_valid(raise_exception=True):
+        if genre_pk == genre_id:
+            serializers.save(genre_id=genre_pk)
+            return Response(serializers.data)
+
+        else:
+            data={
+                'error':'genre id와 url genre_pk값이 다릅니다.'
+            }
+            return Response(data)
+
+
 
 
 

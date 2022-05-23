@@ -7,6 +7,10 @@ from articles.models import Review
 
 User = get_user_model()
 
+
+
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     
     class ReviewSerializer(serializers.ModelSerializer):
@@ -26,7 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # fields = '__all__'
-        fields = ('pk','username','review_set','review_count','like_review','like_review_count')
+        fields = ('pk','username','review_set','review_count','like_review','like_review_count','genre_id',)
 
 
 
