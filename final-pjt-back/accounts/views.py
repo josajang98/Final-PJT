@@ -12,6 +12,9 @@ User = get_user_model()
 
 # Create your views here.
 
+# 27  user_id=user 확인부탁
+# 50  wish_list 확인부탁
+
 @api_view(['GET'])
 def profile(request, username):
     user = get_object_or_404(User, username=username)
@@ -22,12 +25,14 @@ def profile(request, username):
 @api_view(['GET','POST'])
 def wishlist_show_save(request):
     
-    #show
+    # show
+    
     if request.method == 'GET':
         user = request.user
-        wish_list = get_list_or_404(WishList,pk=user.pk)
+        wish_list = get_list_or_404(WishList,user_id=user)
         serializers = WishListSerializer(wish_list, many=True)
         return Response(serializers.data)
+
 
     # save
     elif request.method == 'POST':
@@ -45,7 +50,9 @@ def wishlist_show_save(request):
         if movie_id in wish_movie_id:
             wish_object = get_object_or_404(WishList,user_id=user,movie_id=movie_id)
             wish_object.delete()
-            serializers = WishListSerializer(wish_object)
+            wish_list = WishList.objects.all().filter(user_id=user)
+            serializers = WishListSerializer(wish_list)
+
             return Response(serializers.data)
 
         # 없으면 ==> 추가

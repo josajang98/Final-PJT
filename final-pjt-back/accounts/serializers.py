@@ -5,10 +5,16 @@ from .models import WishList
 User = get_user_model()
 
 class ProfileSerializer(serializers.ModelSerializer):
+    
+    # 내가 작성한 리뷰
+    # 리뷰 좋아요
 
     class Meta:
         model = User
         fields = ('pk','username')
+
+
+
 
 class WishListSerializer(serializers.ModelSerializer):
 

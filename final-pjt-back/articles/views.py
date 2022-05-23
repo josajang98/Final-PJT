@@ -8,6 +8,9 @@ from .models import Review
 
 # Create your views here.
 
+# 1. 토큰 값 없이 보내기 시도
+# 2. 영화 하나에 하나의 리뷰만 사용할 수 있도록 수정
+# 3. 평점 구현
 
 @api_view(['GET','POST'])
 def review_list_create(request,movie_pk):
@@ -23,7 +26,7 @@ def review_list_create(request,movie_pk):
     if request.method == 'GET':
         reviews = get_list_or_404(Review)
         reviews_seleted_movie = seleted_movie(reviews, movie_pk)
-        serializer = ReviewSerializer(reviews_seleted_movie, many=True)
+        serializer = ReviewSerializer(reviews_seleted_movie, many=True) # many 값 뺼수 있으면 빼는걸로
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     # create
