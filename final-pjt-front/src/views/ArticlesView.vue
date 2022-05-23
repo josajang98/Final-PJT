@@ -1,11 +1,28 @@
 <template>
   <div>
     <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle"></MainMovieCard>
+
+    <!-- 장르 영화 추천 목록 -->
     <MovieCard
       v-for="movie in userLikeGenreMovieList"
       :movie="movie"
       :key="movie.id"
     ></MovieCard>
+
+    <!-- 배우 영화 추천 목록 -->
+    <MovieCard
+      v-for="movie in userLikeActorMovieList"
+      :movie="movie"
+      :key="movie.id"
+    ></MovieCard>
+
+    <!-- 현재 상영중 영화 추천 목록 -->
+    <MovieCard
+      v-for="movie in nowPlayingMovieList"
+      :movie="movie"
+      :key="movie.id"
+    ></MovieCard>
+
   </div>
 </template>
 
@@ -19,6 +36,8 @@ import { mapGetters } from 'vuex';
 import router from '@/router'
 
 const imgUrl='https://image.tmdb.org/t/p/w500/'
+const count = 4
+
 export default {
   
   name: 'ArticlesView',
@@ -30,11 +49,13 @@ export default {
       mainMovietitle:'',
 
       // 사용자의 장르 영화
-      userLikeGenreId:'',
+      userLikeGenreId:'80',
       // 사용자가 찜한 목록 배우
       userLikeActor:'',
       userLikeActorId:572225,
       
+
+      // 추천 영화 리스트
       userLikeGenreMovieList:[],
       userLikeActorMovieList:[],
     };
@@ -42,8 +63,7 @@ export default {
   created(){
     this.routingArticles(),
     this.getNowPlayingMovieList(),
-    this.getPopularMovieList(),
-    this.getUserLikeGenreMovieList(),
+    this.getUserLikeGenreMovieList()
     this.getUserLikeActorMovieList()
   },
   components:{
@@ -54,34 +74,33 @@ export default {
     ...mapGetters(['isLoggedIn'])
   },
   mounted() {
-    // this.getRandMovieData()
+
   },
   methods: {
-    getNowPlayingMovieList(){
-      axios({
-        url: drf.tmdb.nowPlaying(),
-        method: 'get',
+    /**
+     * 현재 상영중인 데이터 20개를 가져와서 랜덤 데이터 하나 뽑아서 MainMovieCard에 넘겨주고 
+     * 카운트 개수만 큼 잘라서 this.nowPlayingMovieList에 저장
+     */
+    async getNowPlayingMovieList(){
+      const response=await axios.get(drf.tmdb.nowPlaying())
+      
+      
+      this.nowPlayingMovieList=response.data.results
+      this.getRandMovieData()
+      const indexList = _.sampleSize(_.range(0,19),count)
+      const movieListSlice=[]
+
+      indexList.forEach(el=>{
+        movieListSlice.push(response.data.results[el])
       })
-        .then(res=> {
-          this.nowPlayingMovieList=res.data.results
-          this.getRandMovieData()
-        })
-        .catch(err => {
-          console.error(err.response.data)
-        })
+      this.nowPlayingMovieList=movieListSlice
+      console.log(this.nowPlayingMovieList)
+        
     },
-    getGenreMovie(){
-      axios({
-        url: drf.tmdb.nowPlaying(),
-        method: 'get',
-      })
-        .then(res=> {
-          res
-        })
-        .catch(err => {
-          console.error(err.response.data)
-        })
-    },
+
+    /**
+     * 상영중인 영화 데이터 중 하나를 렌덤으로 골라서 데이터 저장
+     */
     getRandMovieData(){
       const randNum=_.random(0,19)
 
@@ -92,35 +111,28 @@ export default {
       this.mainMovieBackdropPath=backdropPath
       this.mainMovietitle=title
     },
-    getPopularMovieList(){
-      axios({
-        url: drf.tmdb.popular(),
-        method: 'get',
-      })
-        .then(res=> {
-          this.popularMovieList=res.data.results
-          // console.log(this.popularMovieList)
-        })
-        .catch(err => {
-          console.error(err.response.data)
-        })
-    },
+
+
+  
     routingArticles(){
       if (this.isLoggedIn === false)
         router.push({name:'home'})
     },
-    // 좋아하는 장르 영화
+
+    /**
+     * 유저 장르id가 있다면 랜덤 페이지로 popular요청을 보내서 같은 장르의 영화데이터를 count만큼 저장 
+     */
     async getUserLikeGenreMovieList(){
       if (this.userLikeGenreId===''){
         return
       }
-      const count = 4
+      
       const indexList = _.sampleSize(_.range(1,500),500)
       let idx = 0
       let cnt = 0
       while (cnt < count){
         const response = await axios.get(drf.tmdb.popular(indexList[idx++]))
-        console.log(response.data)
+        
         response.data.results.forEach(element => {
           if (cnt >= count){
             return false
@@ -135,17 +147,19 @@ export default {
         })
       }
     },
-    // 장르 id 없을때,
-    // 배우
-    getUserLikeActorMovieList(){
-      axios({
-        url: drf.tmdb.person('63436'),
-        method: 'get',
+
+    /**
+     * 배우id가 있다면 person요청으로 데이터를 가져온 후 count만큼 랜덤으로 저장
+     */
+    async getUserLikeActorMovieList(){
+      if (this.userLikeActorId===''){
+        return
+      }
+      const response=await axios.get(drf.tmdb.person(this.userLikeActorId))
+      const indexList = _.sampleSize(_.range(0,response.data.cast.length),count)
+      indexList.forEach(el=>{
+        this.userLikeActorMovieList.push(response.data.cast[el])
       })
-        .then(res=>{
-          console.log(res)
-        })
-      
     }
   },
 
