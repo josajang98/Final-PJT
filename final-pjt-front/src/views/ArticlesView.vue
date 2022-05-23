@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{getRandMovieData()}}
     <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle"></MainMovieCard>
   </div>
 </template>
@@ -21,20 +20,21 @@ export default {
       nowPlayingMovieList:'',
       mainMovieBackdropPath:'',
       mainMovietitle:'',
-
+      userLikeGenreId:'',
+      userLikeActor:'',
+      popularMovieList:'',
     };
   },
   created(){
-    this.getNowPlayingMovieList()
-    
+    this.getNowPlayingMovieList(),
+    this.getPopularMovieList()
   },
   components:{
     MainMovieCard,
   },
   mounted() {
-    this.getRandMovieData()
+    // this.getRandMovieData()
   },
-
   methods: {
     getNowPlayingMovieList(){
       axios({
@@ -43,7 +43,7 @@ export default {
       })
         .then(res=> {
           this.nowPlayingMovieList=res.data.results
-
+          this.getRandMovieData()
         })
         .catch(err => {
           console.error(err.response.data)
@@ -65,12 +65,25 @@ export default {
       const randNum=_.random(0,19)
 
       const randMovie=this.nowPlayingMovieList[randNum]
-      console.log(randMovie)
+      // console.log(randMovie)
       const backdropPath=imgUrl+randMovie.backdrop_path
       const title=randMovie.title
       this.mainMovieBackdropPath=backdropPath
       this.mainMovietitle=title
-    }
+    },
+    getPopularMovieList(){
+      axios({
+        url: drf.tmdb.popular(),
+        method: 'get',
+      })
+        .then(res=> {
+          this.popularMovieList=res.data.results
+          console.log(this.popularMovieList)
+        })
+        .catch(err => {
+          console.error(err.response.data)
+        })
+    },
   },
 
 };

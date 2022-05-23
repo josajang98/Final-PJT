@@ -9,12 +9,24 @@
 
 <script>
 import router from '@/router';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'MainUnlogin',
   methods: {
     login(){
       router.push({name:'login'})
+    },
+    routingArticles(){
+      if (this.isLoggedIn === true)
+        router.push({name:'articles'})
     }
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn'])
+  },
+  created(){
+    this.routingArticles()
   },
 };
 </script>
