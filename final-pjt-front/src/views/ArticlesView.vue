@@ -1,11 +1,17 @@
 <template>
   <div>
     <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle"></MainMovieCard>
+    <MovieCard
+      v-for="movie in userLikeMovieList"
+      :movie="movie"
+      :key="movie.id"
+    ></MovieCard>
   </div>
 </template>
 
 <script>
 import MainMovieCard from '@/components/MainMovieCard.vue'
+import MovieCard from '@/components/MovieCard.vue'
 import axios from 'axios'
 import drf from '@/api/drf'
 import _ from 'lodash'
@@ -22,19 +28,24 @@ export default {
       nowPlayingMovieList:'',
       mainMovieBackdropPath:'',
       mainMovietitle:'',
+
+      // 사용자의 장르 영화
       userLikeGenreId:'',
+      // 사용자가 찜한 목록 배우
       userLikeActor:'',
-      popularMovieList:'',
+      userLikeMovieList:[],
     };
   },
   created(){
     this.routingArticles(),
     this.getNowPlayingMovieList(),
-    this.getPopularMovieList()
+    this.getPopularMovieList(),
+    this.getUserLikeMovieList()
   },
   components:{
     MainMovieCard,
-  },
+    MovieCard
+},
   computed: {
     ...mapGetters(['isLoggedIn'])
   },
@@ -84,7 +95,7 @@ export default {
       })
         .then(res=> {
           this.popularMovieList=res.data.results
-          console.log(this.popularMovieList)
+          // console.log(this.popularMovieList)
         })
         .catch(err => {
           console.error(err.response.data)
@@ -93,7 +104,34 @@ export default {
     routingArticles(){
       if (this.isLoggedIn === false)
         router.push({name:'home'})
-    }
+    },
+
+    async getUserLikeMovieList(){
+      if (this.userLikeGenreId===''){
+        return
+      }
+      const count = 4
+      const indexList = _.sampleSize(_.range(1,500),500)
+      let idx = 0
+      let cnt = 0
+      while (cnt < count){
+        const response = await axios.get(drf.tmdb.popular(indexList[idx++]))
+        console.log(response.data)
+        response.data.results.forEach(element => {
+          if (cnt >= count){
+            return false
+          }
+          element.genre_ids.forEach(id => {
+            if (id == this.userLikeGenreId){
+              this.userLikeMovieList.push(element)
+              cnt++
+              return false
+            }
+          })
+        })
+      }
+    },
+
   },
 
 };
