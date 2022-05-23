@@ -50,10 +50,10 @@
 | POST        | /articles/{movie_id}reviews/              |                      | 리뷰생성 요청                 |
 | POST        | /articles/{movie_id}/like/{review_id}/    |                      | 리뷰 좋아요 요청              |
 | GET         | /articles/{movie_id}/reviews/{review_id}/ | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
-| POST        | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰수정 요청                 |
-| POST        | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰삭제 요청                 |
-| GET         | /articles/wishlist/                       |                      | 사용자가 찜한 영화            |
-| POST        | /articles/wishlist/                       |                      | 찜한 영화 사용자에 저장       |
+| PUT         | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰수정 요청                 |
+| DELETE      | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰삭제 요청                 |
+| GET         | /accounts/wishlist/                       |                      | 사용자가 찜한 영화            |
+| POST        | /accounts/wishlist/                       |                      | 찜한 영화 사용자에 저장       |
 
 
 
@@ -246,38 +246,3 @@ articles(유배)
   - for문을 이용하여 movie id 값만 받아와서 비교한다.
   - if 문을 사용해서 리스트에 있는 id값의 존재 여부를 비교한다.
     - 리스트를 써도 되는 이유 : 한유저가 아무리 많은 영화를 눌러도 얼마 안될 것이기 때문에
-
-##### vue
-
-- 데이터 흐름 변경
-  MainMovieCard 컴포넌트에서 axios 요청을 통해 데이터를 가져오던걸 부모 컴포넌트인 ArticleView 컴포넌트에서 가져와서 props로 전달해주는 방식으로 변경
-
-- ArticlesVies.vue의 getNowPlayingMovie() 메서드 분리
-  기존에 api요청을 보내서 현재 상영중인 영화를 가져오고 그 안에서 렌덤으로 데이터 하나를 저장했던 getNowPlayingMovie() 를 
-  현재 상영중인 영화 데이터를 저장하는 getNowPlayingMovieList()와 그 안에서 렌덤 영화를 저장하는 getRandMovieData()로 분리함
-
-- 오늘의 위기
-  created 라이프 싸이클 훅이 동기적으로 코드가 실행되지 않는거 같다,,, 현재 상영중인 영화 정보를 먼저 가져오고 랜덤 무비를 가져와야 되는데 그게 안돼
-
-  ```js
-  created(){
-      this.getNowPlayingMovieList()
-      this.getRandMovieData()
-    },
-  mounted() {
-      this.getRandMovieData()
-    },
-  ```
-
-  이런식으로 짜면 안돼 그래서 
-
-  ```vue
-  <template>
-    <div>
-      {{getRandMovieData()}}
-      <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle"></MainMovieCard>
-    </div>
-  </template>
-  ```
-
-  일단 임시로 이렇게 실행시켜놨습니다,,
