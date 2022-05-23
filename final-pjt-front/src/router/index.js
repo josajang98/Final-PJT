@@ -8,6 +8,7 @@ import SignupView from '../views/SignupView.vue'
 import ArticlesView from '../views/ArticlesView.vue'
 import GenreWc from '../views/GenreWc.vue'
 import PickMovie from '../views/PickMovie.vue'
+import ArticleDetail from '../views/ArticleDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/articles/pickmovie',
     name: 'pickmovie',
     component: PickMovie
+  },
+  {
+    path: '/articles/:movie_id',
+    name: 'detail',
+    component: ArticleDetail
   },
 
 ]

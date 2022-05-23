@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="backdropPath" alt="">
+    <img @click="routingDetail(movieId)" :src="backdropPath" alt="">
     <p>
       {{title}}
     </p>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-
+import router from '@/router'
 export default {
   name: 'MainMovieCard',
 
@@ -20,6 +20,7 @@ export default {
   props:{
     backdropPath:String,
     title:String,
+    movieId:Number,
   },
   created(){
     
@@ -28,9 +29,15 @@ export default {
     
   },
 
-  methods: {
-    
-  },
+  methods:{
+    routingDetail(movieId){
+
+      router.push({
+        name:'detail',
+        params:{movie_id:movieId}
+        })
+    },
+  }
 };
 </script>
 

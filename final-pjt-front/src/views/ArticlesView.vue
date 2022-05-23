@@ -1,12 +1,13 @@
 <template>
   <div>
-    <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle"></MainMovieCard>
+    <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle" :movie-id="mainMovieId"></MainMovieCard>
 
     <!-- 장르 영화 추천 목록 -->
     <MovieCard
       v-for="movie in userLikeGenreMovieList"
       :movie="movie"
       :key="movie.id"
+     
     ></MovieCard>
 
     <!-- 배우 영화 추천 목록 -->
@@ -47,6 +48,7 @@ export default {
       nowPlayingMovieList:'',
       mainMovieBackdropPath:'',
       mainMovietitle:'',
+      mainMovieId:0,
 
       // 사용자의 장르 영화
       userLikeGenreId:'80',
@@ -77,6 +79,7 @@ export default {
 
   },
   methods: {
+    
     /**
      * 현재 상영중인 데이터 20개를 가져와서 랜덤 데이터 하나 뽑아서 MainMovieCard에 넘겨주고 
      * 카운트 개수만 큼 잘라서 this.nowPlayingMovieList에 저장
@@ -94,7 +97,7 @@ export default {
         movieListSlice.push(response.data.results[el])
       })
       this.nowPlayingMovieList=movieListSlice
-      console.log(this.nowPlayingMovieList)
+      // console.log(this.nowPlayingMovieList)
         
     },
 
@@ -110,6 +113,7 @@ export default {
       const title=randMovie.title
       this.mainMovieBackdropPath=backdropPath
       this.mainMovietitle=title
+      this.mainMovieId=randMovie.id
     },
 
 
