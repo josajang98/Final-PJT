@@ -26,7 +26,7 @@ export default {
     articles: () => HOST + ARTICLES,
     // /articles/1/
     article: articlePk => HOST + ARTICLES + `${articlePk}/`,
-    likeArticle: articlePk => HOST + ARTICLES + `${articlePk}/` + 'like/',
+    likeArticle: (movieId, reviewId) => HOST + ARTICLES + `${movieId}/like/${reviewId}/`,
     comments: articlePk => HOST + ARTICLES + `${articlePk}/` + COMMENTS,
     comment: (articlePk, commentPk) =>
       HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
