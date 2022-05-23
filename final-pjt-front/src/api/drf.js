@@ -20,6 +20,9 @@ export default {
   },
   articles: {
     // /articles/
+    reviewList: (movieId) => HOST + ARTICLES + `${movieId}/reviews/`,
+
+
     articles: () => HOST + ARTICLES,
     // /articles/1/
     article: articlePk => HOST + ARTICLES + `${articlePk}/`,

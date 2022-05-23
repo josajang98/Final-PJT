@@ -46,8 +46,9 @@
 | GET         | /articles/genrewc                         | Genrewc.vue          | 장르월드컵 페이지 렌더링      |
 | GET         | /articles/genrewc/{genre_id}              | GenrewcResult.vue    | 장르월드컵 결과 페이지 렌더링 |
 | POST        | /articles/genrewc/{genre_id}              |                      | db에 유저의 장르 id 저장      |
-| GET         | /articles/{movie_id}/reviews/             |                      | 영화 상세페이지 렌더링        |
-| POST        | /articles/{movie_id}reviews/              |                      | 리뷰생성 요청                 |
+| GET         | /articles/{movie_id}                      |                      | 영화 상세페이지 렌더링        |
+| GET         | /articles/{movie_id}/reviews/             |                      | 리뷰 리스트 요청              |
+| POST        | /articles/{movie_id}/reviews/             |                      | 리뷰생성 요청                 |
 | POST        | /articles/{movie_id}/like/{review_id}/    |                      | 리뷰 좋아요 요청              |
 | GET         | /articles/{movie_id}/reviews/{review_id}/ | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
 | PUT         | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰수정 요청                 |
