@@ -34,11 +34,11 @@ def review_list_create(request,movie_pk):
     if request.method == 'GET':
         reviews = get_list_or_404(Review)
         rate_list = rate_selected_movie(reviews, movie_pk)
-        average_rate = sum(rate_list)/len(rate_list)
+        average_rate = round(sum(rate_list)/len(rate_list),1)
         reviews_selected_movie = seleted_movie(reviews, movie_pk)
         serializer = ReviewSerializer(reviews_selected_movie, many=True)
         data={
-            'serializer.data':serializer.data,
+            'serializer_data':serializer.data,
             'average_rate':average_rate
         }
         return Response(data, status=status.HTTP_201_CREATED)
@@ -121,6 +121,9 @@ def like_review(request, movie_pk, review_pk):
     return Response(serializers.data)
 
 
+@api_view(['POST'])
+def genre_save(request, genre_pk):
+    pass
 
 
 

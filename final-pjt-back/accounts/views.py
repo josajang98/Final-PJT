@@ -6,39 +6,41 @@ from rest_framework.response import Response
 
 from .serializers import ProfileSerializer, WishListSerializer
 from .models import WishList
+from articles.models import Review
 
 
 User = get_user_model()
 
-# Create your views here.
-
-# 27  user_id=user 확인부탁
-# 50  wish_list 확인부탁
-
 @api_view(['GET'])
 def profile(request, username):
-    user = get_object_or_404(User, username=username)
-    serializer = ProfileSerializer(user)
-    return Response(serializer.data)
+
+    if request.user.username == username:
+        user = get_object_or_404(User, username=username)
+        serializer = ProfileSerializer(user)
+        return Response(serializer.data)
+
+    else:
+        data={
+            'Notyou' : '당신의 프로필이 아닙니다'
+        }
+        return Response(data)
 
 
 @api_view(['GET','POST'])
 def wishlist_show_save(request):
     
     # show
-    
     if request.method == 'GET':
         user = request.user
         wish_list = get_list_or_404(WishList,user_id=user)
         serializers = WishListSerializer(wish_list, many=True)
         return Response(serializers.data)
 
-
     # save
     elif request.method == 'POST':
         
         user = request.user
-        movie_id = request.data['movie_id']
+        movie_id = int(request.data['movie_id'])
         wish_list = WishList.objects.all().filter(user_id=user)
 
         # 위시무비 id 값만 불러오기
@@ -51,8 +53,7 @@ def wishlist_show_save(request):
             wish_object = get_object_or_404(WishList,user_id=user,movie_id=movie_id)
             wish_object.delete()
             wish_list = WishList.objects.all().filter(user_id=user)
-            serializers = WishListSerializer(wish_list)
-
+            serializers = WishListSerializer(wish_list, many=True)
             return Response(serializers.data)
 
         # 없으면 ==> 추가
@@ -60,4 +61,6 @@ def wishlist_show_save(request):
             serializers = WishListSerializer(data=request.data)
             if serializers.is_valid(raise_exception=True):
                 serializers.save(user=user)
+                wish_list = WishList.objects.all().filter(user_id=user)
+                serializers = WishListSerializer(wish_list, many=True)
                 return Response(serializers.data)
