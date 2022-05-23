@@ -2,7 +2,7 @@
   <div>
     <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle"></MainMovieCard>
     <MovieCard
-      v-for="movie in userLikeMovieList"
+      v-for="movie in userLikeGenreMovieList"
       :movie="movie"
       :key="movie.id"
     ></MovieCard>
@@ -33,14 +33,18 @@ export default {
       userLikeGenreId:'',
       // 사용자가 찜한 목록 배우
       userLikeActor:'',
-      userLikeMovieList:[],
+      userLikeActorId:572225,
+      
+      userLikeGenreMovieList:[],
+      userLikeActorMovieList:[],
     };
   },
   created(){
     this.routingArticles(),
     this.getNowPlayingMovieList(),
     this.getPopularMovieList(),
-    this.getUserLikeMovieList()
+    this.getUserLikeGenreMovieList(),
+    this.getUserLikeActorMovieList()
   },
   components:{
     MainMovieCard,
@@ -105,8 +109,8 @@ export default {
       if (this.isLoggedIn === false)
         router.push({name:'home'})
     },
-
-    async getUserLikeMovieList(){
+    // 좋아하는 장르 영화
+    async getUserLikeGenreMovieList(){
       if (this.userLikeGenreId===''){
         return
       }
@@ -123,7 +127,7 @@ export default {
           }
           element.genre_ids.forEach(id => {
             if (id == this.userLikeGenreId){
-              this.userLikeMovieList.push(element)
+              this.userLikeGenreMovieList.push(element)
               cnt++
               return false
             }
@@ -131,7 +135,18 @@ export default {
         })
       }
     },
-
+    // 장르 id 없을때,
+    // 배우
+    getUserLikeActorMovieList(){
+      axios({
+        url: drf.tmdb.person('63436'),
+        method: 'get',
+      })
+        .then(res=>{
+          console.log(res)
+        })
+      
+    }
   },
 
 };

@@ -33,5 +33,6 @@ export default {
     popular: (page) => BASE_URL + `movie/popular/?api_key=${api_key}&language=${language}&page=${page}`,
     searchPerson: (query) => BASE_URL + `search/person/?api_key=${api_key}&language=${language}&query=${query}`,
     person: (person_id) => BASE_URL + `person/${person_id}/movie_credits/?api_key=${api_key}&language=${language}`,
+    credits: (movie_id) => BASE_URL + `movie/${movie_id}/credits/?api_key=${api_key}&language=${language}`,
   },
 }
