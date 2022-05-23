@@ -4,6 +4,16 @@ from .models import Review
 
 
 User = get_user_model()
+
+# class ReviewListSerializer(serializers.ModelSerializer):
+
+
+#     class Meta:
+#         model = Review
+#         fields = '__all__'
+
+
+
 class ReviewSerializer(serializers.ModelSerializer):
     
     class UserSerializer(serializers.ModelSerializer):

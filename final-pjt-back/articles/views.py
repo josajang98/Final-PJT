@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import  status
 from .serializers import ReviewSerializer
 from .models import Review
+import statistics
 
 # Create your views here.
 
@@ -16,43 +17,56 @@ from .models import Review
 def review_list_create(request,movie_pk):
 
     def seleted_movie(reviews, movie_pk):
-        reviews_seleted_movie = []
+        reviews_selected_movie = []
         for review in reviews:
             if review.movie_id == movie_pk:
-                reviews_seleted_movie.append(review)
-        return reviews_seleted_movie
-
+                reviews_selected_movie.append(review)
+        return reviews_selected_movie
     
+    def rate_selected_movie(reviews, movie_pk):
+        rate_selected_movie = []
+        for review in reviews:
+            if review.movie_id == movie_pk:
+                rate_selected_movie.append(review.rate)
+        return rate_selected_movie
+
     # list
     if request.method == 'GET':
         reviews = get_list_or_404(Review)
-        reviews_seleted_movie = seleted_movie(reviews, movie_pk)
-        serializer = ReviewSerializer(reviews_seleted_movie, many=True) # many 값 뺼수 있으면 빼는걸로
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        rate_list = rate_selected_movie(reviews, movie_pk)
+        average_rate = sum(rate_list)/len(rate_list)
+        reviews_selected_movie = seleted_movie(reviews, movie_pk)
+        serializer = ReviewSerializer(reviews_selected_movie, many=True)
+        data={
+            'serializer.data':serializer.data,
+            'average_rate':average_rate
+        }
+        return Response(data, status=status.HTTP_201_CREATED)
 
     # create
     elif request.method == 'POST':
-        
         user = request.user
         review_list = Review.objects.all().filter(user_id=user)
 
+        # movie_id 모음
         review_movie_list = []
         for review_ojt in review_list:
             review_movie_list.append(review_ojt.movie_id)
         
+        # 작성되어 있을시 data보냄
         if movie_pk in review_movie_list:
             data = {
                 'exist':f'이미 작성하셨습니다'
             }
             return Response(data, status=status.HTTP_201_CREATED)
 
+        # 작성 안되어 있을시 저장
         else:
             serializer = ReviewSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save(user=user)
                 reviews = get_list_or_404(Review)
-                reviews_seleted_movie = seleted_movie(reviews, movie_pk)
-
+                reviews_selected_movie = seleted_movie(reviews, movie_pk)
                 serializer = ReviewSerializer(reviews, many=True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -61,11 +75,11 @@ def review_list_create(request,movie_pk):
 def review_update_delete(request,movie_pk,review_pk):
 
     def seleted_movie(reviews, movie_pk):
-        reviews_seleted_movie = []
+        reviews_selected_movie = []
         for review in reviews:
             if review.movie_id == movie_pk:
-                reviews_seleted_movie.append(review)
-        return reviews_seleted_movie
+                reviews_selected_movie.append(review)
+        return reviews_selected_movie
 
     review = get_object_or_404(Review, pk=review_pk)
 
@@ -76,9 +90,9 @@ def review_update_delete(request,movie_pk,review_pk):
             if serializers.is_valid(raise_exception=True):
                 serializers.save()
                 reviews = get_list_or_404(Review)
-                reviews_seleted_movie = seleted_movie(reviews, movie_pk)
+                reviews_selected_movie = seleted_movie(reviews, movie_pk)
 
-                serializers = ReviewSerializer(reviews_seleted_movie, many=True)
+                serializers = ReviewSerializer(reviews_selected_movie, many=True)
                 return Response(serializers.data)
 
     # delete
@@ -86,9 +100,9 @@ def review_update_delete(request,movie_pk,review_pk):
         if request.user == review.user:
             review.delete()
             reviews = get_list_or_404(Review)
-            reviews_seleted_movie = seleted_movie(reviews, movie_pk)
+            reviews_selected_movie = seleted_movie(reviews, movie_pk)
 
-            serializers = ReviewSerializer(reviews_seleted_movie, many=True)
+            serializers = ReviewSerializer(reviews_selected_movie, many=True)
             return Response(serializers.data)
 
 
