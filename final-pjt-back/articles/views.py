@@ -41,7 +41,11 @@ def review_list_create(request,movie_pk):
         reviews_selected_movie = seleted_movie(reviews, movie_pk)
         rate_list = rate_selected_movie(reviews, movie_pk)
         wish_state = True if wish else False
+<<<<<<< HEAD
         average_rate = round(sum(rate_list)/len(rate_list),1) if reviews_selected_movie else 0
+=======
+        average_rate = round(sum(rate_list)/len(rate_list),1) if rate_list else 0
+>>>>>>> 7b331a39c1dc9172bcb30a096fadd78f4148f46c
         serializer = ReviewSerializer(reviews_selected_movie, many=True)
         
         data={
