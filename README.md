@@ -28,17 +28,17 @@
 
 **[ accounts ]**
 
-| HTTP method | URL 패턴                        | component       | 설명                    |
-| ----------- | ------------------------------- | :-------------- | ----------------------- |
-| GET         | /                               | MainUnlogin.vue |                         |
-| GET         | /accounts/login                 | LoginView.vue   | 로그인 페이지 렌더링    |
-| POST        | /accounts/login                 |                 | 로그인 요청             |
-| POST        | /accounts/logout                |                 | 로그아웃 요청           |
-| GET         | /accounts/signup                | SignupView.vue  | 회원가입 페이지 렌더링  |
-| POST        | /accounts/signup                |                 | 회원가입 요청           |
-| GET         | /accounts/{username}            |                 | 유저페이지 렌더링       |
-| GET         | /accounts/{username}/profile    |                 | 유저 데이터 요청        |
-| PUT         | /accounts/{username}/{genre_id} |                 | 유저 선호 장르 업데이트 |
+| HTTP method | URL 패턴                                | component       | 설명                    |
+| ----------- | --------------------------------------- | :-------------- | ----------------------- |
+| GET         | /                                       | MainUnlogin.vue |                         |
+| GET         | /accounts/login                         | LoginView.vue   | 로그인 페이지 렌더링    |
+| POST        | /accounts/login                         |                 | 로그인 요청             |
+| POST        | /accounts/logout                        |                 | 로그아웃 요청           |
+| GET         | /accounts/signup                        | SignupView.vue  | 회원가입 페이지 렌더링  |
+| POST        | /accounts/signup                        |                 | 회원가입 요청           |
+| GET         | /accounts/{username}                    |                 | 유저페이지 렌더링       |
+| GET         | /accounts/{username}/profile            |                 | 유저 데이터 요청        |
+| PUT         | /accounts/{username}/profile/{genre_id} |                 | 유저 선호 장르 업데이트 |
 
 **[ articles ]**
 
