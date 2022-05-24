@@ -9,11 +9,13 @@
       </router-link> 
       
       <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
-      <router-link :to="{ name: 'wishList'}">내가 찜한 목록</router-link> 
-      <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <router-link :to="{ name: 'wishList'}">내가 찜한 목록</router-link>
+
+      <form @submit.prevent="onSubmit" class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
+        <button class="btn btn-outline-success" >Search</button>
       </form> 
+
       <router-link :to="{ name: 'profile', params: {username} }">profile</router-link> 
       <router-link :to="{ name: 'logout' }">Logout</router-link>
     </nav>
@@ -24,12 +26,22 @@
 <script>
 
   import { mapGetters,mapActions } from 'vuex'
-
+  import router from '@/router'
   export default {
     name: 'App',
-
+    data(){
+      return {
+        input:'',
+      }
+    },
     methods: {
-      ...mapActions(['fetchCurrentUser'])
+      ...mapActions(['fetchCurrentUser']),
+      onSubmit(){
+        router.push({
+        name:'search',
+        params:{query:this.input}
+        })
+      }
     },
     created() {
       this.fetchCurrentUser()
