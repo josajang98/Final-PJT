@@ -7,13 +7,14 @@
       <router-link exact-active-class="active" :to="{ name: 'articles'}" >
         <img src="./assets/logo.png" alt="asd">
       </router-link> 
+      
       <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
       <router-link :to="{ name: 'wishList'}">내가 찜한 목록</router-link> 
       <form class="d-flex" role="search">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
       </form> 
-      <router-link :to="{ name: 'articles'}">profile</router-link> 
+      <router-link :to="{ name: 'profile', params: {username} }">profile</router-link> 
       <router-link :to="{ name: 'logout' }">Logout</router-link>
     </nav>
     <router-view/>
@@ -22,14 +23,25 @@
 
 <script>
 
-  import { mapGetters } from 'vuex'
+  import { mapGetters,mapActions } from 'vuex'
 
   export default {
     name: 'App',
 
-    computed: {
-      ...mapGetters(['isLoggedIn'])
+    methods: {
+      ...mapActions(['fetchCurrentUser'])
     },
+    created() {
+      this.fetchCurrentUser()
+    },
+    computed: {
+      ...mapGetters(['isLoggedIn','currentUser']),
+      username() {
+        return this.currentUser.username ? this.currentUser.username : 'guest'
+      },
+    },
+   
+    
     
   }
 </script>

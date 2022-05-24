@@ -4,7 +4,6 @@ const ACCOUNTS = 'accounts/'
 const ARTICLES = 'articles/'
 const REVIEWS = 'reviews/'
 
-
 const BASE_URL = 'https://api.themoviedb.org/3/'
 const api_key = 'ad488474335fabb016f15ea2b4edaaba'
 const language = 'ko-KR'
@@ -18,6 +17,9 @@ export default {
     // username으로 프로필 제공
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
     wishList: () => HOST + ACCOUNTS + 'wishlist/',
+
+
+    getProfile: username => HOST + ACCOUNTS + username + '/profile/',
   },
   articles: {
     // /articles/

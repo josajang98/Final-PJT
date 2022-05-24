@@ -64,6 +64,7 @@ export default {
         method: 'post',
         headers: this.authHeader,
       })
+      this.$emit('getReview')
       this.likeUserCount=response.data.like_users_count
     },
     edit(){
