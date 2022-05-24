@@ -1,15 +1,14 @@
 <template>
   <div>
-    <p>{{title}}</p>
-    <p>{{overview}}</p>
-    <p>{{releaseDate}}</p>
-    <p>{{voteAverage}}</p>
-    <img :src="posterPath" alt="">
-    {{isWishMovie}}
-    <button @click.prevent="addWishList">찜</button>
-    <!-- <img src="../assets/18.png" alt="" style="width: 600px;height: 900px;"> -->
-    <a v-if="mainTrailerUrl" :href="mainTrailerUrl">미리보기</a>
 
+    <p>제목 : {{title}}</p>
+    <p>줄거리 : {{overview}}</p>
+    <p>개봉 날짜 : {{releaseDate}}</p>
+    <p>평점 : {{voteAverage}}</p>
+    <img :src="posterPath" alt="">
+    <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p>
+    <a v-if="mainTrailerUrl" :href="mainTrailerUrl">미리보기</a>
+    <p>리뷰 리스트</p>
     <review-card 
     v-for="review in reviewList" 
     :review="review"
@@ -42,7 +41,7 @@ export default {
       isWishMovie:false,
 
       // 영화 데이터
-      movieId:this.$route.params.movie_id,
+      movieId:parseInt(this.$route.params.movie_id),
       posterPath:'',
       title:'',
       overview:'',
@@ -62,7 +61,7 @@ export default {
     this.getReviewList()
   },
   computed:{
-    ...mapGetters(['authHeader'])
+    ...mapGetters(['authHeader','currentUser']),
   },
   methods: {
     addWishList(){
@@ -88,13 +87,19 @@ export default {
       this.overview=response.data.overview
       this.releaseDate=response.data.release_date
       this.voteAverage=response.data.vote_average
-      this.userId=response.data.user.user_id
+      
     },
     async getMovieVideo(){
       const response=await axios.get(drf.tmdb.videos(this.movieId))
       const youtubeUrl="https://www.youtube.com/watch?v="
       
-      this.mainTrailerUrl=youtubeUrl+response.data.results[0].key
+      try{
+        this.mainTrailerUrl=youtubeUrl+response.data.results[0].key
+      }
+      catch(err){
+        // console.error(err)
+      }
+      
     },
 
     async getReviewList(){
@@ -105,14 +110,12 @@ export default {
           headers: this.authHeader,
         })
         this.reviewList=response.data.serializer_data
-        this.isWishMovie=response.data.serializer_data.isWishMovie
-      }catch{
+        this.isWishMovie=response.data.wish_state
+
+      }catch(err){
+        // console.error(err)
         this.reviewList=[]
       }
-      
-
-      
-  
     }
   },
 };

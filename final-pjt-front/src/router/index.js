@@ -10,6 +10,7 @@ import ArticlesView from '../views/ArticlesView.vue'
 import GenreWc from '../views/GenreWc.vue'
 import WishList from '../views/WishList.vue'
 import ArticleDetail from '../views/ArticleDetail.vue'
+import SearchResult from '../views/SearchResult.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -57,6 +58,11 @@ const routes = [
     path: '/accounts/:username/profile',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/articles/search/:query/',
+    name: 'search',
+    component: SearchResult
   },
 
 ]

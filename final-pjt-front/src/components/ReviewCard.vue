@@ -1,11 +1,11 @@
 <template>
   <div>
     <div v-show="!isEdit">
-      {{review.user.username}}
-      {{review.title}}
-      {{review.content}}
-      {{likeUserCount}}
-      {{review.rate}}
+      작성자 : {{review.user.username ? review.user.username : uName}}
+      제목 : {{review.title}}
+      내용 : {{review.content}}
+      좋아요 수 : {{likeUserCount}}
+      유저 평점 : {{review.rate}}
       <button @click.prevent="likeArticle"> 좋아요</button>
       <button @click.prevent="edit">수정</button>
       <button @click.prevent="onDelete">삭제</button>
@@ -42,7 +42,8 @@ export default {
     };
   },
   props:{
-    review:Object
+    review:Object,
+    uName:String
   },
   mounted() {
     

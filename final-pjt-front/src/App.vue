@@ -8,33 +8,17 @@
       <router-link exact-active-class="active" :to="{ name: 'articles'}" >
         <img src="./assets/logo.png" alt="asd">
       </router-link> 
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
-            </li>
-          </ul>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <li class="nav-item">
-              <router-link :to="{ name: 'wishList'}">내가 찜한 목록</router-link> 
-            </li>
-            <li class="nav-item">
-              <router-link :to="{ name: 'profile', params: {username} }">profile</router-link> | 
-            </li>
-            <li class="nav-item">
-              <router-link :to="{ name: 'logout' }">Logout</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
+      
+      <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
+      <router-link :to="{ name: 'wishList'}">내가 찜한 목록</router-link>
+
+      <form @submit.prevent="onSubmit" class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
+        <button class="btn btn-outline-success" >Search</button>
+      </form> 
+
+      <router-link :to="{ name: 'profile', params: {username} }">profile</router-link> 
+      <router-link :to="{ name: 'logout' }">Logout</router-link>
     </nav>
     <router-view/>
   </div>
@@ -43,12 +27,22 @@
 <script>
 
   import { mapGetters,mapActions } from 'vuex'
-
+  import router from '@/router'
   export default {
     name: 'App',
-
+    data(){
+      return {
+        input:'',
+      }
+    },
     methods: {
-      ...mapActions(['fetchCurrentUser'])
+      ...mapActions(['fetchCurrentUser']),
+      onSubmit(){
+        router.push({
+        name:'search',
+        params:{query:this.input}
+        })
+      }
     },
     created() {
       this.fetchCurrentUser()
