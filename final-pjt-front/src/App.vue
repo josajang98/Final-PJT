@@ -19,7 +19,8 @@
             </b-nav-form>
           </b-navbar>
         </div> -->
-        <router-link :to="{ name: 'articles'}"><p>profile</p></router-link> 
+        
+        <router-link :to="{ name: 'profile', params: {username} }"><p>profile</p></router-link> 
         <router-link :to="{ name: 'logout' }">Logout</router-link>
       </div>
     </nav>
@@ -29,14 +30,25 @@
 
 <script>
 
-  import { mapGetters } from 'vuex'
+  import { mapGetters,mapActions } from 'vuex'
 
   export default {
     name: 'App',
 
-    computed: {
-      ...mapGetters(['isLoggedIn'])
+    methods: {
+      ...mapActions(['fetchCurrentUser'])
     },
+    created() {
+      this.fetchCurrentUser()
+    },
+    computed: {
+      ...mapGetters(['isLoggedIn','currentUser']),
+      username() {
+        return this.currentUser.username ? this.currentUser.username : 'guest'
+      },
+    },
+   
+    
     
   }
 </script>

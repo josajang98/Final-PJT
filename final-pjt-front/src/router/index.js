@@ -4,12 +4,12 @@ import MainUnlogin from '../views/MainUnlogin.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import SignupView from '../views/SignupView.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 import ArticlesView from '../views/ArticlesView.vue'
 import GenreWc from '../views/GenreWc.vue'
 import WishList from '../views/WishList.vue'
 import ArticleDetail from '../views/ArticleDetail.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -52,6 +52,11 @@ const routes = [
     path: '/accounts/wishList',
     name: 'wishList',
     component: WishList
+  },
+  {
+    path: '/accounts/:username/profile',
+    name: 'profile',
+    component: ProfileView
   },
 
 ]
