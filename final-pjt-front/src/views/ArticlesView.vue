@@ -3,7 +3,7 @@
     <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle" :movie-id="mainMovieId"></MainMovieCard>
 
     <!-- 장르 영화 추천 목록 -->
-    <p>{{username}}님이 좋아하는 {{장르이름}} 영화</p>
+    <p>{{username}}님이 좋아하는 영화</p>
     <MovieCard
       v-for="movie in userLikeGenreMovieList"
       :movie-id="movie.id"
