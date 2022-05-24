@@ -1,16 +1,14 @@
 <template>
   <div>
 
-    <p>{{title}}</p>
-    <p>{{overview}}</p>
-    <p>{{releaseDate}}</p>
-    <p>{{voteAverage}}</p>
+    <p>제목 : {{title}}</p>
+    <p>줄거리 : {{overview}}</p>
+    <p>개봉 날짜 : {{releaseDate}}</p>
+    <p>평점 : {{voteAverage}}</p>
     <img :src="posterPath" alt="">
-    {{isWishMovie}}
-    <button @click.prevent="addWishList">찜</button>
-    <!-- <img src="../assets/18.png" alt="" style="width: 600px;height: 900px;"> -->
+    <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p>
     <a v-if="mainTrailerUrl" :href="mainTrailerUrl">미리보기</a>
-
+    <p>리뷰 리스트</p>
     <review-card 
     v-for="review in reviewList" 
     :review="review"

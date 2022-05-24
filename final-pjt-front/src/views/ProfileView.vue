@@ -5,6 +5,7 @@
     v-for="review in userWriteReviewList" 
     :review="review"
     :key="review.id"
+    :u-name="userName"
     @getReview="getProfileData"
     ></review-card>
     <br>
@@ -13,9 +14,10 @@
     v-for="review in userLikeReviewList" 
     :review="review"
     :key="review.created_at"
+    :u-name="userName"
     @getReview="getProfileData"
     ></review-card>
-    
+ 
   </div>
 </template>
 
