@@ -1,9 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class = 'container'>
+
     <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg">
       <router-link to="/" exact-active-class="active"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
-    <nav v-if="isLoggedIn" class="navbar navbar-expand-lg">
+    <nav  v-if="isLoggedIn" class="navbar navbar-expand-lg">
       <router-link exact-active-class="active" :to="{ name: 'articles'}" >
         <img src="./assets/logo.png" alt="asd">
       </router-link> 

@@ -8,6 +8,7 @@ class Review(models.Model):
 
     user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     movie_id    = models.IntegerField()
+    movie_title = models.CharField(max_length=100)
     like_users  = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_review')
     title       = models.CharField(max_length=100)
     content     = models.TextField()
