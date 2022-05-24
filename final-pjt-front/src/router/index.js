@@ -7,7 +7,7 @@ import SignupView from '../views/SignupView.vue'
 
 import ArticlesView from '../views/ArticlesView.vue'
 import GenreWc from '../views/GenreWc.vue'
-import PickMovie from '../views/PickMovie.vue'
+import WishList from '../views/WishList.vue'
 import ArticleDetail from '../views/ArticleDetail.vue'
 
 Vue.use(VueRouter)
@@ -44,14 +44,14 @@ const routes = [
     component: GenreWc
   },
   {
-    path: '/articles/pickmovie',
-    name: 'pickmovie',
-    component: PickMovie
-  },
-  {
     path: '/articles/:movie_id',
     name: 'detail',
     component: ArticleDetail
+  },
+  {
+    path: '/accounts/wishList',
+    name: 'wishList',
+    component: WishList
   },
 
 ]

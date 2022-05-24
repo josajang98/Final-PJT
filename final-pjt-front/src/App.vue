@@ -10,7 +10,7 @@
       <!-- <div class="collapse navbar-collapse"> -->
       <div>
         <router-link :to="{ name: 'genrewc'}"><p>장르 월드컵</p></router-link> 
-        <router-link :to="{ name: 'pickmovie'}"><p>내가 찜한 목록</p></router-link> 
+        <router-link :to="{ name: 'wishList'}"><p>내가 찜한 목록</p></router-link> 
         <!-- <div>
           <b-navbar type="light" variant="light">
             <b-nav-form>

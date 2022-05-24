@@ -5,7 +5,8 @@
     <!-- 장르 영화 추천 목록 -->
     <MovieCard
       v-for="movie in userLikeGenreMovieList"
-      :movie="movie"
+      :movie-id="movie.id"
+      :movie-poster-path="movie.poster_path"
       :key="movie.id"
      
     ></MovieCard>
@@ -13,14 +14,16 @@
     <!-- 배우 영화 추천 목록 -->
     <MovieCard
       v-for="movie in userLikeActorMovieList"
-      :movie="movie"
+      :movie-id="movie.id"
+      :movie-poster-path="movie.poster_path"
       :key="movie.id"
     ></MovieCard>
 
     <!-- 현재 상영중 영화 추천 목록 -->
     <MovieCard
       v-for="movie in nowPlayingMovieList"
-      :movie="movie"
+      :movie-id="movie.id"
+      :movie-poster-path="movie.poster_path"
       :key="movie.id"
     ></MovieCard>
 

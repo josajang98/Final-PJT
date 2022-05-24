@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img @click="routingDetail(movie.id)" :src="posterPath" alt="">
+    <img @click="routingDetail(movieId)" :src="posterPath" alt="">
   </div>
 </template>
 
@@ -10,16 +10,16 @@ const imgUrl='https://image.tmdb.org/t/p/w500/'
 export default {
   name: 'MovieCard',
   props:{
-    movie : Object,
+    movieId : String,
+    moviePosterPath:String
   },
   computed:{
     posterPath(){
-      return imgUrl+this.movie.poster_path
+      return imgUrl+this.moviePosterPath
     }
   },
   methods:{
     routingDetail(movieId){
-
       router.push({
         name:'detail',
         params:{movie_id:movieId}
