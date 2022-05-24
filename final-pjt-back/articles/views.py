@@ -36,22 +36,12 @@ def review_list_create(request,movie_pk):
     # list
     if request.method == 'GET':
         user = request.user
-
-        # reviews = get_list_or_404(Review)
         reviews = Review.objects.all()
         wish = WishList.objects.all().filter(user_id=user,movie_id=movie_pk)
         reviews_selected_movie = seleted_movie(reviews, movie_pk)
         rate_list = rate_selected_movie(reviews, movie_pk)
-        
-        if wish:
-            wish_state = True
-        else:
-            wish_state = False
-
-        if reviews:
-            average_rate = round(sum(rate_list)/len(rate_list),1)
-        else:
-            average_rate = 0
+        wish_state = True if wish else False
+        average_rate = round(sum(rate_list)/len(rate_list),1) if reviews else 0
         serializer = ReviewSerializer(reviews_selected_movie, many=True)
         data={
             'serializer_data':serializer.data,

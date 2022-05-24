@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from .serializers import ProfileSerializer, WishListSerializer
 from .models import WishList
-from accounts import serializers
+
 
 
 User = get_user_model()

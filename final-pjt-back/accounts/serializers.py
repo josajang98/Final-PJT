@@ -17,13 +17,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         class Meta:
             model = Review
             # fields = '__all__'
-            fields = ('pk','title','content','rate','user')
+            fields = ('pk','title','content','rate','user','movie_id')
 
-    
     like_review = ReviewSerializer(many=True, read_only=True)
     # like_review_count = serializers.IntegerField(source='like_review.count',read_only=True)
-
-
     review_set = ReviewSerializer(many=True, read_only=True)
     review_count = serializers.IntegerField(source='review_set.count',read_only=True)
 
