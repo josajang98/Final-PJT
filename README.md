@@ -39,6 +39,9 @@
 | GET         | /accounts/{username}                    |                 | 유저페이지 렌더링       |
 | GET         | /accounts/{username}/profile            |                 | 유저 데이터 요청        |
 | PUT         | /accounts/{username}/profile/{genre_id} |                 | 유저 선호 장르 업데이트 |
+| GET         | /accounts/{username}/{movie_id}         |                 |                         |
+| GET         | /accounts/wishlist/                     |                 | 사용자가 찜한 영화      |
+| POST        | /accounts/wishlist/                     |                 | 찜한 영화 사용자에 저장 |
 
 **[ articles ]**
 
@@ -55,8 +58,6 @@
 | GET         | /articles/{movie_id}/reviews/{review_id}/ | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
 | PUT         | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰수정 요청                 |
 | DELETE      | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰삭제 요청                 |
-| GET         | /accounts/wishlist/                       |                      | 사용자가 찜한 영화            |
-| POST        | /accounts/wishlist/                       |                      | 찜한 영화 사용자에 저장       |
 
 
 
