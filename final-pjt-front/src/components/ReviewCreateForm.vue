@@ -26,6 +26,7 @@ export default {
   },
   props:{
     movieId:Number,
+    movieTitle:String
   },
   mounted() {
     
@@ -43,6 +44,7 @@ export default {
           content:this.content,
           rate:this.rate,
           movie_id:this.movieId,
+          movie_title:this.movieTitle
         },
         headers: this.authHeader,
       })

@@ -16,7 +16,7 @@
     @getReview="getReviewList"
     ></review-card>
 
-    <review-create-form :movie-id="movieId" @getReview="getReviewList"></review-create-form>
+    <review-create-form :movie-id="movieId" :movie-title="title" @getReview="getReviewList"></review-create-form>
   </div>
 </template>
 

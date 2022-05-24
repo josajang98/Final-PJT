@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-show="!isEdit">
-      작성자 : {{review.user.username ? review.user.username : uName}}
+      영화 제목 : {{review.movie_title}}
+      작성자 : {{review.user.username}}
       제목 : {{review.title}}
       내용 : {{review.content}}
       좋아요 수 : {{likeUserCount}}
@@ -53,6 +54,7 @@ export default {
   },
   methods: {
     async likeArticle() {
+      console.log(this.review)
       /* 좋아요
       POST: likeArticle URL(token)
         성공하면
@@ -81,6 +83,7 @@ export default {
           content:this.content,
           rate:this.rate,
           movie_id:this.movieId,
+          movie_title:this.review.movie_title
         },
         headers: this.authHeader,
       })
