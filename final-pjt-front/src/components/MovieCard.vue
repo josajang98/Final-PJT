@@ -10,7 +10,7 @@ const imgUrl='https://image.tmdb.org/t/p/w500/'
 export default {
   name: 'MovieCard',
   props:{
-    movieId : String,
+    movieId:Number,
     moviePosterPath:String
   },
   computed:{

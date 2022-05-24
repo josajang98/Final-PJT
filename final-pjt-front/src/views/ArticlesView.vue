@@ -8,7 +8,7 @@
     </MainMovieCard>
 
     <!-- 장르 영화 추천 목록 -->
-    <p>{{username}}님이 좋아하는 {{장르이름}} 영화</p>
+    <p>{{username}}님이 좋아하는 영화</p>
     <div class="container">
       <div class="row bg-white bg-opacity-10 justify-content-center">
         <MovieCard
@@ -164,9 +164,11 @@ export default {
         const response = await axios.get(drf.tmdb.popular(indexList[idx++]))
         
         response.data.results.forEach(element => {
-          if (cnt >= count){
-            return false
-          }
+          if (cnt >= count) return false
+
+          // 포스터 패스 없을 시 continue
+          if(!element.poster_path) return true
+
           element.genre_ids.forEach(id => {
             if (id == this.userLikeGenreId){
               this.userLikeGenreMovieList.push(element)
@@ -188,7 +190,9 @@ export default {
       const response=await axios.get(drf.tmdb.person(this.userLikeActorId))
       const indexList = _.sampleSize(_.range(0,response.data.cast.length),count)
       indexList.forEach(el=>{
-        this.userLikeActorMovieList.push(response.data.cast[el])
+        // 포스터패스가 있을 시에만 추가
+        if(response.data.cast[el].poster_path)
+          this.userLikeActorMovieList.push(response.data.cast[el])
       })
     }
   },

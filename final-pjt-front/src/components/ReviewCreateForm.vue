@@ -25,7 +25,7 @@ export default {
     };
   },
   props:{
-    movieId:String,
+    movieId:Number,
   },
   mounted() {
     

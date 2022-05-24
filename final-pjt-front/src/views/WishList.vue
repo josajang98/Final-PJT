@@ -37,7 +37,7 @@ export default {
         headers: this.authHeader,
       }).then((res)=>{
         this.wishList=res.data
-        console.log(this.wishList)
+        
       })
     }
   },

@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app" class = 'container'>
+
     <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg">
       <router-link to="/" exact-active-class="active"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
@@ -23,9 +24,9 @@
               <router-link :to="{ name: 'profile', params: {username} }">{{username}}</router-link>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+          <form @submit.prevent="onSubmit" class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
+            <button class="btn btn-outline-success">Search</button>
           </form>
         </div>
       </div>
@@ -37,12 +38,22 @@
 <script>
 
   import { mapGetters,mapActions } from 'vuex'
-
+  import router from '@/router'
   export default {
     name: 'App',
-
+    data(){
+      return {
+        input:'',
+      }
+    },
     methods: {
-      ...mapActions(['fetchCurrentUser'])
+      ...mapActions(['fetchCurrentUser']),
+      onSubmit(){
+        router.push({
+        name:'search',
+        params:{query:this.input}
+        })
+      }
     },
     created() {
       this.fetchCurrentUser()
