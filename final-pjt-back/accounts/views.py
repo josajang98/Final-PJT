@@ -14,34 +14,19 @@ User = get_user_model()
 @api_view(['GET'])
 def profile(request, username):
 
-    if request.user.username == username:
-        user = get_object_or_404(User, username=username)
-        serializer = ProfileSerializer(user)
-        return Response(serializer.data)
-
-    else:
-        data={
-            'Notyou' : '당신의 프로필이 아닙니다'
-        }
-        return Response(data)
+    user = get_object_or_404(User, username=username)
+    serializer = ProfileSerializer(user)
+    return Response(serializer.data)
 
 
 @api_view(['PUT'])
 def profile_change_genre(request,username, genre_pk):
-    
-    if request.user.username == username:
-        user = get_object_or_404(User, username=username)
-        serializers = ProfileSerializer(instance=user, data=request.data)
-        if serializers.is_valid(raise_exception=True):
-            serializers.save(genre_id=genre_pk)
-            return Response(serializers.data)
 
-    else:
-        data={
-            'Notyou' : '당신의 프로필이 아닙니다'
-        }
-        return Response(data)
-
+    user = get_object_or_404(User, username=username)
+    serializers = ProfileSerializer(instance=user, data=request.data)
+    if serializers.is_valid(raise_exception=True):
+        serializers.save(genre_id=genre_pk)
+        return Response(serializers.data)
 
 
 

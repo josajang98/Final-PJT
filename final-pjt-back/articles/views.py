@@ -35,9 +35,9 @@ def review_list_create(request,movie_pk):
     # list
     if request.method == 'GET':
         reviews = get_list_or_404(Review)
+        reviews_selected_movie = seleted_movie(reviews, movie_pk)
         rate_list = rate_selected_movie(reviews, movie_pk)
         average_rate = round(sum(rate_list)/len(rate_list),1)
-        reviews_selected_movie = seleted_movie(reviews, movie_pk)
         serializer = ReviewSerializer(reviews_selected_movie, many=True)
         data={
             'serializer_data':serializer.data,
@@ -69,7 +69,7 @@ def review_list_create(request,movie_pk):
                 serializer.save(user=user)
                 reviews = get_list_or_404(Review)
                 reviews_selected_movie = seleted_movie(reviews, movie_pk)
-                serializer = ReviewSerializer(reviews, many=True)
+                serializer = ReviewSerializer(reviews_selected_movie, many=True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
