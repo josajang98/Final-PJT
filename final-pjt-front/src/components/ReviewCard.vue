@@ -1,8 +1,10 @@
 <template>
   <div>
+    {{review.user.username}}
     {{review.title}}
     {{review.content}}
     {{likeUserCount}}
+    {{review.rate}}
     <button @click.prevent="likeArticle"> 버튼</button>
   </div>
 </template>

@@ -12,19 +12,23 @@
     v-for="review in reviewList" 
     :review="review"
     :key="review.id"></review-card>
+
+    <review-create-form :movie-id="movieId" @getReview="getReviewList"></review-create-form>
   </div>
 </template>
 
 <script>
-import ReviewCard from '../components/ReviewCard.vue'
 import axios from 'axios';
 import drf from '@/api/drf'
 import {mapGetters} from 'vuex'
 
+import ReviewCard from '../components/ReviewCard.vue'
+import ReviewCreateForm from '../components/ReviewCreateForm.vue';
+
 const imgUrl='https://image.tmdb.org/t/p/w500/'
 
 export default {
-  components: { ReviewCard },
+  components: { ReviewCard, ReviewCreateForm },
   name: 'ArticleDetail',
 
   data() {
@@ -70,13 +74,14 @@ export default {
     },
 
     async getReviewList(){
+
       const response=await axios({
         url: drf.articles.reviewList(this.movieId),
         method: 'get',
         headers: this.authHeader,
       })
       this.reviewList=response.data.serializer_data
-      console.log(this.reviewList)
+  
     }
   },
 };
