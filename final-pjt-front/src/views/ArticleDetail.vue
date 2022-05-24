@@ -76,13 +76,19 @@ export default {
     },
 
     async getReviewList(){
+      try{
+        const response=await axios({
+          url: drf.articles.reviewList(this.movieId),
+          method: 'get',
+          headers: this.authHeader,
+        })
+        this.reviewList=response.data.serializer_data
+      }catch{
+        this.reviewList=[]
+      }
+      
 
-      const response=await axios({
-        url: drf.articles.reviewList(this.movieId),
-        method: 'get',
-        headers: this.authHeader,
-      })
-      this.reviewList=response.data.serializer_data
+      
   
     }
   },

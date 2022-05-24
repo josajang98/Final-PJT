@@ -8,6 +8,7 @@
       {{review.rate}}
       <button @click.prevent="likeArticle"> 좋아요</button>
       <button @click.prevent="edit">수정</button>
+      <button @click.prevent="onDelete">삭제</button>
     </div>
 
     <form @submit.prevent="onSubmit" v-show="isEdit" >
@@ -86,7 +87,16 @@ export default {
         this.isEdit=!this.isEdit
       })
     },
-
+    onDelete() {
+      axios({
+        url: drf.articles.review(this.review.movie_id,this.review.id),
+        method: 'delete',
+        headers: this.authHeader,
+      })
+      .then(()=>{
+        this.$emit('getReview')
+      })
+    },
   },
 };
 </script>
