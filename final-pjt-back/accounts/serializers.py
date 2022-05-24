@@ -14,7 +14,11 @@ User = get_user_model()
 class ProfileSerializer(serializers.ModelSerializer):
     
     class ReviewSerializer(serializers.ModelSerializer):
-
+        class UserSerializer(serializers.ModelSerializer):
+            class Meta:
+                model = User
+                fields = ('pk', 'username')
+        user =  UserSerializer(read_only=True)
         like_users_count = serializers.IntegerField(source='like_users.count',read_only=True)
 
         class Meta:
