@@ -3,23 +3,23 @@
     <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle" :movie-id="mainMovieId"></MainMovieCard>
 
     <!-- 장르 영화 추천 목록 -->
+    <p>{{유저이름}}님이 좋아하는 {{장르이름}} 영화</p>
     <MovieCard
       v-for="movie in userLikeGenreMovieList"
       :movie-id="movie.id"
       :movie-poster-path="movie.poster_path"
       :key="movie.id"
-     
     ></MovieCard>
-
     <!-- 배우 영화 추천 목록 -->
+    <p>{{userLikeActor}} 배우님의 영화</p>
     <MovieCard
       v-for="movie in userLikeActorMovieList"
       :movie-id="movie.id"
       :movie-poster-path="movie.poster_path"
       :key="movie.id"
     ></MovieCard>
-
     <!-- 현재 상영중 영화 추천 목록 -->
+    <p>현재 상영중인 영화</p>
     <MovieCard
       v-for="movie in nowPlayingMovieList"
       :movie-id="movie.id"
@@ -54,7 +54,7 @@ export default {
       mainMovieId:0,
 
       // 사용자의 장르 영화
-      userLikeGenreId:'80',
+      userLikeGenreId:'18',
       // 사용자가 찜한 목록 배우
       userLikeActor:'',
       userLikeActorId:572225,
