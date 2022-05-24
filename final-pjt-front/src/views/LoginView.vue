@@ -1,18 +1,22 @@
 <template>
   <div>
     <h1>login</h1>
+    <br>
     <form @submit.prevent="login(credentials)">
       <div>
-        <label for="username">username</label>
+        <label for="username">username :</label>
         <input type="text" v-model="credentials.username" id="username">
       </div>
+      <br>
       <div>
-        <label for="password">password</label>
+        <label for="password">password : </label>
         <input type="password" v-model="credentials.password" id="password">
       </div>
       
       <button>로그인</button>
     </form>
+    <br>
+    <p>아직 잘골라줘유 사용 전이신가요?</p>
     <button @click="signup">회원가입</button>
   </div>
 </template>

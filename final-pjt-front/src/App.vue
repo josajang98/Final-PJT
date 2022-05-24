@@ -1,27 +1,20 @@
 <template>
   <div id="app">
-    <nav v-if="!isLoggedIn">
-      <router-link to="/"><img src="./assets/logo.png" alt="asd"></router-link> 
+    <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg">
+      <router-link to="/" exact-active-class="active"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
-    <nav v-if="isLoggedIn">
-      <router-link :to="{ name: 'articles'}">
+    <nav v-if="isLoggedIn" class="navbar navbar-expand-lg">
+      <router-link exact-active-class="active" :to="{ name: 'articles'}" >
         <img src="./assets/logo.png" alt="asd">
       </router-link> 
-      <!-- <div class="collapse navbar-collapse"> -->
-      <div>
-        <router-link :to="{ name: 'genrewc'}"><p>장르 월드컵</p></router-link> 
-        <router-link :to="{ name: 'wishList'}"><p>내가 찜한 목록</p></router-link> 
-        <!-- <div>
-          <b-navbar type="light" variant="light">
-            <b-nav-form>
-              <b-form-input class="mr-sm-2" placeholder="Search"></b-form-input>
-              <b-button variant="outline-success" class="my-2 my-sm-0" type="submit">Search</b-button>
-            </b-nav-form>
-          </b-navbar>
-        </div> -->
-        <router-link :to="{ name: 'articles'}"><p>profile</p></router-link> 
-        <router-link :to="{ name: 'logout' }">Logout</router-link>
-      </div>
+      <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
+      <router-link :to="{ name: 'wishList'}">내가 찜한 목록</router-link> 
+      <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> 
+      <router-link :to="{ name: 'articles'}">profile</router-link> 
+      <router-link :to="{ name: 'logout' }">Logout</router-link>
     </nav>
     <router-view/>
   </div>
@@ -42,11 +35,12 @@
 </script>
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
-  color: #2c3e50;
+  /* 폰트 */
+  font-family: 'East Sea Dokdo', cursive;
+  font-size: 25px;
 }
 
 nav {
@@ -54,11 +48,17 @@ nav {
 }
 
 nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  text-decoration:none;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+nav a.router-link-exact-active:not(.active) {
+  background-color: none;
 }
+nav a.router-link-exact-active {
+  color: white;
+  text-decoration:none;
+  background-color: #DBFF4560;
+}
+
 </style>
