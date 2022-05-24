@@ -10,6 +10,7 @@ import ArticlesView from '../views/ArticlesView.vue'
 import GenreWc from '../views/GenreWc.vue'
 import WishList from '../views/WishList.vue'
 import ArticleDetail from '../views/ArticleDetail.vue'
+import PersonDetail from '../views/PersonDetail.vue'
 import SearchResult from '../views/SearchResult.vue'
 Vue.use(VueRouter)
 
@@ -64,7 +65,11 @@ const routes = [
     name: 'search',
     component: SearchResult
   },
-
+  {
+    path: '/articles/person/:person_id',
+    name: 'personDetail',
+    component: PersonDetail
+  },
 ]
 
 const router = new VueRouter({
