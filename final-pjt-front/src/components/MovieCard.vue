@@ -30,6 +30,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style  lang="scss" scoped>
+div {
+  margin: 20px;
+}
+img {
+  width:200px;
+  height:300px;
+}
 </style>
