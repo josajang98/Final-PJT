@@ -17,7 +17,7 @@ User = get_user_model()
 # 4. 평점 default = 0
 
 @api_view(['GET','POST'])
-def review_list_create(request,movie_pk):
+def review_list_create(request,movie_pk,):
 
     def seleted_movie(reviews, movie_pk):
         reviews_selected_movie = []
@@ -60,7 +60,7 @@ def review_list_create(request,movie_pk):
         review_movie_list = []
         for review_ojt in review_list:
             review_movie_list.append(review_ojt.movie_id)
-        
+
         # 작성되어 있을시 data보냄
         if movie_pk in review_movie_list:
             data = {
