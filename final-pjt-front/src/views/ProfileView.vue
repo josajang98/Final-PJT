@@ -54,7 +54,7 @@ export default {
       })
       this.userWriteReviewList=response.data.review_set
       this.userLikeReviewList=response.data.like_review
-      console.log(this.userWriteReviewList)
+      console.log(response.data)
     },
     
   },

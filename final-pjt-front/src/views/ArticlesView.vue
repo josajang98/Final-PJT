@@ -76,7 +76,10 @@ export default {
     MovieCard
 },
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn','currentUser']),
+    username() {
+      return this.currentUser.username ? this.currentUser.username : 'guest'
+    },
   },
   mounted() {
 
