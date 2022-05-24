@@ -390,3 +390,22 @@ serializers = UserSerializer(instance=user, data=request.data)
   - 리뷰 좋아요 버튼 추가 
 
 - 장르월드컵 포스터 추가(메바솜)
+
+### 0524
+
+#### 오늘의 진행과정
+
+##### django
+
+- db저장
+  - 위기 : settings.py 에 새로 만든 movie앱 등록을 안했음.
+
+##### vue
+
+- 영화 상세 페이지의 리뷰
+  - 리뷰 폼 생성
+  - 리뷰 수정
+  - 리뷰 삭제
+- 영화 찜
+- 위시리스트 페이지 생성
+- 
