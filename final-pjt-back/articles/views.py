@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import  status
 from .serializers import ReviewSerializer, UserSerializer
 from .models import Review
+from accounts.models import WishList
 User = get_user_model()
 
 # Create your views here.
@@ -34,14 +35,28 @@ def review_list_create(request,movie_pk):
 
     # list
     if request.method == 'GET':
-        reviews = get_list_or_404(Review)
-        rate_list = rate_selected_movie(reviews, movie_pk)
-        average_rate = round(sum(rate_list)/len(rate_list),1)
+        user = request.user
+
+        # reviews = get_list_or_404(Review)
+        reviews = Review.objects.all()
+        wish = WishList.objects.all().filter(user_id=user,movie_id=movie_pk)
         reviews_selected_movie = seleted_movie(reviews, movie_pk)
+        rate_list = rate_selected_movie(reviews, movie_pk)
+        
+        if wish:
+            wish_state = True
+        else:
+            wish_state = False
+
+        if reviews:
+            average_rate = round(sum(rate_list)/len(rate_list),1)
+        else:
+            average_rate = 0
         serializer = ReviewSerializer(reviews_selected_movie, many=True)
         data={
             'serializer_data':serializer.data,
-            'average_rate':average_rate
+            'average_rate':average_rate,
+            'wish_state':wish_state,
         }
         return Response(data, status=status.HTTP_201_CREATED)
 
@@ -69,7 +84,7 @@ def review_list_create(request,movie_pk):
                 serializer.save(user=user)
                 reviews = get_list_or_404(Review)
                 reviews_selected_movie = seleted_movie(reviews, movie_pk)
-                serializer = ReviewSerializer(reviews, many=True)
+                serializer = ReviewSerializer(reviews_selected_movie, many=True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

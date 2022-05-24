@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # app
     'accounts',
     'articles',
+    'movies',
 
     # 3rd party
     'rest_framework',

@@ -2,7 +2,7 @@ const HOST = 'http://localhost:8000/api/v1/'
 
 const ACCOUNTS = 'accounts/'
 const ARTICLES = 'articles/'
-const COMMENTS = 'comments/'
+const REVIEWS = 'reviews/'
 
 
 const BASE_URL = 'https://api.themoviedb.org/3/'
@@ -17,19 +17,20 @@ export default {
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     // username으로 프로필 제공
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
+    wishList: () => HOST + ACCOUNTS + 'wishlist/',
   },
   articles: {
     // /articles/
     reviewList: (movieId) => HOST + ARTICLES + `${movieId}/reviews/`,
+    reviews: movieId => HOST + ARTICLES + `${movieId}/` + REVIEWS,
+    review: (movieId, reviewId) =>
+      HOST + ARTICLES + `${movieId}/` + REVIEWS + `${reviewId}/`,
 
 
     articles: () => HOST + ARTICLES,
     // /articles/1/
     article: articlePk => HOST + ARTICLES + `${articlePk}/`,
     likeArticle: (movieId, reviewId) => HOST + ARTICLES + `${movieId}/like/${reviewId}/`,
-    comments: articlePk => HOST + ARTICLES + `${articlePk}/` + COMMENTS,
-    comment: (articlePk, commentPk) =>
-      HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
   },
   tmdb: {
     nowPlaying: () => BASE_URL + `movie/now_playing/?api_key=${api_key}&language=${language}`,
