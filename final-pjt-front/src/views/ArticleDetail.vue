@@ -11,7 +11,9 @@
     <review-card 
     v-for="review in reviewList" 
     :review="review"
-    :key="review.id"></review-card>
+    :key="review.id"
+    @getReview="getReviewList"
+    ></review-card>
 
     <review-create-form :movie-id="movieId" @getReview="getReviewList"></review-create-form>
   </div>

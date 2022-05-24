@@ -49,8 +49,6 @@ export default {
       .then(()=>{
         this.$emit('getReview')
       })
-
-      
     },
   },
 };
