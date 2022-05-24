@@ -17,6 +17,7 @@ export default {
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     // username으로 프로필 제공
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
+    wishList: () => HOST + ACCOUNTS + 'wishlist/',
   },
   articles: {
     // /articles/
