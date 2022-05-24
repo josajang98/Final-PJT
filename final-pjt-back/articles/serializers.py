@@ -20,6 +20,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     like_users = UserSerializer(read_only=True, many=True)
     like_users_count = serializers.IntegerField(source='like_users.count', read_only=True)
+    
 
     class Meta:
         model = Review
