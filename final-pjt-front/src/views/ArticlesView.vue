@@ -1,31 +1,51 @@
 <template>
   <div>
-    <MainMovieCard :backdrop-path="mainMovieBackdropPath" :title="mainMovietitle" :movie-id="mainMovieId"></MainMovieCard>
+    <MainMovieCard 
+      :backdrop-path="mainMovieBackdropPath" 
+      :title="mainMovietitle" 
+      :movie-id="mainMovieId"
+      >
+    </MainMovieCard>
 
     <!-- 장르 영화 추천 목록 -->
     <p>{{username}}님이 좋아하는 영화</p>
-    <MovieCard
-      v-for="movie in userLikeGenreMovieList"
-      :movie-id="movie.id"
-      :movie-poster-path="movie.poster_path"
-      :key="movie.id"
-    ></MovieCard>
+    <div class="container">
+      <div class="row bg-white bg-opacity-10 justify-content-center">
+        <MovieCard
+          v-for="movie in userLikeGenreMovieList"
+          :movie-id="movie.id"
+          :movie-poster-path="movie.poster_path"
+          :key="movie.id"
+          class="col-lg-2 col-md-3 col-sm-4"
+        ></MovieCard>
+      </div>
+    </div>
     <!-- 배우 영화 추천 목록 -->
     <p>{{userLikeActor}} 배우님의 영화</p>
-    <MovieCard
-      v-for="movie in userLikeActorMovieList"
-      :movie-id="movie.id"
-      :movie-poster-path="movie.poster_path"
-      :key="movie.id"
-    ></MovieCard>
+    <div class="container">
+      <div class="row bg-white bg-opacity-10 justify-content-center">
+        <MovieCard
+          v-for="movie in userLikeActorMovieList"
+          :movie-id="movie.id"
+          :movie-poster-path="movie.poster_path"
+          :key="movie.id"
+          class="col-lg-2 col-md-3 col-sm-4"
+        ></MovieCard>
+      </div>
+    </div>
     <!-- 현재 상영중 영화 추천 목록 -->
     <p>현재 상영중인 영화</p>
-    <MovieCard
-      v-for="movie in nowPlayingMovieList"
-      :movie-id="movie.id"
-      :movie-poster-path="movie.poster_path"
-      :key="movie.id"
-    ></MovieCard>
+    <div class="container">
+      <div class="row bg-white bg-opacity-10 justify-content-center">
+        <MovieCard
+          v-for="movie in nowPlayingMovieList"
+          :movie-id="movie.id"
+          :movie-poster-path="movie.poster_path"
+          :key="movie.id"
+          class="col-lg-2 col-md-3 col-sm-4"
+        ></MovieCard>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -57,7 +77,7 @@ export default {
       userLikeGenreId:'18',
       // 사용자가 찜한 목록 배우
       userLikeActor:'',
-      userLikeActorId:572225,
+      userLikeActorId:91225,
       
 
       // 추천 영화 리스트
