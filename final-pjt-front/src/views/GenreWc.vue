@@ -23,6 +23,9 @@
 <script>
 import _ from 'lodash'
 import GenreWcCard from '@/components/GenreWcCard.vue';
+import axios from 'axios';
+import {mapGetters} from 'vuex'
+import drf from '@/api/drf'
 export default {
   components: { GenreWcCard },
   name: 'GenreWc',
@@ -38,7 +41,9 @@ export default {
   created() {
 
   },
-
+  computed:{
+    ...mapGetters(['authHeader','currentUser'])
+  },
   methods: {
     getRandGenreIdList(){
       const genreIdList=[12,14,16,18,27,28,35,36,37,53,80,99,878,9648,10402,10749,10751,10752,10770,]
@@ -50,6 +55,17 @@ export default {
       this.index+=2
       if (this.index==30){
         this.result=id
+        axios({
+        url: drf.accounts.genre(this.currentUser.username,this.result),
+        method: 'put',
+        data: {
+          username:this.currentUser.username
+        },
+        headers: this.authHeader,
+      })
+      .then(res=>{
+        console.log(res.data)
+      })
       }
       console.log(this.randGenreIdList)
     },

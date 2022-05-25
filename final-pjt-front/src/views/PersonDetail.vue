@@ -57,8 +57,6 @@ export default {
       const response=await axios.get(drf.tmdb.getMovieCreadit(this.personId))
       this.personMovie=response.data.cast
     },
-    
-    
   },
 };
 </script>

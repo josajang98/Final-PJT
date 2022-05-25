@@ -18,8 +18,9 @@ export default {
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
     wishList: () => HOST + ACCOUNTS + 'wishlist/',
 
-
     getProfile: username => HOST + ACCOUNTS + username + '/profile/',
+    genre: (username, genreId) => HOST + ACCOUNTS + username + '/profile/' + genreId + '/',
+
   },
   articles: {
     // /articles/
