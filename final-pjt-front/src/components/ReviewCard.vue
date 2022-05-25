@@ -1,11 +1,6 @@
 <template>
   <div>
-<!-- 
-    <tr>
-      <td>{{review.title}}</td>
-      <td>{{review.rate}}</td>
-      <td>{{review.user.username}}</td>
-    </tr> -->
+
     <div class="container col-10">
       <div class="d-flex justify-content-start mt-3">
         {{review.user.username}}
@@ -21,8 +16,8 @@
     <!-- Modal -->
     <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content bg-dark p-2" style="--bs-bg-opacity: .5;">
-          <div class="modal-header">
+        <div class="modal-content bg-dark p-2" style="--bs-bg-opacity: .75;">
+          <div class="modal-header ">
             <h5 class="modal-title" id="exampleModalLabel">{{ review.title }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -30,8 +25,11 @@
             {{review.content}}
           </div>
           <div class="modal-footer">
+            <button @click.prevent="likeArticle"> 좋아요</button>
+            {{likeUserCount}}
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button"  @click.prevent="edit" class="btn btn-primary">Save</button>
+            <button type="button"  @click.prevent="onDelete" class="btn btn-primary">Delete</button>
           </div>
         </div>
       </div>
