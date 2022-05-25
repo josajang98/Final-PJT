@@ -20,12 +20,12 @@
 
 
     <div class="input-group">
-      <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" @change="inputChange(this.value)" >
+      <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" v-model="genreValue">
         <option selected>Choose...</option>
         <option 
         v-for="genre in genreList"
-        :value="genre.value"
-        :key="genre.value">
+        :value="genre.id"
+        :key="genre.id">
         {{genre.name}}
         </option>
       </select>
@@ -76,15 +76,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['authHeader'])
+    ...mapGetters(['authHeader','currentUser'])
   },
   created(){
     this.getProfileData()
   },
 
   methods: {
-    inputChange(value){
-      this.genreValue=value
+    inputChange(){
       console.log(this.genreValue)
     },
     async getProfileData(){
@@ -97,8 +96,18 @@ export default {
       this.userLikeReviewList=response.data.like_review
       console.log(response.data)
     },
-    onSubmit(event){
-      console.log(event)
+    onSubmit(){
+      axios({
+        url: drf.accounts.genre(this.currentUser.username,this.genreValue),
+        method: 'put',
+        data: {
+          username:this.currentUser.username
+        },
+        headers: this.authHeader,
+      })
+      .then(res=>{
+        console.log(res.data)
+      })
     }
   },
   

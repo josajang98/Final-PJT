@@ -74,7 +74,7 @@ export default {
       mainMovieId:0,
 
       // 사용자의 장르 영화
-      userLikeGenreId:'18',
+      userLikeGenreId:'',
       // 사용자가 찜한 목록 배우
       userLikeActor:'',
       userLikeActorId:91225,
@@ -86,17 +86,19 @@ export default {
     };
   },
   created(){
-    this.routingArticles(),
-    this.getNowPlayingMovieList(),
-    this.getUserLikeGenreMovieList()
+    
+    this.routingArticles()
+    this.getNowPlayingMovieList()
+    
     this.getUserLikeActorMovieList()
+    this.getUserProfile()
   },
   components:{
     MainMovieCard,
     MovieCard
 },
   computed: {
-    ...mapGetters(['isLoggedIn','currentUser']),
+    ...mapGetters(['isLoggedIn','currentUser','authHeader']),
     username() {
       return this.currentUser.username ? this.currentUser.username : 'guest'
     },
@@ -105,12 +107,23 @@ export default {
 
   },
   methods: {
-    
+    async getUserProfile(){
+
+      const response=await axios({
+        url: drf.accounts.getProfile(this.currentUser.username),
+        method: 'get',
+        headers: this.authHeader,
+      })
+      this.userLikeGenreId=response.data.genre_id
+      // console.log(this.userLikeGenreId)
+      this.getUserLikeGenreMovieList()
+    },
     /**
      * 현재 상영중인 데이터 20개를 가져와서 랜덤 데이터 하나 뽑아서 MainMovieCard에 넘겨주고 
      * 카운트 개수만 큼 잘라서 this.nowPlayingMovieList에 저장
      */
     async getNowPlayingMovieList(){
+
       const response=await axios.get(drf.tmdb.nowPlaying())
       
       
@@ -124,17 +137,18 @@ export default {
       })
       this.nowPlayingMovieList=movieListSlice
       // console.log(this.nowPlayingMovieList)
-        
+
     },
 
     /**
      * 상영중인 영화 데이터 중 하나를 렌덤으로 골라서 데이터 저장
      */
     getRandMovieData(){
+      
       const randNum=_.random(0,19)
 
       const randMovie=this.nowPlayingMovieList[randNum]
-      // console.log(randMovie)
+      
       const backdropPath=imgUrl+randMovie.backdrop_path
       const title=randMovie.title
       this.mainMovieBackdropPath=backdropPath
@@ -145,14 +159,18 @@ export default {
 
   
     routingArticles(){
+
       if (this.isLoggedIn === false)
         router.push({name:'home'})
+
     },
 
     /**
      * 유저 장르id가 있다면 랜덤 페이지로 popular요청을 보내서 같은 장르의 영화데이터를 count만큼 저장 
      */
     async getUserLikeGenreMovieList(){
+
+      // console.log(123,this.userLikeGenreId)
       if (this.userLikeGenreId===''){
         return
       }
@@ -178,12 +196,14 @@ export default {
           })
         })
       }
+
     },
 
     /**
      * 배우id가 있다면 person요청으로 데이터를 가져온 후 count만큼 랜덤으로 저장
      */
     async getUserLikeActorMovieList(){
+
       if (this.userLikeActorId===''){
         return
       }
@@ -194,6 +214,7 @@ export default {
         if(response.data.cast[el].poster_path)
           this.userLikeActorMovieList.push(response.data.cast[el])
       })
+
     }
   },
 

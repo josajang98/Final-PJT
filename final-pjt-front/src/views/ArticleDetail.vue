@@ -1,15 +1,6 @@
 <template>
   <div class="container mt-5">
-    <!-- <div class="d-flex justify-content-around" >
-      <div class="container">
-        <p class="d-flex align-items-start">{{title}}</p>
-        <div class="d-flex align-items-start">
-          <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
-          <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p> -->
-            <!-- <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p> -->
-            
-
-    <div class="movie-detail" :style="{'background-image':'url(posterPath)'}  ">
+    <div class="movie-detail">
       <p class="d-flex p-2 title">{{title}}</p>
       <div class="d-flex justify-content-around" >
         <div class="container">
@@ -17,10 +8,9 @@
             <div class="d-flex align-items-start">
               <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
               <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
-                <!-- <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p> -->
+               
               <div class="d-flex align-items-center mx-3">
-                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>
-                <!-- <div id="heart" @click.prevent="addWishList"><ToggleFavorite class="haert-box"/></div> -->
+                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>>
               </div>  
             </div>
           <div class="container">
@@ -40,7 +30,7 @@
     <div class="review-list mt-5">
       <p>리뷰 리스트</p>
       <div class="card-group">
-        <!-- <div class="col-6"> -->
+
           <review-card 
           v-for="review in reviewList" 
           :review="review"
@@ -48,7 +38,7 @@
           @getReview="getReviewList"
           class="col-6"
           ></review-card>  
-        <!-- </div>      -->
+
       </div>
     </div>
 
@@ -66,8 +56,6 @@ import ReviewCreateForm from '../components/ReviewCreateForm.vue';
 
 import ToggleFavorite from "../components/ToggleFavorite.vue";
 const imgUrl='https://image.tmdb.org/t/p/w500/'
-
-
 
 export default {
   components: { ReviewCard, ReviewCreateForm, ToggleFavorite },
@@ -97,8 +85,8 @@ export default {
   },
 
   created() {
-    this.getMovieData(),
-    this.getMovieVideo(),
+    this.getMovieData()
+    this.getMovieVideo()
     this.getReviewList()
   },
 
