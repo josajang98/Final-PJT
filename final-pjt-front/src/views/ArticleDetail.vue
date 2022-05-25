@@ -10,7 +10,7 @@
               <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
                
               <div class="d-flex align-items-center mx-3">
-                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>>
+                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>
               </div>  
             </div>
             <div class="container">
