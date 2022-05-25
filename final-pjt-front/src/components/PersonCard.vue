@@ -5,12 +5,16 @@
     </div>
     <div class="flex-grow-1 ms-3">
       <p class=" font">{{person.name}}</p>
-      <li style="font-size:25px">{{person.known_for_department}}</li>
-      <li 
-      v-for="movie in person.known_for"
-      :key="movie.id"
-      style="font-size:25px">
-      {{movie.name?movie.name:movie.title}}
+      <li style="font-size:25px">
+        [ {{person.known_for_department}} ] 
+        <span
+        v-for="movie in person.known_for"
+        :key="movie.id"
+        style="font-size:25px"
+        class="px-2"
+        >
+        {{movie.name?movie.name:movie.title}}
+        </span>
       </li>
       
     </div>
