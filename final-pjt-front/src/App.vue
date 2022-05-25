@@ -32,9 +32,7 @@
   <router-view/>
   </div>
 </template>
-
 <script>
-
   import { mapGetters,mapActions } from 'vuex'
   import router from '@/router'
   export default {
@@ -77,10 +75,6 @@
   /* font-weight : 0; */
 }
 
-/* nav {
-  padding: 30px;
-} */
-
 nav a {
   color: white;
   text-decoration:none;
@@ -107,12 +101,11 @@ nav a.router-link-exact-active:not(.active) {
 nav a.router-link-exact-active {
   color: white;
   text-decoration:none;
-  background-color: #DBFF4560;
-  
 }
 nav {
   font-size: 1.35vw;
 }
+
 .toggle-color {
   background-color: #FF8307;
 }
