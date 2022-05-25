@@ -5,7 +5,7 @@
       <div class="d-flex justify-content-around" >
         <div class="container">
           <div>
-            <div class="d-flex align-items-start">
+            <div class="d-flex align-items-start ">
               <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
               <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
                
@@ -13,32 +13,31 @@
                 <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>>
               </div>  
             </div>
-          <div class="container">
-            <p class="overview">{{overview}}</p>
-          </div>
-          </div>
-          <div class="d-flex align-items-start">
-            <button @click="onClickRedirect" v-if="mainTrailerUrl" :href="mainTrailerUrl" 
-            type="button" class="btn btn-outline-light btn-lg " id="box">미리보기</button>
+            <div class="container">
+              <p class="overview">{{overview}}</p>
+            </div>
+            <div class="d-flex align-items-start">
+              <button @click="onClickRedirect" v-if="mainTrailerUrl" :href="mainTrailerUrl" 
+              type="button" class="btn btn-outline-light btn-lg " id="box">미리보기</button>
+            </div>
           </div>
         </div>
-        <div class="container" id="image">
+        <div class="container inline" id="image">
           <img :src="posterPath" alt="">
         </div>
       </div>
     </div>
     <div class="review-list mt-5">
-      <p>리뷰 리스트</p>
-      <div class="card-group">
-
+      <div>
+        <p>리뷰 리스트</p>
+        <div class="container">
           <review-card 
           v-for="review in reviewList" 
           :review="review"
           :key="review.id"
           @getReview="getReviewList"
-          class="col-6"
           ></review-card>  
-
+        </div>
       </div>
     </div>
 
@@ -131,7 +130,7 @@ export default {
       }
       
     },
-
+    
     async getReviewList(){
       try{
         const response=await axios({
@@ -187,6 +186,9 @@ export default {
   }
   .title{
     font-size: 45px;
+  }
+  .for-center{
+    margin-left: 90px;
   }
   // .background{
   //   background-image: url("paper.gif");
