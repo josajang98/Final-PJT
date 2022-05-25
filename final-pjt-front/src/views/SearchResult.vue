@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div class="container">
       <p>영화</p>
       <div class="row bg-white bg-opacity-10 justify-content-center">
@@ -30,31 +29,28 @@ import axios from 'axios';
 import drf from '@/api/drf'
 import MovieCard from '../components/MovieCard.vue';
 import PersonCard from '../components/PersonCard.vue';
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'SearchResult',
 
   data() {
     return {
       query:this.$route.params.query,
-      personData:[],
       movieData:[]
     };
   },
+  
   components:{
     MovieCard,
     PersonCard,
   },
-  created(){
-    this.getPersonData()
-    this.getMovieData()
+  
+  computed:{
+    ...mapGetters(['personData'])
   },
   methods: {
-    async getPersonData(){
-      const response=await axios.get(drf.tmdb.searchPerson(this.query))
-      
-      this.personData=response.data.results
-      console.log(this.personData) 
-    },
+    ...mapActions(['getPersonData']),
 
     async getMovieData(){
       const response=await axios.get(drf.tmdb.searchMovie(this.query))
@@ -62,6 +58,10 @@ export default {
       this.movieData=response.data.results
       console.log(this.movieData) 
     },
+  },
+  created(){
+    this.getPersonData(this.query)
+    this.getMovieData()
   },
 };
 </script>
