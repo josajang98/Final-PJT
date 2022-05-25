@@ -42,5 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+img{
+  cursor: pointer;
+}
 </style>
