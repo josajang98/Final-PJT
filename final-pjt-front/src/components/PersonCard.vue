@@ -1,11 +1,11 @@
 <template>
-  <div v-if="person.profile_path" class="d-flex align-items-center bor">
+  <div v-if="person.profile_path" class="d-flex align-items-center radius">
     <div  class="flex-shrink-0 img-wrapper">
       <img @click="routingDetail(person.id)" :src="profilePath" alt="">
     </div>
     <div class="flex-grow-1 ms-3">
-      <p>{{person.name}}</p>
-      <li style="font-size:2.5vw">{{person.known_for_department}}</li>
+      <p class=" font">{{person.name}}</p>
+      <li style="font-size:25px">{{person.known_for_department}}</li>
     </div>
   </div>
 </template>
@@ -36,6 +36,9 @@ export default {
 </script>
 
 <style  lang="scss" scoped>
+.font {
+  font-size: 35px;
+}
 div {
   margin: 20px;
 }
@@ -44,8 +47,10 @@ p{
 }
 .img-wrapper {
     position: relative;
-    width: 18vw;
-    height: 18vw;
+    // width: 13vw;
+    // height: 13vw;
+    width: 100px;
+    height: 100px;
 }
 .img-wrapper img {
   position: absolute;
@@ -62,4 +67,5 @@ li{
   list-style: circle;
   text-align: left;
 }
+
 </style>

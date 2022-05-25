@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class = 'container'>
+  <div id="app" class='container'>
     <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg">
       <router-link to="/" exact-active-class="active"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
@@ -109,7 +109,6 @@
   font-family: 'East Sea Dokdo', cursive;
   /* font-family: 'Jalnan'; */
   /* font-family: 'Noto Sans KR', sans-serif; */
-  font-size: 4vw;
   /* font-weight : 0; */
 }
 
@@ -143,7 +142,7 @@ nav a.router-link-exact-active {
   text-decoration:none;
 }
 nav {
-  font-size: 1.35vw;
+  font-size: 1.5vw;
 }
 li {
   list-style:none;
