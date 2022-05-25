@@ -24,7 +24,7 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
             <button class="btn btn-outline-success">Search</button>
           </form>
-          <router-link class="p-3 active" :to="{ name: 'profile', params: {username} }">{{username}}</router-link>
+          <router-link class="p-2 active" :to="{ name: 'profile', params: {username} }">{{username}}</router-link>
           <router-link class="p-3" :to="{ name: 'logout'}"><button>로그아웃</button></router-link>
         </div>
       </div>
