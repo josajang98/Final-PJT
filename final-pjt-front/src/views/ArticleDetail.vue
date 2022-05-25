@@ -1,16 +1,8 @@
 <template>
-<<<<<<< HEAD
-  <div class="container mt-5" >
-    <div class="for-center">
-      <p class="d-flex p-2 title ">{{title}}</p>
-
-      <div class="d-flex justify-content-center" >
-=======
   <div class="container mt-5">
     <div class="movie-detail">
       <p class="d-flex p-2 title">{{title}}</p>
       <div class="d-flex justify-content-around" >
->>>>>>> 69c46152ae931b9d108da0d87aa8876f1f75bf58
         <div class="container">
           <div>
             <div class="d-flex align-items-start ">
@@ -36,26 +28,16 @@
       </div>
     </div>
     <div class="review-list mt-5">
-<<<<<<< HEAD
       <div>
         <p>리뷰 리스트</p>
         <div class="container">
-=======
-      <p>리뷰 리스트</p>
-      <div class="card-group">
-
->>>>>>> 69c46152ae931b9d108da0d87aa8876f1f75bf58
           <review-card 
           v-for="review in reviewList" 
           :review="review"
           :key="review.id"
           @getReview="getReviewList"
           ></review-card>  
-<<<<<<< HEAD
         </div>
-=======
-
->>>>>>> 69c46152ae931b9d108da0d87aa8876f1f75bf58
       </div>
     </div>
 
@@ -148,7 +130,7 @@ export default {
       }
       
     },
-
+    
     async getReviewList(){
       try{
         const response=await axios({
