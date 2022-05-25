@@ -77,10 +77,6 @@
   /* font-weight : 0; */
 }
 
-/* nav {
-  padding: 30px;
-} */
-
 nav a {
   color: white;
   text-decoration:none;
@@ -113,6 +109,7 @@ nav a.router-link-exact-active {
 nav {
   font-size: 1.35vw;
 }
+
 .toggle-color {
   background-color: #FF8307;
 }
