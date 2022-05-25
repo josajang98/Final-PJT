@@ -31,11 +31,9 @@ export default {
 </script>
 
 <style  lang="scss" scoped>
-div {
-  margin: 20px;
-}
 img {
-  width:200px;
-  height:300px;
+    max-width: 100%;
+    height: auto;
 }
+
 </style>
