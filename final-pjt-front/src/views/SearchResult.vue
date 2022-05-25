@@ -1,25 +1,20 @@
 <template>
-  <div>
-    <div class="container">
-      <p>영화</p>
-      <div class="row bg-white bg-opacity-10 justify-content-center">
-        <MovieCard
-          v-for="movie in movieData"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
-          :key="movie.id"
-          class="col-lg-2 col-md-3 col-sm-4"
-        ></MovieCard>
-      </div>
-      <p>인물</p>
-      <div class="row bg-white bg-opacity-10 justify-content-center">
-        <person-card
-        v-for="person in personData"
-        :person="person"
-        :key="person.id"
+  <div class="font">
+    <p>인물</p>
+    <person-card
+    v-for="person in personData"
+    :person="person"
+    :key="person.id"
+    ></person-card>
+    <p>영화</p>
+    <div class="row bg-white bg-opacity-10 justify-content-center">
+      <MovieCard
+        v-for="movie in movieData"
+        :movie-id="movie.id"
+        :movie-poster-path="movie.poster_path"
+        :key="movie.id"
         class="col-lg-2 col-md-3 col-sm-4"
-        ></person-card>
-      </div>   
+      ></MovieCard>
     </div>
   </div>
 </template>
@@ -67,5 +62,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.font {
+  font-size: 4vw;
+}
 </style>

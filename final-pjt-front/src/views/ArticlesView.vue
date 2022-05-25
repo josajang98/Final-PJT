@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font">
     <MainMovieCard 
       :backdrop-path="mainMovieBackdropPath" 
       :title="mainMovietitle" 
@@ -240,5 +240,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.font {
+  font-size: 4vw;
+}
 </style>
