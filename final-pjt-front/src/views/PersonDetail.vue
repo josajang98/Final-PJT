@@ -6,6 +6,9 @@
     <div class="flex-grow-1 ms-3">
       <p>이름 : {{personData[index].name}}</p>
       <p>성별 : {{personData[index].gender}}</p>
+      <p>생일 : {{personDetail.birthday}}</p>
+      <p>출생지 : {{personDetail.place_of_birth}}</p>
+      <a v-if="personDetail.homepage" :href="personDetail.homepage">홈페이지</a>
       <div class="my-custom-scrollbar my-custom-scrollbar-primary">
         <div class="row bg-white bg-opacity-10 justify-content-center">
           <MovieCard
@@ -40,6 +43,7 @@ export default {
       index:0,
       personId:parseInt(this.$route.params.person_id),
       personMovie:[],
+      personDetail:{},
       
       // 리뷰 데이터
       reviewList:'',
@@ -48,6 +52,7 @@ export default {
 
   created() {
     this.getPersonMovie()
+    this.getPersonDetail()
 
   },
   computed:{
@@ -60,6 +65,11 @@ export default {
     async getPersonMovie(){
       const response=await axios.get(drf.tmdb.getMovieCreadit(this.personId))
       this.personMovie=response.data.cast
+    },
+    async getPersonDetail(){
+      const response=await axios.get(drf.tmdb.personDetail(this.personId))
+      this.personDetail=response.data
+      console.log(this.personDetail)
     },
   },
 };
