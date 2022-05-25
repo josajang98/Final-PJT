@@ -1,43 +1,71 @@
 <template>
   <div>
-    <div v-show="!isEdit">
-      <!-- <div class="card-group"> -->
-        <!-- <div class="col-md-6"> -->
-          <div class="card border-secondary mb-3 review-card " style="max-width:60px max-height:60px">
-            <div class="card-header">{{review.title}}</div>
-            <div class="card-body text-secondary">
-              <h5 class="card-title"> <p> rate :{{review.rate}} | like : {{likeUserCount}}</p> </h5>
-              <p class="card-text">{{review.content}}</p>
-            </div>
-          </div>
-          <button type="button" class="btn btn-secondary" @click.prevent="likeArticle">좋아요</button>
-          <button type="button" class="btn btn-secondary" @click.prevent="edit">수정</button>
-          <button type="button" class="btn btn-secondary" @click.prevent="onDelete">삭제</button>
-        <!-- </div> -->
-      <!-- </div> -->
 
-      <!-- 영화 제목 : {{review.movie_title}} -->
-      <!-- 작성자 : {{review.user.username}}
-      제목 : {{review.title}}
-      내용 : {{review.content}}
-      좋아요 수 : {{likeUserCount}}
-      유저 평점 : {{review.rate}}
-      <button @click.prevent="likeArticle"> 좋아요</button>
-      <button @click.prevent="edit">수정</button>
-      <button @click.prevent="onDelete">삭제</button> -->
+    <div class="container col-10">
+      <div class="d-flex justify-content-start mt-3">
+        {{review.user.username}}
+      </div>
+      <a href="#exampleModal" data-bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">
+        <div class="d-flex w-100 justify-content-between">
+          title : {{review.title}}
+          <small>rate : {{review.rate}}</small>
+        </div>
+      </a>
     </div>
 
-    <form @submit.prevent="onSubmit" v-show="isEdit" >
-      <label for="title">제목: </label>
-      <input type="text" id="title" v-model="title" required >
-      <label for="content">내용: </label>
-      <input type="text" id="content" v-model="content" required >
-      <label for="rate">평점: </label>
-      <input type="number" step="0.1" max="10" id="rate" v-model="rate" required >
-      <button>수정</button>
-    </form>
+    <!-- Modal -->
+    <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark p-2" style="--bs-bg-opacity: .75;">
+          <div class="modal-header ">
+            <h5 class="modal-title" id="exampleModalLabel">{{ review.title }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{review.content}}
+          </div>
+          <div class="modal-footer">
+            <button @click.prevent="likeArticle"> 좋아요</button>
+            {{likeUserCount}}
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button"  @click.prevent="edit" class="btn btn-primary">Save</button>
+            <button type="button"  @click.prevent="onDelete" class="btn btn-primary">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- 영화 제목 : {{review.movie_title}}
+    작성자 : {{review.user.username}}
+    제목 : {{review.title}}
+    내용 : {{review.content}}
+    좋아요 수 : {{likeUserCount}}
+    유저 평점 : {{review.rate}}
+    <button @click.prevent="likeArticle"> 좋아요</button>
+    <button @click.prevent="edit">수정</button>
+    <button @click.prevent="onDelete">삭제</button> -->
+
+      <form @submit.prevent="onSubmit" v-show="isEdit" >
+        <label for="title">제목: </label>
+        <input type="text" id="title" v-model="title" required >
+        <label for="content">내용: </label>
+        <input type="text" id="content" v-model="content" required >
+        <label for="rate">평점: </label>
+        <input type="number" step="0.1" max="10" id="rate" v-model="rate" required >
+        <button>수정</button>
+      </form>
+
 
   </div>
+
+
+
+
+
 </template>
 
 <script>
