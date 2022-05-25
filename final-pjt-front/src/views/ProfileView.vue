@@ -85,7 +85,7 @@ export default {
   methods: {
     inputChange(value){
       this.genreValue=value
-      console.log( this.genreValue)
+      console.log(this.genreValue)
     },
     async getProfileData(){
       const response=await axios({
