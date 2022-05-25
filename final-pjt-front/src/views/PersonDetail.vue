@@ -1,10 +1,8 @@
 <template>
   <div>
     <div class="d-flex align-items-center py-5">
-      <div class="flex-shrink-0">
-        <img :src="profilePath" alt="">
-      </div>
-      <div class="flex-grow-1 ms-3">
+      <img :src="profilePath" alt="" class="pe-4">
+      <div class="px-4">
         <p>이름 : {{personData[index].name}}</p>
         <p>성별 : {{personData[index].gender}}</p>
         <p>생일 : {{personDetail.birthday}}</p>
@@ -80,12 +78,13 @@ export default {
 
 <style lang="scss" scoped>
 img{
-  width:60%;
+  width:200px;
   height: auto;
+  border-radius: 10%;
 }
 
 p {
-  font-size: 40px;
+  font-size: 35px;
   text-align: left;
 }
 .section {
