@@ -20,7 +20,7 @@
               <router-link class="text" :to="{ name: 'wishList'}">내가 찜한 목록</router-link>
             </li>
           </ul>
-          <form @submit.prevent="onSubmit" class="d-flex active">
+          <form @submit="onSubmit" class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
             <button class="btn btn-outline-success">Search</button>
           </form>
