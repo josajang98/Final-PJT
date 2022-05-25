@@ -1,13 +1,45 @@
 <template>
-  <form @submit.prevent="onSubmit" >
-    <label for="title">제목: </label>
-    <input type="text" id="title" v-model="title" required>
-    <label for="content">내용: </label>
-    <input type="text" id="content" v-model="content" required>
-    <label for="rate">평점: </label>
-    <input type="number" step="0.1" max="10" id="rate" v-model="rate" required>
-    <button>쓰기</button>
-  </form>
+  <div class="container my-5 review-create">
+    <!-- <form @submit.prevent="onSubmit" >
+      <label for="title">제목: </label>
+      <input type="text" id="title" v-model="title" required>
+      <label for="content">내용: </label>
+      <input type="text" id="content" v-model="content" required>
+      <label for="rate">평점: </label>
+      <input type="number" step="0.1" max="10" id="rate" v-model="rate" required>
+      <button>쓰기</button>
+    </form> -->
+    <form @submit.prevent="onSubmit" class="row g-3 needs-validation d-flex justify-content-start" novalidate>
+      <div class="col-md-8">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Write Title" v-model="title" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="rate" class="form-label" >Rate</label>
+        <input type="number" class="form-control" id="rate" step="0.1" max="10" v-model="rate" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-12 text-area">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" id="content" rows="8" placeholder="Write Content" v-model="content" required></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-secondary" type="submit">Write Reivew</button>
+      </div>
+    </form>
+
+  </div>
+
+
+
 </template>
 
 <script>
@@ -57,5 +89,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .review-create{
+    width: 80%;
+  }
 
 </style>

@@ -103,7 +103,7 @@ $icon-border-color: white;
 }
 
 .toggle-favorite {
-  font-size: 20px;
+  font-size: 29px;
   position: relative;
 
   &__icon {
