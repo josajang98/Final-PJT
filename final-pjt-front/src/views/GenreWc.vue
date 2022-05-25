@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <div v-if="!result">
-      {{getRound()}}
-      <div @click="selected(randGenreIdList[index])">
+  <div class="text-box">
+    <br>
+    <h1 class="p-3">장르 한번 골라보자!!</h1>
+    <h3 class="p-3" style="font-size:4.5vw"> {{getRound()}}강 </h3>
+    <div class="d-flex justify-content-between align-items-center" v-if="!result">
+      <div class="background mx-3" @click="selected(randGenreIdList[index])">
         <genre-wc-card :genre-id="randGenreIdList[index]" ></genre-wc-card>
       </div>
-      <div @click="selected(randGenreIdList[index+1])">
+      <span class="mx-2" style="font-size:4vw;">VS</span>
+      <div class="background" @click="selected(randGenreIdList[index+1])">
         <genre-wc-card :genre-id="randGenreIdList[index+1]"></genre-wc-card>
       </div>
     </div>
@@ -13,7 +16,7 @@
       <p>결과</p>
       <genre-wc-card :genre-id="randGenreIdList[30]"></genre-wc-card>
     </div>
-    
+    <br>  
   </div>
 </template>
 
@@ -77,5 +80,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.text-box h1 {
+  letter-spacing: 3vw;
+  width:100%;
+  font-size:5vw;
+  text-align: center;
+  // color: #FFF775;
+  color: #d4ff2a;
+  text-shadow: 4px 4px black;
+  margin: 0;
+  // text-decoration: overline underline;
+  // text-underline-position: under;
+  // text-decoration-style: wavy;
+}
 </style>
