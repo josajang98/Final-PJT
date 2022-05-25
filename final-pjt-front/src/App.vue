@@ -145,6 +145,9 @@ nav a.router-link-exact-active {
 nav {
   font-size: 1.35vw;
 }
+li {
+  list-style:none;
+}
 
 .toggle-color {
   background-color: #FF8307;

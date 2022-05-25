@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="!result">
-      {{getRound()}}
+    <h1>{{getRound()}}</h1>
+    <div class="d-flex justify-content-between" v-if="!result">
       <div @click="selected(randGenreIdList[index])">
         <genre-wc-card :genre-id="randGenreIdList[index]" ></genre-wc-card>
       </div>
