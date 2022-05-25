@@ -1,36 +1,47 @@
 <template>
-  <div class="container">
-    <div id="heart"><ToggleFavorite/></div>
+  <div class="container mt-5">
 
-    <div class="d-flex justify-content-around" >
-      <div class="container">
-        <p class="d-flex align-items-start">{{title}}</p>
-        <div class="d-flex align-items-start">
-          <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
-          <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
-            <!-- <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p> -->
-            <div id="heart" @click.prevent="addWishList"><ToggleFavorite/></div>
-            
-
-
+    <div class="movie-detail" :style="{'background-image':'url(posterPath)'}  ">
+      <p class="d-flex p-2 title">{{title}}</p>
+      <div class="d-flex justify-content-around" >
+        <div class="container">
+          <div>
+            <div class="d-flex align-items-start">
+              <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
+              <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
+                <!-- <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p> -->
+              <div class="d-flex align-items-center mx-3">
+                <div id="heart" @click.prevent="addWishList"><ToggleFavorite class="haert-box"/></div>
+              </div>  
+            </div>
+          <div class="container">
+            <p class="overview">{{overview}}</p>
+          </div>
+          </div>
+          <div class="d-flex align-items-start">
+            <button @click="onClickRedirect" v-if="mainTrailerUrl" :href="mainTrailerUrl" 
+            type="button" class="btn btn-outline-light btn-lg " id="box">미리보기</button>
+          </div>
         </div>
-        <p>줄거리 : {{overview}}</p>
-        <div class="d-flex align-items-start">
-          <button @click="onClickRedirect" v-if="mainTrailerUrl" :href="mainTrailerUrl" 
-          type="button" class="btn btn-outline-light btn-lg " id="box">미리보기</button>
+        <div class="container" id="image">
+          <img :src="posterPath" alt="">
         </div>
-      </div>
-      <div class="container" id="image">
-        <img :src="posterPath" alt="">
       </div>
     </div>
-    <p>리뷰 리스트</p>
-    <review-card 
-    v-for="review in reviewList" 
-    :review="review"
-    :key="review.id"
-    @getReview="getReviewList"
-    ></review-card>
+    <div class="review-list mt-5">
+      <p>리뷰 리스트</p>
+      <div class="card-group">
+        <!-- <div class="col-6"> -->
+          <review-card 
+          v-for="review in reviewList" 
+          :review="review"
+          :key="review.id"
+          @getReview="getReviewList"
+          class="col-6"
+          ></review-card>  
+        <!-- </div>      -->
+      </div>
+    </div>
 
     <review-create-form :movie-id="movieId" :movie-title="title" @getReview="getReviewList"></review-create-form>
   </div>
@@ -148,12 +159,8 @@ export default {
 
 <style lang="scss" scoped>
   #box {
-    // background-color: #DCDCDC;
     width: 300px;
     height: 70px;
-    // padding: 50px;
-    // border: 0px;
-    // margin: 0px;
   }
   a {
     text-decoration: none;
@@ -169,14 +176,23 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
   }
-
-  button {
+  .haert-box {
     background: none;
     border: none;
     padding: 0;
     outline: inherit;
     cursor: pointer;
   }
+  .overview {
+    font-size: 20px;
+  }
+  .title{
+    font-size: 45px;
+  }
+  // .background{
+  //   background-image: url("paper.gif");
+  //   background-color: #cccccc;
+  // }
 </style>

@@ -1,15 +1,30 @@
 <template>
   <div>
     <div v-show="!isEdit">
-      영화 제목 : {{review.movie_title}}
-      작성자 : {{review.user.username}}
+      <!-- <div class="card-group"> -->
+        <!-- <div class="col-md-6"> -->
+          <div class="card border-secondary mb-3 review-card " style="max-width:60px max-height:60px">
+            <div class="card-header">{{review.title}}</div>
+            <div class="card-body text-secondary">
+              <h5 class="card-title"> <p> rate :{{review.rate}} | like : {{likeUserCount}}</p> </h5>
+              <p class="card-text">{{review.content}}</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary" @click.prevent="likeArticle">좋아요</button>
+          <button type="button" class="btn btn-secondary" @click.prevent="edit">수정</button>
+          <button type="button" class="btn btn-secondary" @click.prevent="onDelete">삭제</button>
+        <!-- </div> -->
+      <!-- </div> -->
+
+      <!-- 영화 제목 : {{review.movie_title}} -->
+      <!-- 작성자 : {{review.user.username}}
       제목 : {{review.title}}
       내용 : {{review.content}}
       좋아요 수 : {{likeUserCount}}
       유저 평점 : {{review.rate}}
       <button @click.prevent="likeArticle"> 좋아요</button>
       <button @click.prevent="edit">수정</button>
-      <button @click.prevent="onDelete">삭제</button>
+      <button @click.prevent="onDelete">삭제</button> -->
     </div>
 
     <form @submit.prevent="onSubmit" v-show="isEdit" >
@@ -21,7 +36,7 @@
       <input type="number" step="0.1" max="10" id="rate" v-model="rate" required >
       <button>수정</button>
     </form>
-    
+
   </div>
 </template>
 
@@ -107,5 +122,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  // .review-card{
+  //   height:50px;
+  // }
 
 </style>
