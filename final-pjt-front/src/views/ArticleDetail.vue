@@ -1,13 +1,29 @@
 <template>
-  <div>
+  <div class="container">
+    <div id="heart"><ToggleFavorite/></div>
 
-    <p>제목 : {{title}}</p>
-    <p>줄거리 : {{overview}}</p>
-    <p>개봉 날짜 : {{releaseDate}}</p>
-    <p>평점 : {{voteAverage}}</p>
-    <img :src="posterPath" alt="">
-    <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p>
-    <a v-if="mainTrailerUrl" :href="mainTrailerUrl">미리보기</a>
+    <div class="d-flex justify-content-around" >
+      <div class="container">
+        <p class="d-flex align-items-start">{{title}}</p>
+        <div class="d-flex align-items-start">
+          <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
+          <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
+            <!-- <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p> -->
+            <div id="heart" @click.prevent="addWishList"><ToggleFavorite/></div>
+            
+
+
+        </div>
+        <p>줄거리 : {{overview}}</p>
+        <div class="d-flex align-items-start">
+          <button @click="onClickRedirect" v-if="mainTrailerUrl" :href="mainTrailerUrl" 
+          type="button" class="btn btn-outline-light btn-lg " id="box">미리보기</button>
+        </div>
+      </div>
+      <div class="container" id="image">
+        <img :src="posterPath" alt="">
+      </div>
+    </div>
     <p>리뷰 리스트</p>
     <review-card 
     v-for="review in reviewList" 
@@ -28,14 +44,19 @@ import {mapGetters} from 'vuex'
 import ReviewCard from '../components/ReviewCard.vue'
 import ReviewCreateForm from '../components/ReviewCreateForm.vue';
 
+import ToggleFavorite from "../components/ToggleFavorite.vue";
 const imgUrl='https://image.tmdb.org/t/p/w500/'
 
+
+
 export default {
-  components: { ReviewCard, ReviewCreateForm },
+  components: { ReviewCard, ReviewCreateForm, ToggleFavorite },
   name: 'ArticleDetail',
 
   data() {
     return {
+      liked: false,
+
       // 유저 데이터
       userId:'',
       isWishMovie:false,
@@ -60,6 +81,7 @@ export default {
     this.getMovieVideo(),
     this.getReviewList()
   },
+
   computed:{
     ...mapGetters(['authHeader','currentUser']),
   },
@@ -116,11 +138,45 @@ export default {
         // console.error(err)
         this.reviewList=[]
       }
-    }
+    },
+    onClickRedirect(){   
+        window.open(this.mainTrailerUrl, "_blank")
+      },   
   },
 };
 </script>
 
 <style lang="scss" scoped>
+  #box {
+    // background-color: #DCDCDC;
+    width: 300px;
+    height: 70px;
+    // padding: 50px;
+    // border: 0px;
+    // margin: 0px;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  img {
+    width: 50%;
+    // height: 1000px;
+  }
+  #heart {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  }
 
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    outline: inherit;
+    cursor: pointer;
+  }
 </style>
