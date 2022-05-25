@@ -1,26 +1,27 @@
 <template>
-  <div class="d-flex align-items-center">
-    <div class="flex-shrink-0">
-      <img :src="profilePath" alt="">
-    </div>
-    <div class="flex-grow-1 ms-3">
-      <p>이름 : {{personData[index].name}}</p>
-      <p>성별 : {{personData[index].gender}}</p>
-      <p>생일 : {{personDetail.birthday}}</p>
-      <p>출생지 : {{personDetail.place_of_birth}}</p>
-      <a v-if="personDetail.homepage" :href="personDetail.homepage">홈페이지</a>
-      <div class="my-custom-scrollbar my-custom-scrollbar-primary">
-        <div class="row bg-white bg-opacity-10 justify-content-center">
-          <MovieCard
-            v-for="movie in personMovie"
-            :movie-id="movie.id"
-            :movie-poster-path="movie.poster_path"
-            :key="movie.id"
-            class="col-lg-2 col-md-3 col-sm-4"
-          ></MovieCard>
-        </div>
+  <div>
+    <div class="d-flex align-items-center py-5">
+      <img :src="profilePath" alt="" class="pe-4">
+      <div class="px-4">
+        <p>이름 : {{personData[index].name}}</p>
+        <p>성별 : {{personData[index].gender}}</p>
+        <p>생일 : {{personDetail.birthday}}</p>
+        <p>출생지 : {{personDetail.place_of_birth}}</p>
+        <a v-if="personDetail.homepage" :href="personDetail.homepage">홈페이지</a>
       </div>
     </div>
+    <div class="section">
+      <div class="row justify-content-center">
+        <MovieCard
+          v-for="movie in personMovie"
+          :movie-id="movie.id"
+          :movie-poster-path="movie.poster_path"
+          :key="movie.id"
+          class="col-lg-2 col-md-3 col-sm-4 p-3"
+        ></MovieCard>
+      </div>
+    </div>
+    
   </div>
 </template>
 
@@ -77,13 +78,62 @@ export default {
 
 <style lang="scss" scoped>
 img{
-  width:75%;
+  width:200px;
   height: auto;
+  border-radius: 10%;
 }
-.my-custom-scrollbar {
-  position: relative;
-  width: 800px;
-  height: 400px;
-  overflow: auto;
+
+p {
+  font-size: 35px;
+  text-align: left;
+}
+.section {
+  max-height: 300px;
+  // padding: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  direction: ltr;
+  scrollbar-color: #d4aa70 #e4e4e4;
+  scrollbar-width: thin;
+  margin-bottom: 120px;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  p + p {
+    margin-top: 1rem;
+  }
+}
+
+.section::-webkit-scrollbar {
+  width: 20px;
+}
+
+.section::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+.section::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 6px solid rgba(0, 0, 0, 0.18);
+  border-left: 0;
+  border-right: 0;
+  background-color: #8070d4;
+}
+
+body {
+  font-family: "system-ui";
+  line-height: 1.4;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  min-height: 1200px;
+}
+
+* {
+  box-sizing: border-box;
 }
 </style>
