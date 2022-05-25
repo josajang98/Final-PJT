@@ -1,10 +1,9 @@
 <template>
-  <div>
+  <div v-if="person.profile_path">
     <img @click="routingDetail(person.id)" :src="profilePath" alt="">
     <p>{{person.name}}</p>
     <p>{{person.known_for_department}}</p>
     
-    <!-- <p>{{person.known_for[0]}}</p> -->
   </div>
 </template>
 
@@ -15,10 +14,6 @@ export default {
   name: 'PersonCard',
   props:{
     person:Object,
-    // personProfilePath:String,
-    // personName:String,
-    // department:String,
-    // movies:Array,
   },
   computed:{
     profilePath(){

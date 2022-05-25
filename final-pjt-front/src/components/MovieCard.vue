@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="moviePosterPath">
     <img @click="routingDetail(movieId)" :src="posterPath" alt="">
   </div>
 </template>
