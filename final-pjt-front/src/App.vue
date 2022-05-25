@@ -1,6 +1,5 @@
 <template>
   <div id="app" class = 'container'>
-
     <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg">
       <router-link to="/" exact-active-class="active"><img src="./assets/logo.png" alt="asd"></router-link> 
     </nav>
@@ -14,23 +13,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item m-3">
-              <router-link :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
+            <li class="nav-item p-3">
+              <router-link class="text" :to="{ name: 'genrewc'}">장르 월드컵</router-link> 
             </li>
-            <li class="nav-item m-3">
-              <router-link :to="{ name: 'wishList'}">내가 찜한 목록</router-link>
-            </li>
-            <li class="nav-item m-3">
-              <router-link :to="{ name: 'profile', params: {username} }">{{username}}</router-link>
-            </li>
-            <li class="nav-item m-3">
-              <router-link :to="{ name: 'logout'}">로그아웃</router-link>
+            <li class="nav-item p-3">
+              <router-link class="text" :to="{ name: 'wishList'}">내가 찜한 목록</router-link>
             </li>
           </ul>
           <form @submit="onSubmit" class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
             <button class="btn btn-outline-success">Search</button>
           </form>
+          <router-link class="p-3 active" :to="{ name: 'profile', params: {username} }">{{username}}</router-link>
+          <router-link class="p-3" :to="{ name: 'logout'}"><button>로그아웃</button></router-link>
         </div>
       </div>
     </nav>
@@ -91,14 +86,19 @@ nav a {
   text-decoration:none;
 }
 
-nav a:hover {
+nav a.active:hover {
   color: white;
   text-decoration:none;
   background-color: #DBFF4560;
 }
-
-nav a:hover:not(.hoverno) {
-  background-color: none;
+nav a.text:hover {
+  color: white;
+  text-decoration:none;
+}
+nav li:hover {
+  color: white;
+  text-decoration:none;
+  background-color: #DBFF4560;
 }
 
 nav a.router-link-exact-active:not(.active) {
@@ -109,6 +109,9 @@ nav a.router-link-exact-active {
   text-decoration:none;
   background-color: #DBFF4560;
   
+}
+nav {
+  font-size: 1.35vw;
 }
 .toggle-color {
   background-color: #FF8307;

@@ -60,7 +60,7 @@ import { mapGetters } from 'vuex';
 import router from '@/router'
 
 const imgUrl='https://image.tmdb.org/t/p/w500/'
-const count = 4
+const count = 6
 
 export default {
   

@@ -42,7 +42,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  
-}
+
 </style>
