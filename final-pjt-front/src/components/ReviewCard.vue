@@ -5,31 +5,36 @@
       <div class="d-flex justify-content-start mt-3">
         {{review.user.username}}
       </div>
-      <a href="#exampleModal" data-bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">
+      <a :href="getId1" data-bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">
         <div class="d-flex w-100 justify-content-between">
           title : {{review.title}}
           <small>rate : {{review.rate}}</small>
         </div>
       </a>
+      
     </div>
 
     <!-- Modal -->
-    <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-dialog-scrollable" :id="getId2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      
       <div class="modal-dialog">
         <div class="modal-content bg-dark p-2" style="--bs-bg-opacity: .75;">
           <div class="modal-header ">
             <h5 class="modal-title" id="exampleModalLabel">{{ review.title }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          
           <div class="modal-body">
             {{review.content}}
           </div>
           <div class="modal-footer">
             <button @click.prevent="likeArticle"> 좋아요</button>
             {{likeUserCount}}
+            {{review.user.username}}
+            {{currentUser.username}}
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button"  @click.prevent="edit" class="btn btn-primary">Save</button>
-            <button type="button"  @click.prevent="onDelete" class="btn btn-primary">Delete</button>
+            <button v-if="review.user.username===currentUser.username" type="button"  @click.prevent="edit" class="btn btn-primary">Save</button>
+            <button v-if="review.user.username===currentUser.username" type="button"  @click.prevent="onDelete" class="btn btn-primary">Delete</button>
           </div>
         </div>
       </div>
@@ -83,17 +88,25 @@ export default {
       content:this.review.content,
       rate:this.review.rate,
       movieId:this.review.movie_id,
+
     };
   },
   props:{
     review:Object,
-    uName:String
+    uName:String,
+    id:String
   },
   mounted() {
     
   },
   computed:{
-    ...mapGetters(['authHeader'])
+    ...mapGetters(['authHeader','currentUser']),
+    getId1(){
+      return '#id'+this.id
+    },
+    getId2(){
+      return 'id'+this.id
+    }
   },
   methods: {
     async likeArticle() {
