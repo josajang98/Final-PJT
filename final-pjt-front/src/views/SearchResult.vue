@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <!-- <div class="container"> -->
       <p>영화</p>
       <div class="row bg-white bg-opacity-10 justify-content-center">
         <MovieCard
@@ -12,15 +12,12 @@
         ></MovieCard>
       </div>
       <p>인물</p>
-      <div class="row bg-white bg-opacity-10 justify-content-center">
-        <person-card
-        v-for="person in personData"
-        :person="person"
-        :key="person.id"
-        class="col-lg-2 col-md-3 col-sm-4"
-        ></person-card>
-      </div>   
-    </div>
+      <person-card
+      v-for="person in personData"
+      :person="person"
+      :key="person.id"
+      ></person-card>
+    <!-- </div> -->
   </div>
 </template>
 

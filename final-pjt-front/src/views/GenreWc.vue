@@ -85,9 +85,8 @@ export default {
   width:100%;
   font-size:5vw;
   text-align: center;
-  // color: #FFF775;
-  color: #d4ff2a;
-  text-shadow: 4px 4px black;
+  color: #FF8307;
+  text-shadow: 1.5px 1.5px black;
   margin: 0;
   // text-decoration: overline underline;
   // text-underline-position: under;

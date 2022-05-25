@@ -109,7 +109,7 @@
   font-family: 'East Sea Dokdo', cursive;
   /* font-family: 'Jalnan'; */
   /* font-family: 'Noto Sans KR', sans-serif; */
-  font-size: 3.5rem;
+  font-size: 4vw;
   /* font-weight : 0; */
 }
 
@@ -150,7 +150,7 @@ li {
 }
 
 .toggle-color {
-  background-color: #FF8307;
+  background-color: #FFF775;
 }
 
 .animated-icon2 span:nth-child(1) {
