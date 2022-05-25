@@ -1,18 +1,24 @@
 <template>
+<<<<<<< HEAD
   <div class="container mt-5" >
     <div class="for-center">
       <p class="d-flex p-2 title ">{{title}}</p>
 
       <div class="d-flex justify-content-center" >
+=======
+  <div class="container mt-5">
+    <div class="movie-detail">
+      <p class="d-flex p-2 title">{{title}}</p>
+      <div class="d-flex justify-content-around" >
+>>>>>>> 69c46152ae931b9d108da0d87aa8876f1f75bf58
         <div class="container">
           <div>
             <div class="d-flex align-items-start ">
               <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
               <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
-                <!-- <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p> -->
+               
               <div class="d-flex align-items-center mx-3">
-                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>
-                <!-- <div id="heart" @click.prevent="addWishList"><ToggleFavorite class="haert-box"/></div> -->
+                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>>
               </div>  
             </div>
             <div class="container">
@@ -30,16 +36,26 @@
       </div>
     </div>
     <div class="review-list mt-5">
+<<<<<<< HEAD
       <div>
         <p>리뷰 리스트</p>
         <div class="container">
+=======
+      <p>리뷰 리스트</p>
+      <div class="card-group">
+
+>>>>>>> 69c46152ae931b9d108da0d87aa8876f1f75bf58
           <review-card 
           v-for="review in reviewList" 
           :review="review"
           :key="review.id"
           @getReview="getReviewList"
           ></review-card>  
+<<<<<<< HEAD
         </div>
+=======
+
+>>>>>>> 69c46152ae931b9d108da0d87aa8876f1f75bf58
       </div>
     </div>
 
@@ -57,8 +73,6 @@ import ReviewCreateForm from '../components/ReviewCreateForm.vue';
 
 import ToggleFavorite from "../components/ToggleFavorite.vue";
 const imgUrl='https://image.tmdb.org/t/p/w500/'
-
-
 
 export default {
   components: { ReviewCard, ReviewCreateForm, ToggleFavorite },
@@ -88,8 +102,8 @@ export default {
   },
 
   created() {
-    this.getMovieData(),
-    this.getMovieVideo(),
+    this.getMovieData()
+    this.getMovieVideo()
     this.getReviewList()
   },
 

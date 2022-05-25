@@ -106,10 +106,10 @@
   -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   /* 폰트 */
-  /* font-family: 'East Sea Dokdo', cursive; */
+  font-family: 'East Sea Dokdo', cursive;
   /* font-family: 'Jalnan'; */
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 25px;
+  /* font-family: 'Noto Sans KR', sans-serif; */
+  font-size: 3.5rem;
   /* font-weight : 0; */
 }
 
@@ -144,6 +144,9 @@ nav a.router-link-exact-active {
 }
 nav {
   font-size: 1.35vw;
+}
+li {
+  list-style:none;
 }
 
 .toggle-color {

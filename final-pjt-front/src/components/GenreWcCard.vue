@@ -1,5 +1,5 @@
 <template>
-  <img :src="genreWcImgPath">
+  <img class="py-5" :src="genreWcImgPath">
 </template>
 
 <script>
@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 img{
-  width: 200px;
-  height: 300px;
+  width: 95%;
+  height: auto;
 }
 </style>
