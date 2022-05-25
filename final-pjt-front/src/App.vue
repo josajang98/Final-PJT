@@ -109,7 +109,7 @@
   font-family: 'East Sea Dokdo', cursive;
   /* font-family: 'Jalnan'; */
   /* font-family: 'Noto Sans KR', sans-serif; */
-  font-size: 3.5rem;
+  font-size: 1vw;
   /* font-weight : 0; */
 }
 
