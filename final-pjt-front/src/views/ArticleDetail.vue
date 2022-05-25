@@ -8,9 +8,10 @@
             <div class="d-flex align-items-start ">
               <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
               <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
+              <p class="btn btn-outline-secondary">유저 평점 : {{userRate}}</p>
                
               <div class="d-flex align-items-center mx-3">
-                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>>
+                <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>
               </div>  
             </div>
             <div class="container">
@@ -67,6 +68,8 @@ export default {
       // 유저 데이터
       userId:'',
       isWishMovie:false,
+      userRate:'',
+
 
       // 영화 데이터
       movieId:parseInt(this.$route.params.movie_id),
@@ -101,6 +104,7 @@ export default {
           user_id:this.userId,
           movie_id:this.movieId,
           poster_path:this.posterPath
+          
         },
         headers: this.authHeader,
       }).then(()=>{
@@ -138,6 +142,7 @@ export default {
           method: 'get',
           headers: this.authHeader,
         })
+        this.userRate=response.data.average_rate
         this.reviewList=response.data.serializer_data
         this.isWishMovie=response.data.wish_state
 
