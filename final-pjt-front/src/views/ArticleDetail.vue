@@ -1,5 +1,13 @@
 <template>
   <div class="container mt-5">
+    <div class="d-flex justify-content-around" >
+      <div class="container">
+        <p class="d-flex align-items-start">{{title}}</p>
+        <div class="d-flex align-items-start">
+          <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
+          <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
+            <!-- <p>찜 여부 : {{isWishMovie}} <button @click.prevent="addWishList">찜</button></p> -->
+            <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie"/></div>
 
     <div class="movie-detail" :style="{'background-image':'url(posterPath)'}  ">
       <p class="d-flex p-2 title">{{title}}</p>

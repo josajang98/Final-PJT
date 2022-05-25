@@ -20,14 +20,18 @@ export default {
   },
   data() {
     return {
-      favorited: false,
+      favorited: !!this.isWishMovie,
       animating: false
     };
   },
+  props:{
+    isWishMovie:Boolean
+  },
+  
   computed: {
     iconClasses() {
       return {
-        "toggle-favorite__icon--favorited": this.favorited,
+        "toggle-favorite__icon--favorited": this.isWishMovie,
         "toggle-favorite__icon--animate": this.animating
       };
     }
