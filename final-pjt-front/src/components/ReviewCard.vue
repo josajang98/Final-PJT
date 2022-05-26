@@ -11,7 +11,6 @@
           <small>rate : {{review.rate}}</small>
         </div>
       </a>
-      
     </div>
 
     <!-- Modal -->

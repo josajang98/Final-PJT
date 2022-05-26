@@ -164,7 +164,7 @@ export default {
       
       this.nowPlayingMovieList=response.data.results
       this.getRandMovieData()
-      this.getTearVideo(this.mainMovietitle)
+      // this.getTearVideo(this.mainMovietitle)
       const indexList = _.sampleSize(_.range(0,19),count)
       const movieListSlice=[]
 
