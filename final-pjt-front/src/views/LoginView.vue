@@ -4,7 +4,8 @@
     <!-- 커버 화면 -->
     <div class="login-cover"></div>
     <!-- 로그인 폼 -->
-    <div class="login wallpaper-login">
+    <div class="login">
+      <!-- <div class="box01"></div> -->
       <div class="login-card pb-1 user-pwd">
         <span style="color: #f1f1f1; opacity: 0.7;">"드루와 드루와"</span><br><br>
         <span style="color: #f1f1f1; opacity: 0.7;">-영화 '신세계' 中</span><br>
@@ -242,12 +243,27 @@ a {
 .signup-font{
   font-size:28px;
 }
-.wallpaper-login{
-  background-image: url(https://images.pexels.com/photos/32237/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
-      no-repeat center center;
-  background-size: cover;
-  height: 100%;
-  position: absolute;
-  width: 100%;
+.box01{
+  width:auto;
+  height:100vh;
+  position:relative;
+  background:url('~@/assets/backgroundimageblack.png');
+  background-size:cover;
+  // opacity:0.5;
+
 }
+// .box01::before{
+//   content:"";
+//   opacity:0.5;
+//   position:absolute;
+//   top:0px;
+//   left:0px;
+//   right:0px;
+//   bottom:0px;
+//   background-color: #000;
+// }
+// .box01 p{
+//   color:#fff;
+//   text-align:center;
+//   position:relative;}
 </style>
