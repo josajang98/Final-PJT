@@ -4,7 +4,7 @@
     <!-- 커버 화면 -->
     <div class="login-cover"></div>
     <!-- 로그인 폼 -->
-    <div class="login box01">
+    <div class="login">
       <!-- <div class="box01"></div> -->
       <div class="login-card pb-1 user-pwd">
         <span style="color: #f1f1f1; opacity: 0.7;">"드루와 드루와"</span><br><br>
@@ -17,13 +17,33 @@
           <div>
             <label for="password">password : </label>
             <input type="password" v-model="credentials.password" placeholder="비밀번호" id="password" prefix-icon="fas fa-lock">
-          </div>
-          <button id="login-button" block><span style="color: rgba(255, 255, 255, 0.82);">로그인</span></button>
+          </div> 
+          <button id="login-button" block><span style="color: rgba(255, 255, 255, 0.82);">로그인</span></button>  
           <h6 class="signup-router text-secondary p-0 signup-font" @click="signup">회원가입</h6>
         </form>
       </div>
     </div>
   </div>
+  <!-- <div>
+    <h1>login</h1>
+    <br>
+    <form @submit.prevent="login(credentials)">
+      <div>
+        <label for="username">username :</label>
+        <input type="text" v-model="credentials.username" id="username">
+      </div>
+      <br>
+      <div>
+        <label for="password">password : </label>
+        <input type="password" v-model="credentials.password" id="password">
+      </div>
+      
+      <button>로그인</button>
+    </form>
+    <br>
+    <p>아직 잘골라줘유 사용 전이신가요?</p>
+    <button @click="signup">회원가입</button>
+  </div> -->
 </template>
 
 <script src="sweetalert2.all.min.js"></script>
@@ -77,7 +97,7 @@ export default {
   margin: auto;
 }
 .login{
-  margin-top:50px;
+  margin-top:300px;
 }
 .login-cover {
   position: fixed;
@@ -230,18 +250,18 @@ a {
   // opacity:0.5;
 
 }
-.box01::before{
-  content:"";
-  opacity:0.5;
-  position:absolute;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  background-color: #000;
-}
-.box01 .login-card{
-  color:#fff;
-  text-align:center;
-  position:relative;}
+// .box01::before{
+//   content:"";
+//   opacity:0.5;
+//   position:absolute;
+//   top:0px;
+//   left:0px;
+//   right:0px;
+//   bottom:0px;
+//   background-color: #000;
+// }
+// .box01 p{
+//   color:#fff;
+//   text-align:center;
+//   position:relative;}
 </style>

@@ -14,8 +14,7 @@
       <div class="row justify-content-center">
         <MovieCard
           v-for="movie in movieData"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
+          :movie="movie"
           :key="movie.id"
           class="col-lg-2 col-md-3 col-sm-4 p-3"
           style="margin-bottom: 120px;"

@@ -57,8 +57,7 @@ export default {
     };
   },
   props:{
-    movieId:Number,
-    movieTitle:String
+    movie:Object,
   },
   mounted() {
     
@@ -69,14 +68,15 @@ export default {
   methods: {
     onSubmit() {
       axios({
-        url: drf.articles.reviews(this.movieId),
+        url: drf.articles.reviews(this.movie.id),
         method: 'post',
         data: {
           title:this.title,
           content:this.content,
           rate:this.rate,
-          movie_id:this.movieId,
-          movie_title:this.movieTitle
+          movie_id:this.movie.id,
+          movie_title:this.movie.title,
+          movie_poster_path:this.movie.poster_path
         },
         headers: this.authHeader,
       })
