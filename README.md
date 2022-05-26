@@ -18,69 +18,114 @@
 - 언어 : django, vue, python, javascript
 - 도구 : vscode, chrome, figma, ERDCloud, TMDB API, git, Typora
 
-## 3.프로젝트 컨셉 주요기능
+## 3.팀원 정보 및 업무 분담 내역
 
-- 컨셉 : 잘 골라주는 사이트
-
-- 주요 기능 : 장르 월드컵
-
-## 4.요구사항
-
-**[ accounts ]**
-
-| HTTP method | URL 패턴                                | component       | 설명                    |
-| ----------- | --------------------------------------- | :-------------- | ----------------------- |
-| GET         | /                                       | MainUnlogin.vue |                         |
-| GET         | /accounts/login                         | LoginView.vue   | 로그인 페이지 렌더링    |
-| POST        | /accounts/login                         |                 | 로그인 요청             |
-| POST        | /accounts/logout                        |                 | 로그아웃 요청           |
-| GET         | /accounts/signup                        | SignupView.vue  | 회원가입 페이지 렌더링  |
-| POST        | /accounts/signup                        |                 | 회원가입 요청           |
-| GET         | /accounts/{username}                    |                 | 유저페이지 렌더링       |
-| GET         | /accounts/{username}/profile            |                 | 유저 데이터 요청        |
-| PUT         | /accounts/{username}/profile/{genre_id} |                 | 유저 선호 장르 업데이트 |
-| GET         | /accounts/{username}/{movie_id}         |                 |                         |
-| GET         | /accounts/wishlist/                     |                 | 사용자가 찜한 영화      |
-| POST        | /accounts/wishlist/                     |                 | 찜한 영화 사용자에 저장 |
-
-**[ articles ]**
-
-| HTTP method | URL 패턴                                  | component            | 설명                          |
-| ----------- | ----------------------------------------- | :------------------- | ----------------------------- |
-| GET         | /articles                                 | MainLogin.vue        | 메인페이지 렌더링             |
-| GET         | /articles/genrewc                         | Genrewc.vue          | 장르월드컵 페이지 렌더링      |
-| GET         | /articles/genrewc/{genre_id}              | GenrewcResult.vue    | 장르월드컵 결과 페이지 렌더링 |
-| POST        | /articles/genrewc/{genre_id}              |                      | db에 유저의 장르 id 저장      |
-| GET         | /articles/{movie_id}                      |                      | 영화 상세페이지 렌더링        |
-| GET         | /articles/{movie_id}/reviews/             |                      | 리뷰 리스트 요청              |
-| POST        | /articles/{movie_id}/reviews/             |                      | 리뷰생성 요청                 |
-| POST        | /articles/{movie_id}/like/{review_id}/    |                      | 리뷰 좋아요 요청              |
-| GET         | /articles/{movie_id}/reviews/{review_id}/ | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
-| PUT         | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰수정 요청                 |
-| DELETE      | /articles/{movie_id}/reviews/{review_id}/ |                      | 리뷰삭제 요청                 |
+- 강장호: backend
+- 권다솜: frontend
+- 조항주: frontend
 
 
 
-articles(유배)
+## 4.프로젝트 컨셉 
 
-| HTTP method | URL 패턴                         | component            | 설명                          |
-| ----------- | -------------------------------- | :------------------- | ----------------------------- |
-| GET         | /                                | MainLogin.vue        |                               |
-| GET         | /articles/genrewc                | Genrewc.vue          | 장르월드컵 페이지 렌더링      |
-| GET         | /articles/genrewc/{genre_id}     | GenrewcResult.vue    | 장르월드컵 결과 페이지 렌더링 |
-| POST        | /articles/genrewc/{genre_id}     |                      | db에 유저의 장르 id 저장      |
-| GET         | /articles/reviewlist             | ReviewList.vue       | 리뷰게시판 페이지 렌더링      |
-| GET         | /articles/reviewlist/create      | ReviewCreateForm.vue | 리뷰생성 페이지 렌더링        |
-| POST        | /articles/reviewlist/create      |                      | 리뷰생성 요청                 |
-| GET         | /articles/reviewlist/{id}detail/ | ReviewDetail.vue     | 리뷰디테일 페이지 렌더링      |
-| GET         | /articles/reviewlist/{id}update/ | ReviewUpdateForm.vue | 리뷰업데이트 페이지 렌더링    |
-| POST        | /articles/reviewlist/{id}update/ |                      | 리뷰수정 요청                 |
-| POST        | /articles/reviewlist/{id}delete/ |                      | 리뷰삭제 요청                 |
-| GET         | /articles/{movie_id}             |                      |                               |
+- 컨셉 : 사용자에게 맞는 영화를 추천하고 리뷰기능을 사용하여 다른 유저들과 소통 가능
 
 
 
-## 5. 프로젝트 개발 일지
+## 5.실제 구현 정도
+
+​	구현 정도: __400%__
+
+​	기존 설계는 물론, 구현하고 싶은 기능들도 모두 구현했습니다
+
+
+
+## 6.필수 기능
+
+- drf
+
+  - accounts
+
+    | HTTP method | URL 패턴                                | component       | 설명                      |
+    | ----------- | --------------------------------------- | :-------------- | ------------------------- |
+    | GET         | /                                       | MainUnlogin.vue | 비로그인 메인페이지       |
+    | GET         | /accounts/login                         | LoginView.vue   | 로그인 페이지 라우팅      |
+    | GET         | /accounts/signup                        | SignupView.vue  | 회원가입 페이지 라우팅    |
+    | GET         | /accounts/:username/profile             | ProfileView.vue | 유저 프로필 페이지 라우팅 |
+    | POST        | /accounts/login                         |                 | 로그인 요청               |
+    | POST        | /accounts/logout                        |                 | 로그아웃 요청             |
+    | POST        | /accounts/signup                        |                 | 회원가입 요청             |
+    | POST        | /accounts/wishlist                      |                 | 찜한목록 데이터 요청      |
+    | POST        | /accounts/{username}/profile            |                 | 유저 데이터 요청          |
+    | PUT         | /accounts/{username}/profile/{genre_id} |                 | 유저 선호 장르 업데이트   |
+
+  - articles
+
+    | HTTP method | URL 패턴                                  | component         | 설명                      |
+    | ----------- | ----------------------------------------- | :---------------- | ------------------------- |
+    | GET         | /articles                                 | ArticlesView.vue  | 메인페이지 라우팅         |
+    | GET         | /articles/genrewc                         | Genrewc.vue       | 장르월드컵 페이지 라우팅  |
+    | GET         | /articles/:movie_id                       | ArticleDetail.vue | 영화 디테일 페이지 라우팅 |
+    | GET         | /accounts/wishList                        | WishList.vue      | 찜한 목록 페이지 라우팅   |
+    | GET         | /articles/search/:query/                  | SearchResult.vue  | 검색결과 페이지 라우팅    |
+    | GET         | /articles/person/:person_id               | PersonDetail      | 배우 디테일 페이지 라우팅 |
+    | GET         | /articles/{movie_id}/reviews/             |                   | 리뷰 리스트 요청          |
+    | PUT         | /articles/{movie_id}/reviews/{reviewId}/  |                   | 리뷰 수정 요청            |
+    | POST        | /articles/{movie_id}/like/{review_id}/    |                   | 리뷰 좋아요 요청          |
+    | DELETE      | /articles/{movie_id}/reviews/{review_id}/ |                   | 리뷰삭제 요청             |
+
+  - tmdb
+
+    ```js
+    tmdb: {
+        nowPlaying: () => BASE_URL + `movie/now_playing/?api_key=${api_key}&language=${language}`,
+        popular: (page) => BASE_URL + `movie/popular/?api_key=${api_key}&language=${language}&page=${page}`,
+        searchPerson: (query) => BASE_URL + `search/person/?api_key=${api_key}&language=${language}&query=${query}`,
+        person: (person_id) => BASE_URL + `person/${person_id}/movie_credits?api_key=${api_key}&language=${language}`,
+        personDetail: (person_id) => BASE_URL + `person/${person_id}?api_key=${api_key}&language=${language}`,
+        credits: (movie_id) => BASE_URL + `movie/${movie_id}/credits?api_key=${api_key}&language=${language}`,
+        detail: (movie_id) => BASE_URL + `movie/${movie_id}?api_key=${api_key}&language=${language}`,
+        videos: (movie_id) => BASE_URL + `movie/${movie_id}/videos?api_key=${api_key}&language=${language}`,
+        getMovieCreadit: (person_id) => BASE_URL + `person/${person_id}/movie_credits?api_key=${api_key}&language=${language}`,
+        searchMovie: (query) => BASE_URL + `search/movie?api_key=${api_key}&language=${language}&query=${query}`,
+      }
+    ```
+
+    
+
+- 회원가입, 로그인, 로그아웃
+  dj-rest-auth 라이브러리를 사용한 기능 구현  
+
+- youtube api를 사용한 백그라운드 동영상
+
+- 메인 페이지에서 사용자에게 다양한 영화 추천
+
+  -  찜 목록에서 랜덤한 영화의 랜덤한 배우를 선택해서 출연한 영화를 추천
+  -  유저가 선호하는 장르로 영화를 필터링해서 추천
+  -  현재 상영중인 영화를 추천
+
+- 영화 디테일 페이지에서 찜 및 리뷰 기능 사용
+
+  - 영화를 찜 하면 "찜한 목록"페이지에서 내가 찜한 영화들을 볼 수 있음
+  - 영화에 제목과 내용 평점으로 리뷰를 남기고, 이에 다른 유저들이 좋아요를 누를 수 있음 
+
+- 장르월드컵을 통한 사용자가 선호하는 장르 선정
+
+  - tmdb api에서 제공하는 영화장르 19개중 랜덤으로 16개를 선정한 후 16강 월드컵을 진행해 사용자가 선호하는 장르를 선정
+
+- 영화제목과 배우이름으로 영화 검색
+
+  - 검색창에 입력 받은 데이터로 영화와 배우 이름으로 tmdb api 검색 요청을 하고 이를 보여줌
+
+- 프로필 페이지에서 내가 작성한 리뷰와 좋아요 누른 리뷰 확인
+
+
+
+## 7.느낀점
+
+
+
+## 8.프로젝트 개발 일지
 
 ### 0517
 
@@ -94,7 +139,7 @@ articles(유배)
 
 2. ERDCloud를 사용하여 ERD 작성
 
-   ![](README.assets/SmartSelectImage_2022-05-20-16-38-18.png)
+   ![image-20220527033913289](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\erd.png)
 
 #### 오늘의 위기
 
@@ -403,10 +448,84 @@ serializers = UserSerializer(instance=user, data=request.data)
 
 ##### vue
 
-- 영화 상세 페이지의 리뷰
-  - 리뷰 폼 생성
-  - 리뷰 수정
-  - 리뷰 삭제
-- 영화 찜
-- 위시리스트 페이지 생성
-- 
+- 기능 구현
+
+  - 영화 상세 페이지의 리뷰
+    - 리뷰 폼 생성
+    - 리뷰 수정
+    - 리뷰 삭제
+
+  - 영화 찜
+
+  - 위시리스트 페이지 생성
+
+  - 찜 구현 
+
+  - 프로필페이지 
+
+  - 리뷰 상세페이지 
+
+  - 리뷰리스트 데이터 수정,삭제,생성
+
+  - 검색
+
+  - 검색 결과페이지
+
+  - 인물 컴포넌트
+
+  - 영화 컴포넌트
+
+- 버그 수정
+  - 빨간색 에러
+  - 찜 트루펄스
+  - 데이터 폼 수정
+  - 사진없는 데이터 핸들링
+  - 프로필에서 댓글 작성자 보기 
+  - 리뷰에 영화 제목 보이기
+
+### 0525
+
+##### vue
+
+- 기능 구현
+  - 인물상세 페이지
+  - 검색에서 포스터 없는 데이터 랜더링안함
+  - 하트 찜한거로 표시되나 안돼:?
+  - 사람 디테일 가져오기
+  - 장르월드컵
+  - 프로필페이지에 장르 선택기능 추가
+  - 찜한 목록에서 배우 정보 가져오기
+  - 디테일 페이지에 유저 평점도 넣어주기
+  - 인물 미리보기에 영화 3개 추가
+  - 인물 디테일 api에서 인물 정보 가져오기
+  - 프로필페이지 장르 선택에 내 장르 보여주기
+  - 댓글 수정 버튼 
+  - 배우 정보 가져올때 랜덤으로 가져오기
+  - 장르월드컵 결과페이지에 같은 장르 영화 가져오기
+- 버그 수정
+  - 다른 사람이 쓴 댓글 내가 수정
+
+### 0526
+
+##### vue
+
+- 기능 구현
+  - 장르 월드컵 선택시 흔들리는 css
+  - 시작페이지로 가야되는데 로그인페이지로감
+  - 리뷰카드 사진 누르면 영화 디테일로 이동
+  - 찜한 목록 호버시 데이터 
+  - 인물상세페이지,장르월드컵 가로스크롤하고 스크롤 색상 변경
+  - 로그아웃했을 때 메인으로가기
+- 리팩토링
+  - 인물 정보 data->vuex
+- 버그 수정
+  - 로그인 하고 다시 로그인 페이지 접속
+  - 로그인 실패시 핸들링
+  - 회원가입 실패시 핸들링
+  - 메인페이지 새로고침시 장르 데이터 못불러옴 vuex-persistedstate
+  - 사람 디테일 페이지 정보 잘못가져옴
+  - 모달 나갈 때 멈춤
+  - 장르월드컵 결과에서 '강'이 뜸
+
+
+

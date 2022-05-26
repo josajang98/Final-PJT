@@ -65,7 +65,7 @@ p {
   width: 500px;
   height: 100px;
   color: #fff;
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 10px 25px;
   background: transparent;
   cursor: pointer;
@@ -79,7 +79,7 @@ p {
 }
 
 .btn-14 {
-  background: #FF8307;
+  background: #ff3907;
   border: none;
   z-index: 1;
 }
@@ -91,16 +91,16 @@ p {
   top: 0;
   left: 0;
   z-index: -1;
-  border-radius: 25px;
-  background-color: #eaf818;
-  background-image: linear-gradient(315deg, #eaf818 0%, #f6fc9c 74%);
+  border-radius: 10px;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #000000 74%);
    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
    7px 7px 20px 0px rgba(0,0,0,.1),
    4px 4px 5px 0px rgba(0,0,0,.1);
   transition: all 0.3s ease;
 }
 .btn-14:hover {
-  color: #000;
+  color: rgb(255, 255, 255);
 }
 .btn-14:hover:after {
   top: auto;
