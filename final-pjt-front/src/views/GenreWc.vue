@@ -1,6 +1,8 @@
 <template>
   <div class="text-box">
     <br>
+
+    <!-- 장르월드컵 선택 -->
     <h1 class="p-3">장르 한번 골라보자!!</h1>
     <h3 v-if="!result" class="p-3" style="font-size:4.5vw"> {{getRound()}}강 </h3>
     <h3 v-if="result" class="p-3" style="font-size:4.5vw"> 결과 </h3>
@@ -13,16 +15,22 @@
         <genre-wc-card :genre-id="randGenreIdList[index+1]"></genre-wc-card>
       </div>
     </div>
+
+    <!-- 결과페이지 -->
     <div v-if="result">
       <genre-wc-card :genre-id="randGenreIdList[30]"></genre-wc-card>
       <div class="container">
         <div class="row bg-white bg-opacity-10 justify-content-center">
-          <MovieCard
-            v-for="movie in userLikeGenreMovieList"
-            :movie="movie"
-            :key="movie.id"
-            class="col-lg-2 col-md-3 col-sm-4"
-          ></MovieCard>
+          <div class="slider">
+            <div class="slides">
+              <MovieCard
+                v-for="movie in userLikeGenreMovieList"
+                :movie="movie"
+                :key="movie.id"
+                class="col-lg-2 col-md-3 col-sm-4"
+              ></MovieCard>
+            </div>
+          </div> 
         </div>
       </div>
     </div>
@@ -37,7 +45,7 @@ import axios from 'axios';
 import {mapGetters} from 'vuex'
 import drf from '@/api/drf'
 import MovieCard from '@/components/MovieCard.vue'
-const count = 6
+const count = 20
 export default {
   components: { GenreWcCard,MovieCard },
   name: 'GenreWc',
@@ -132,4 +140,68 @@ export default {
   // text-underline-position: under;
   // text-decoration-style: wavy;
 }
+
+// 슬라이더
+
+* {
+    box-sizing: border-box;
+  }
+  .slider {
+    width: 100vw;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .slides {
+    display: flex;
+    overflow-x: auto;
+    /* overflow: hidden; */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .slides::-webkit-scrollbar-thumb {
+    background: #ffffff50;
+    border-radius: 10px;
+  }
+  .slides::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .slides > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    margin-right: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+  }
+  
+  .author-info {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .author-info a {
+    color: white;
+  }
 </style>

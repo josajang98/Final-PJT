@@ -21,7 +21,7 @@ export default {
   },
   computed:{
     posterPath(){
-      console.log(this.movie)
+
       return imgUrl+this.movie.poster_path
     }
   },
@@ -42,6 +42,7 @@ img {
     max-width: 100%;
     height: 285px;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 // .top{ font-size:30px;}
