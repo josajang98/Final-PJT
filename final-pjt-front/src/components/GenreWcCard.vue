@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 img{
-  width: 95%;
+  width: 400px;
   height: auto;
   
 }

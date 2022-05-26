@@ -109,6 +109,8 @@ export default {
   },
   methods: {
     thumbsup(){
+
+      
       this.review.like_users.forEach(el => {
         if (el.username === this.currentUser.username){
           this.isLike = true
@@ -119,6 +121,7 @@ export default {
       this.isLike = !this.isLike
     },
     cancel(){
+
       this.isEdit=!this.isEdit
     },
     async likeArticle() {

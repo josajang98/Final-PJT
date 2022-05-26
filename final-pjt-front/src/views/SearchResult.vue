@@ -1,7 +1,7 @@
 <template>
   <div class="font">
     <p>인물</p>
-    <div class="section" style="max-height:200px">
+    <div class="section py-5" style="max-height:200px">
       <person-card
       v-for="(person,index) in personData"
       :index="index"
@@ -9,7 +9,7 @@
       :key="person.id"
       ></person-card>
     </div>
-    <p>영화</p>
+    <p class="py-5">영화</p>
     <div class="section" style=" max-height: 400px;">
       <div class="row justify-content-center">
         <MovieCard

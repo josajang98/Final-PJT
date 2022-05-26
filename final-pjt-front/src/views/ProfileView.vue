@@ -16,7 +16,7 @@
       </div>
     </div>
     <br>
-    <div clsss="mt-5">
+    <div clsss="pb-5 mt-5">
       <p class="profile-title">내가 좋아요 단 리뷰</p>
       <div class="container slider">
         <div class="slides">
@@ -33,7 +33,7 @@
     </div>
 
 
-    <div class="input-group pb-5">
+    <div class="input-group pt-5 pb-5">
       <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" v-model="genreValue">
         <option 
         v-for="genre in genreList"
@@ -120,6 +120,7 @@ export default {
         headers: this.authHeader,
       })
       .then(res=>{
+        alert('장르 변경 완료')
         console.log(res.data)
       })
     }

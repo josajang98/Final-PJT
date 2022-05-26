@@ -36,6 +36,7 @@
           v-for="review in reviewList" 
           :review="review"
           :key="review.id"
+          :id="review.id"
           @getReview="getReviewList"
           ></MovieDetailReviewCard>  
         </div>

@@ -82,7 +82,7 @@ const count = 20
 
 // youtube
 const API_URL = 'https://www.googleapis.com/youtube/v3/search'
-const API_KEY = 'AIzaSyCSGTOFhEkjve5BGf1C2mUPXu9_IQOdkn'
+const API_KEY = 'AIzaSyCSGTOFhEkjve5BGf1C2mUPXu9_IQOdknQ'
 import VideoDetail from '@/components/VideoDetail.vue'
 
 export default {

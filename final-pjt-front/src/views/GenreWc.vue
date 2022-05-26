@@ -3,9 +3,9 @@
     <br>
 
     <!-- 장르월드컵 선택 -->
-    <h1 class="p-3">장르 한번 골라보자!!</h1>
-    <h3 v-if="!result" class="p-3" style="font-size:4.5vw"> {{getRound()}}강 </h3>
-    <h3 v-if="result" class="p-3" style="font-size:4.5vw"> 결과 </h3>
+    <h2 class="p-3">장르 한번 골라보자!!</h2>
+    <p v-if="!result" class="p-3" > {{getRound()}}강 </p>
+    <p v-if="result" class="p-3" > 결과 </p>
     <div class="d-flex justify-content-between align-items-center" v-if="!result">
       <div class="background mx-3" @click="selected(randGenreIdList[index])">
         <genre-wc-card :genre-id="randGenreIdList[index]" ></genre-wc-card>
@@ -20,7 +20,7 @@
     <div v-if="result">
       <genre-wc-card :genre-id="randGenreIdList[30]"></genre-wc-card>
       <div class="container">
-        <div class="row bg-white bg-opacity-10 justify-content-center">
+        <div class="row">
           <div class="slider">
             <div class="slides">
               <MovieCard
@@ -128,10 +128,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.text-box h1 {
-  letter-spacing: 3vw;
+.text-box h2 {
+  letter-spacing: 3px;
   width:100%;
-  font-size:5vw;
+  font-size:40px;
+  font-weight: 1000;
   text-align: center;
   color: #FF8307;
   text-shadow: 1.5px 1.5px black;
@@ -140,7 +141,9 @@ export default {
   // text-underline-position: under;
   // text-decoration-style: wavy;
 }
-
+p{
+  font-size:60px;
+}
 // 슬라이더
 
 * {
