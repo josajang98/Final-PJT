@@ -2,7 +2,7 @@ from django.db import models
 from django.forms import BooleanField, CharField
 
 # Create your models here.
-'''
+''' 
 제거해줘야함
 'adult': False,
 'genre_ids': [28, 878, 14],

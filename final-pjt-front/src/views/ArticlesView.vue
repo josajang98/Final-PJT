@@ -17,9 +17,9 @@
 
     <div class="con">
       <!-- 장르 영화 추천 목록 -->
-      <p>{{username}}님이 좋아하는 영화</p>
-      <div class="container slider">
-        <div class="row bg-white bg-opacity-10 justify-content-center ">
+      <p v-if="userLikeGenreId">{{username}}님이 좋아하는 영화</p>
+      <div class="container">
+        <div class="row justify-content-center ">
           <div class="slider">
             <div class="slides">
               <MovieCard
@@ -34,9 +34,9 @@
         </div>
       </div>
       <!-- 배우 영화 추천 목록 -->
-      <p>{{userLikeActor}} 배우님의 영화</p>
+      <p v-if="userLikeActorId">{{userLikeActor}} 배우님의 영화</p>
       <div class="container gallerylist">
-        <div class="row bg-white bg-opacity-10 justify-content-center ">
+        <div class="row justify-content-center ">
           <div class="slider">
             <div class="slides">
               <MovieCard
@@ -53,7 +53,7 @@
       <!-- 현재 상영중 영화 추천 목록 -->
       <p>현재 상영중인 영화</p>
       <div class="container">
-        <div class="row bg-white bg-opacity-10 justify-content-center">
+        <div class="row justify-content-center">
           <div class="slider">
             <div class="slides">
               <MovieCard
@@ -64,7 +64,6 @@
               ></MovieCard>
             </div>
           </div>  
-          
         </div>
       </div>
     </div>
@@ -83,7 +82,7 @@ import { mapGetters } from 'vuex';
 import router from '@/router'
 
 const imgUrl='https://image.tmdb.org/t/p/w500/'
-const count = 6
+const count = 20
 
 // youtube
 const API_URL = 'https://www.googleapis.com/youtube/v3/search'
@@ -281,7 +280,6 @@ export default {
     },
     // youtube
     getTearVideo(mainMovietitle){
-      console.log(API_KEY)
       this.inputValue = mainMovietitle+'예고편'
       const params = {
         key:API_KEY,
@@ -298,7 +296,6 @@ export default {
         .then(res =>{
           this.videos = res.data.items
           this.selectedVideo = this.videos[0]
-          console.log(this.selectedVideo)
         })
         .catch(err=>{
           console.log(err)
@@ -314,6 +311,7 @@ export default {
 
 <style lang="scss" scoped>
 .con{
+  width: 100%;
   position:relative;
   top:90vh;
 }
@@ -357,15 +355,12 @@ export default {
 }
 
 
-
-
-// 슬라이더
 * {
     box-sizing: border-box;
   }
-  
+  // 슬라이더
   .slider {
-    width: 80vw;
+    width: 100vw;
     text-align: center;
     border-radius: 10px;
     overflow: hidden;
@@ -384,7 +379,7 @@ export default {
     height: 10px;
   }
   .slides::-webkit-scrollbar-thumb {
-    background: black;
+    background: #ffffff50;
     border-radius: 10px;
   }
   .slides::-webkit-scrollbar-track {
@@ -422,33 +417,6 @@ export default {
   .author-info a {
     color: white;
   }
-  img {
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .slider > a {
-    display: inline-flex;
-    width: 1.5rem;
-    height: 1.5rem;
-    background: #eee;
-    text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin: 0 0 0.5rem 0;
-    position: relative;
-  }
-  .slider > a:active {
-    top: 1px;
-  }
-  .slider > a:focus {
-    background: #000;
-  }
-  
 
+  
 </style>
