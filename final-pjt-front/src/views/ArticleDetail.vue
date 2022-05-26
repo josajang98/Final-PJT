@@ -32,12 +32,12 @@
       <div>
         <p class="sub-title">리뷰 리스트</p>
         <div class="container">
-          <review-card 
+          <MovieDetailReviewCard
           v-for="review in reviewList" 
           :review="review"
           :key="review.id"
           @getReview="getReviewList"
-          ></review-card>  
+          ></MovieDetailReviewCard>  
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@ import axios from 'axios';
 import drf from '@/api/drf'
 import {mapGetters} from 'vuex'
 
-import ReviewCard from '../components/ReviewCard.vue'
+import MovieDetailReviewCard from '../components/MovieDetailReviewCard.vue'
 import ReviewCreateForm from '../components/ReviewCreateForm.vue';
 
 import ToggleFavorite from "../components/ToggleFavorite.vue";
@@ -60,7 +60,7 @@ import ToggleFavorite from "../components/ToggleFavorite.vue";
 const imgUrl='https://image.tmdb.org/t/p/w500/'
 
 export default {
-  components: { ReviewCard, ReviewCreateForm, ToggleFavorite },
+  components: { MovieDetailReviewCard, ReviewCreateForm, ToggleFavorite },
   name: 'ArticleDetail',
 
   data() {

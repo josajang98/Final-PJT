@@ -19,7 +19,7 @@
           class="col-lg-2 col-md-3 col-sm-4 p-3"
           style="margin-bottom: 120px;"
         ></MovieCard>
-      </div>
+      </div>   
     </div>
   </div>
 </template>
