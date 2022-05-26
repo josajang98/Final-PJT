@@ -18,9 +18,9 @@
             <label for="password">password : </label>
             <input type="password" v-model="credentials.password" placeholder="비밀번호" id="password" prefix-icon="fas fa-lock">
           </div>
-          <form>
-            <button id="login-button" block><span style="color: rgba(255, 255, 255, 0.82);">로그인</span></button>
-          </form>
+          
+          <button id="login-button" block><span style="color: rgba(255, 255, 255, 0.82);">로그인</span></button>
+          
           <h6 class="signup-router text-secondary p-0 signup-font" @click="signup">회원가입</h6>
         </form>
       </div>
