@@ -2,8 +2,8 @@
     <div v-if="movie.poster_path">
       <a href="">
         <div class="screen" @click="routingDetail(movieId)" >
-          <div class="top">일본 도쿄도시 아침</div>
-          <div class="bottom">PIXABAY</div>
+          <div class="top">{{movie.title}}</div>
+          <div class="bottom">{{ movie.released_date }}</div>
           <img :src="posterPath" alt="">
         </div> 
       </a>
