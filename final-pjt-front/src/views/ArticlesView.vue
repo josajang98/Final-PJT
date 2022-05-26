@@ -1,20 +1,19 @@
 <template>
   <div class="font">
-    <div class="row d-flexjustify-content-center">
-      <MainMovieCard 
-        :backdrop-path="mainMovieBackdropPath" 
-        :title="mainMovietitle" 
-        :movie-id="mainMovieId"
-        class="col-6"
-        style="height:380px;"
-        >
-      </MainMovieCard>
-      <VideoDetail
-        :selected-video="selectedVideo"
-        class="col-6"
-      >
-      </VideoDetail>
+    <div class="video-background">
+      <div class="video-foreground">
+        <VideoDetail
+            :selected-video="selectedVideo"
+          >
+        </VideoDetail>
+      </div>
     </div>
+    <MainMovieCard 
+      :backdrop-path="mainMovieBackdropPath" 
+      :title="mainMovietitle" 
+      :movie-id="mainMovieId"
+      >
+    </MainMovieCard>
     <!-- 장르 영화 추천 목록 -->
     <p>{{username}}님이 좋아하는 영화</p>
     <div class="container">
@@ -69,7 +68,7 @@ const count = 6
 
 // youtube
 const API_URL = 'https://www.googleapis.com/youtube/v3/search'
-const API_KEY = 'AIzaSyChEk90Jt2oKhJR6ECcAjNro7a1ryUS7Bk'
+const API_KEY = 'AIzaSyCQiMI5RfCs4DJTlqYmUbvqHtwKAkO9hhs'
 import VideoDetail from '@/components/VideoDetail.vue'
 
 export default {
@@ -165,7 +164,7 @@ export default {
       
       this.nowPlayingMovieList=response.data.results
       this.getRandMovieData()
-      this.getTearVideo(this.mainMovietitle)
+      // this.getTearVideo(this.mainMovietitle)
       const indexList = _.sampleSize(_.range(0,19),count)
       const movieListSlice=[]
 
@@ -292,5 +291,39 @@ export default {
 .font {
   font-size: 4vw;
 }
-
+.video-background {
+  background: #000;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#vidtop-content {
+    top: 0;
+    color: #fff;
+}
+.vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: Avenir, Helvetica, sans-serif; }
+.vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+.vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
+@media (min-aspect-ratio: 16/9) {
+  .video-foreground { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video-foreground { width: 300%; left: -100%; }
+}
+@media all and (max-width: 600px) {
+.vid-info { width: 50%; padding: .5rem; }
+.vid-info h1 { margin-bottom: .2rem; }
+}
+@media all and (max-width: 500px) {
+.vid-info .acronym { display: none; }
+}
 </style>
