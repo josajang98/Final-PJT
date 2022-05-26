@@ -117,12 +117,9 @@
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
   text-align: center;
-  /* 폰트 */
-  font-family: 'SCoreDream';
-  /* font-family: 'East Sea Dokdo', cursive; */
-  /* font-family: 'Jalnan'; */
-  /* font-family: 'Noto Sans KR', sans-serif; */
-  /* font-weight : 0; */
+
+  font-family: 'TmoneyRoundWind';
+
 }
 .logo:hover{
   cursor: pointer;
