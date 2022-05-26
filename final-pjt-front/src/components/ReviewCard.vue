@@ -5,7 +5,7 @@
         <img :src="posterPath">
       </div>
       <div class="contentBx">
-        <h2>{{review.movie_title}}</h2>
+        <h2 @click="routingDetail">{{review.movie_title}}</h2>
         <div class="size">
           <h3>작성자 : {{review.user.username}}</h3>
         </div>
@@ -58,7 +58,7 @@ import {mapGetters} from 'vuex'
 import axios from 'axios'
 import drf from '@/api/drf'
 import VueStar from 'vue-star'
-
+import router from '@/router'
 const imgUrl='https://image.tmdb.org/t/p/w500/'
 
 export default {
@@ -97,6 +97,12 @@ export default {
     }
   },
   methods: {
+    routingDetail(){
+      router.push({
+        name:'detail',
+        params:{movie_id:this.movieId}
+      })
+    },
     cancel(){
       this.isEdit=!this.isEdit
     },
@@ -155,6 +161,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  input{
+    border: none; 
+    background: transparent;
+    color:#fff
+  }
   .VueStar {
     position: relative;
     // margin-left: 100px;

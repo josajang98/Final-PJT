@@ -21,7 +21,7 @@
             <h5 class="modal-title" id="exampleModalLabel" v-show="!isEdit">{{ review.title }}</h5>
             <h5 class="modal-title" id="exampleModalLabel" v-show="isEdit">  <input type="text" id="title" v-model="title" style="height:50px; width:300px;"></h5>
             <h6 aria-label="Close" v-show="!isEdit">점수 : {{review.rate}} / 10</h6>
-            <h6 aria-label="Close" v-show="isEdit">점수 :<input type="number" step="0.1" max="10" id="rate" v-model="rate" required style="height:50px; width:50px;"></h6>
+            <h6 aria-label="Close" v-show="isEdit">점수 :<input type="number" step="0.1" max="10" id="rate" v-model="rate" required style="height:50px; width:65px;"></h6>
           </div>
           <div class="modal-body" v-show="!isEdit">{{review.content}}</div>
           <div class="modal-body" v-show="isEdit"><textarea name="content" id="content" cols="30" rows="10" v-model="content" class="madal-text" style="height:250px; width:430px; text-align=justify;"></textarea></div>
@@ -154,6 +154,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+input,textarea{
+  border: none; 
+  background: transparent;
+  color:#fff
+}
   .VueStar {
     position: relative;
     // margin-left: 100px;
