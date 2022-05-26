@@ -44,5 +44,6 @@ export default {
 <style lang="scss" scoped>
 img{
   cursor: pointer;
+  width: 100%;
 }
 </style>

@@ -123,6 +123,7 @@ export default {
   },
 
   methods: {
+   
     async getLikeActor(){
       const response1=await axios({
         url: drf.accounts.wishList(),
@@ -139,7 +140,6 @@ export default {
       })
 
       const casts=response2.data.cast
-      console.log(casts)
       const randCastsIndex=_.random(0,3)
       this.userLikeActor=casts[randCastsIndex].name
       this.userLikeActorId=casts[randCastsIndex].id
@@ -147,6 +147,7 @@ export default {
     },
 
     async getUserProfile(){
+
       const response=await axios({
         url: drf.accounts.getProfile(this.currentUser.username),
         method: 'get',
