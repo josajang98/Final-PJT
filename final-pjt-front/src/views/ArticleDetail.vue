@@ -104,8 +104,9 @@ export default {
         data:{
           user_id:this.userId,
           movie_id:this.movieId,
-          poster_path:this.posterPath
-          
+          poster_path:this.posterPath,
+          release_date:this.movie.release_date,
+          title:this.movie.title
         },
         headers: this.authHeader,
       }).then(()=>{
