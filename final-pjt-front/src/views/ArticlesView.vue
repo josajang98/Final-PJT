@@ -1,14 +1,17 @@
 <template>
   <div class="font">
-    <div class="d-flex align-content-center">
+    <div class="row d-flexjustify-content-center">
       <MainMovieCard 
         :backdrop-path="mainMovieBackdropPath" 
         :title="mainMovietitle" 
         :movie-id="mainMovieId"
+        class="col-6"
+        style="height:380px;"
         >
       </MainMovieCard>
       <VideoDetail
         :selected-video="selectedVideo"
+        class="col-6"
       >
       </VideoDetail>
     </div>

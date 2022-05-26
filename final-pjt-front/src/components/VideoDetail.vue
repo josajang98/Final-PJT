@@ -26,6 +26,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+div {
+    position: relative;
+    // padding-top: 56.25%;
+    // height:0px;
+    // overflow:hidden;
+}
 
+/* iframe */
+div > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 </style>
