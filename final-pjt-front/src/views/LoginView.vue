@@ -23,7 +23,7 @@
 
 <script>
 import router from '@/router'
-import { mapActions } from 'vuex'
+import { mapActions,mapGetters } from 'vuex'
 export default {
   name: 'LoginView',
   data(){
@@ -34,12 +34,22 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters(['isLoggedIn'])
+  },
   methods:{
     ...mapActions(['login']),
     signup(){
       router.push({name:'signup'})
+    },
+    routingArticles(){
+      if (this.isLoggedIn === true)
+        router.push({name:'articles'})
     }
-  }
+  },
+  created(){
+    this.routingArticles()
+  },
 }
 </script>
 

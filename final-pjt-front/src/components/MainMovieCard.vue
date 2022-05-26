@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <!-- <div> -->
     <img @click="routingDetail(movieId)" :src="backdropPath" alt="">
-    <p>
+    <!-- <p>
       {{title}}
-    </p>
-  </div>
+    </p> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -44,5 +44,6 @@ export default {
 <style lang="scss" scoped>
 img{
   cursor: pointer;
+  width: 100%;
 }
 </style>

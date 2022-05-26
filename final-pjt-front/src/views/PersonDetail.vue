@@ -41,7 +41,7 @@ export default {
       // 유저 데이터    
 
       // 영화 데이터
-      index:0,
+      index:this.$route.params.index,
       personId:parseInt(this.$route.params.person_id),
       personMovie:[],
       personDetail:{},
@@ -70,7 +70,7 @@ export default {
     async getPersonDetail(){
       const response=await axios.get(drf.tmdb.personDetail(this.personId))
       this.personDetail=response.data
-      console.log(this.personDetail)
+
     },
   },
 };
