@@ -37,8 +37,8 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="input">
             <button class="btn btn-outline-success">Search</button>
           </form>
-          <li class="p-3 active" @click="routingProfile" :class="back(selectProfile)">{{username}}</li>
-          <router-link class="p-3" :to="{ name: 'logout'}">로그아웃</router-link>
+          <li style="cursor:default;" class="p-3 active" @click="routingProfile" :class="back(selectProfile)">{{username}}</li>
+          <router-link class="p-3" :to="{ name: 'logout'}" style="color:white;">로그아웃</router-link>
         </div>
       </div>
     </nav>
@@ -130,11 +130,6 @@ nav a {
   color: white;
   text-decoration:none;
 }
-
-nav a.active:hover {
-  color: white;
-  text-decoration:none;
-}
 nav a.text:hover {
   color: white;
   text-decoration:none;
@@ -147,9 +142,7 @@ nav li:hover {
 nav .back{
   font-weight: 1000;
 }
-nav a.router-link-exact-active:not(.active) {
-  background-color: none;
-}
+
 nav a.router-link-exact-active {
   color: white;
   text-decoration:none;
