@@ -10,9 +10,9 @@
         <a v-if="personDetail.homepage" :href="personDetail.homepage">홈페이지</a>
       </div>
     </div>
-    <div class="section">
-      <div class="row justify-content-center">
-        <div class="slider">
+    <!-- <div class="section">
+      <div class="row justify-content-center"> -->
+        <div class="slider container">
           <div class="slides">
             <MovieCard
               v-for="movie in personMovie"
@@ -22,8 +22,8 @@
             ></MovieCard>
           </div>
         </div>     
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
     
   </div>
 </template>
@@ -89,43 +89,6 @@ img{
 p {
   font-size: 35px;
   text-align: left;
-}
-.section {
-  max-height: 300px;
-  // padding: 1rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  direction: ltr;
-  scrollbar-color: #d4aa70 #e4e4e4;
-  scrollbar-width: thin;
-  margin-bottom: 120px;
-
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  p + p {
-    margin-top: 1rem;
-  }
-}
-
-.section::-webkit-scrollbar {
-  width: 20px;
-}
-
-.section::-webkit-scrollbar-track {
-  background-color: #e4e4e4;
-  border-radius: 100px;
-}
-
-.section::-webkit-scrollbar-thumb {
-  border-radius: 100px;
-  border: 6px solid rgba(0, 0, 0, 0.18);
-  border-left: 0;
-  border-right: 0;
-  background-color: #8070d4;
 }
 
 body {
