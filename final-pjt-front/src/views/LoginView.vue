@@ -10,12 +10,12 @@
         <span style="color: #f1f1f1; opacity: 0.7;">"드루와 드루와"</span><br><br>
         <span style="color: #f1f1f1; opacity: 0.7;">-영화 '신세계' 中</span><br>
         <form class="login-form mt-3" :model="credentials" ref="form" @submit.prevent="login(credentials)">
-          <div>
-            <label for="username ">username :</label>
+          <div class="container">
+            <label for="username user-pwd">username :</label>
             <input type="text" v-model="credentials.username" id="username" prefix-icon="fas fa-user" placeholder="아이디">
           </div>
-          <div>
-            <label for="password">password : </label>
+          <div class="container mt-1">
+            <label for="password user-pwd">password : </label>
             <input type="password" v-model="credentials.password" placeholder="비밀번호" id="password" prefix-icon="fas fa-lock">
           </div> 
           <button id="login-button" block><span style="color: rgba(255, 255, 255, 0.82);">로그인</span></button>  
@@ -61,9 +61,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .user-pwd{
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #bg {
@@ -82,7 +82,7 @@ export default {
   width: 100vw;
   height: 100vh;
   background-color: black;
-  animation: fadeout 3s;
+  animation: fadeout 2.5s;
   animation-fill-mode: forwards;
   animation-delay: 1.55s;
 }
@@ -216,7 +216,7 @@ a {
   justify-content: center;
 }
 .signup-font{
-  font-size:28px;
+  font-size:18px;
 }
 .box01{
   width:auto;
@@ -241,4 +241,8 @@ a {
   color:#fff;
   text-align:center;
   position:relative;}
+
+::placeholder {
+  font-size: 18px;
+}
 </style>
