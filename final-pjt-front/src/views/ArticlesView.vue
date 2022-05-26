@@ -86,7 +86,7 @@ const count = 20
 
 // youtube
 const API_URL = 'https://www.googleapis.com/youtube/v3/search'
-const API_KEY = 'AIzaSyCPzWMYkEMemaKAbD7oniRloOnxI5CSggU'
+const API_KEY = 'AIzaSyCAfBdFTiGwvu7XJdMJTFZzfczyvErmKgg'
 import VideoDetail from '@/components/VideoDetail.vue'
 
 export default {
@@ -355,10 +355,10 @@ export default {
 }
 
 
+  // 슬라이더
 * {
     box-sizing: border-box;
   }
-  // 슬라이더
   .slider {
     width: 100vw;
     text-align: center;
