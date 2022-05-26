@@ -38,7 +38,7 @@
             <button class="btn btn-outline-success">Search</button>
           </form>
           <li class="p-3 active" @click="routingProfile" :class="back(selectProfile)">{{username}}</li>
-          <router-link class="p-3" :to="{ name: 'logout'}"><button>로그아웃</button></router-link>
+          <router-link class="p-3" :to="{ name: 'logout'}">로그아웃</router-link>
         </div>
       </div>
     </nav>
