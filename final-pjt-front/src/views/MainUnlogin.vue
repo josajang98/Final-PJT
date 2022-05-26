@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <p>심심하신가요?</p>
-    <p>장르 월드컵을 통해 당신에게 맞는</p>
-    <p>영화를 추천 받으세요!</p>
-    <button @click="login" class="custom-btn btn-14">잘골라줘유 START</button>
+  <div class="py-5 box01 d-flex align-items-center">
+    <div class="container">
+      <p>심심하신가요?</p>
+      <p>장르 월드컵을 통해 당신에게 맞는</p>
+      <p>영화를 추천 받으세요!</p>
+      <button @click="login" class="custom-btn btn-14">잘골라줘유 START</button>
+    </div>
   </div>
 </template>
 
@@ -32,6 +34,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.box01{
+  width:auto;
+  height:100vh;
+  position:relative;
+  background:url('~@/assets/backgroundimageblack.png');
+  background-size:cover;
+}
+.box01::before{
+  content:"";
+  opacity:0.5;
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  background-color: #000;
+}
+.box01 p{
+  color:#fff;
+  text-align:center;
+  position:relative;}
 p {
   font-size: 50px;
   // text-shadow: 2px 2px 2px gray;

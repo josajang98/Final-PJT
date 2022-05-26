@@ -1,6 +1,6 @@
 <template>
   <div id="app" class='container'>
-    <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg">
+    <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg sticky-top">
       <router-link to="/" exact-active-class="active" style="color:white;">
         <i class="bi bi-check-all"></i>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
@@ -10,7 +10,7 @@
         <!-- <img src="./assets/logo.png" alt="asd"> -->
       </router-link> 
     </nav>
-    <nav v-if="isLoggedIn" class="navbar navbar-expand-lg navbar-light">
+    <nav v-if="isLoggedIn" class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container-fluid">
         <div exact-active-class="active" @click="routingHome" class="logo">
           <i class="bi bi-check-all"></i>
@@ -165,7 +165,7 @@ li {
 }
 
 .toggle-color {
-  background-color: #FFF775;
+  background-color: white;
 }
 
 .animated-icon2 span:nth-child(1) {
