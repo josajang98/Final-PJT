@@ -51,9 +51,6 @@
 import router from '@/router'
 import { mapActions,mapGetters } from 'vuex'
 
-
-// import Swal from 'sweetalert2/dist/sweetalert2.js'
-// import 'sweetalert2/src/sweetalert2.scss'
 export default {
   name: 'LoginView',
 
