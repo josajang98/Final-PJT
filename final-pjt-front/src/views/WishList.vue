@@ -3,8 +3,7 @@
     <div class="row bg-white bg-opacity-10 justify-content-center">
       <movie-card
       v-for="movie in wishList"
-        :movie-id="movie.movie_id"
-        :movie-poster-path="movie.poster_path"
+        :movie="movie"
         :key="movie.id"
         class="col-lg-2 col-md-3 col-sm-4"
         ></movie-card>
