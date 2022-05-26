@@ -10,7 +10,7 @@
             <h3>리뷰</h3>
             {{review.content}}
           </div>
-          <a :href="getId1" data -bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">더보기</a>
+          <a :href="getId1" data-bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">더보기</a>
         </div>
       </div>
     </div>
