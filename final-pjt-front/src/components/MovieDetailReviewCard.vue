@@ -8,7 +8,7 @@
             <h3>작성자 : {{review.user.username}}</h3>
             <h3>평점 : {{review.rate}}</h3>
             <h3>리뷰</h3>
-            {{review.content}}
+            <h3>{{review.content}}</h3>
           </div>
           <a :href="getId1" data-bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">더보기</a>
         </div>
@@ -205,26 +205,26 @@ export default {
   width: 100%;
   height: 100%;
   background: #9bdc28;
-  clip-path: circle(120px at 80% 20%);
+  clip-path: circle(80px at 90% 5%);
   transition: 0.5s ease-in-out;
 }
 
 .container .card:hover:before{
-  clip-path: circle(300px at 80% -20%);
+  clip-path: circle(300px at 80% 30%);
 }
 
 .container .card .contentBx{
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 100px;
+  height: 50%;
   text-align: center;
   transition: 1s;
   z-index: 10;
 }
 
 .container .card:hover .contentBx{
-  height: 210px;
+  height: 90%;
 }
 
 .container .card .contentBx h2{
@@ -233,21 +233,20 @@ export default {
   letter-spacing: 1px;
   color: #fff;
   margin: 0;
+  font-size:40px;
+}
+
+.container .card:hover .contentBx h2{
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: black;
+  margin: 0;
+  font-size:40px;
 }
 
 .container .card .contentBx .size {
   text-align: left;
-  padding: 8px 20px;
-  transition: 0.5s;opacity: 0;
-  visibility: hidden;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.container .card .contentBx .color {
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 8px 20px;
   transition: 0.5s;opacity: 0;
   visibility: hidden;
@@ -261,37 +260,14 @@ export default {
   transition-delay: 0.5s;
 }
 
-.container .card:hover .contentBx .color{
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 0.6s;
-}
-
-.container .card .contentBx .size h3, .container .card .contentBx .color h3{
-  color: #fff;
-  font-weight: 300;
-  font-size: 14px;
+.container .card .contentBx .size h3{
+  color: black;
+  font-weight: 550;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-right: 10px;
 }
-
-.container .card .contentBx .size span{
-  width: 26px;
-  height: 26px;
-  text-align: center;
-  line-height: 26px;
-  font-size: 14px;
-  display: inline-block;
-  color: #111;
-  background: #fff;
-  margin: 0 5px;
-  transition: 0.5s;
-  color: #111;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 
 .container .card .contentBx a{
   display: inline-block;
@@ -303,15 +279,14 @@ export default {
   font-weight: 600;
   color: #111;
   opacity: 0;
-  transform: translateY(50px);
-  transition: 0.5s;
-  margin-top: 0;
+  // transform: translateY(50px);
+  // transition: 0.5s;
+  // margin-top: 0;
 }
 
 .container .card:hover .contentBx a{
   opacity: 1;
   transform: translateY(0px);
   transition-delay: 0.75s;
-  
 }
 </style>
