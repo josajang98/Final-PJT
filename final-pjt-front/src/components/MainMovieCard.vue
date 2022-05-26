@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <!-- <div> -->
     <img @click="routingDetail(movieId)" :src="backdropPath" alt="">
-    <p>
+    <!-- <p>
       {{title}}
-    </p>
-  </div>
+    </p> -->
+  <!-- </div> -->
 </template>
 
 <script>
