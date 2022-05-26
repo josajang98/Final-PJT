@@ -29,6 +29,7 @@ export default {
   name: 'PersonCard',
   props:{
     person:Object,
+    index:Number
   },
   computed:{
     profilePath(){
@@ -39,8 +40,11 @@ export default {
     routingDetail(personId){
       router.push({
         name:'personDetail',
-        params:{person_id:personId}
-        })
+        params:{
+          person_id:personId,
+          index:this.index
+          }
+      })
     },
   }
 

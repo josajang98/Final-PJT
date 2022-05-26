@@ -20,8 +20,7 @@
       <div class="row bg-white bg-opacity-10 justify-content-center">
         <MovieCard
           v-for="movie in userLikeGenreMovieList"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
+          :movie="movie"
           :key="movie.id"
           class="col-lg-2 col-md-3 col-sm-4"
         ></MovieCard>
@@ -29,12 +28,11 @@
     </div>
     <!-- 배우 영화 추천 목록 -->
     <p>{{userLikeActor}} 배우님의 영화</p>
-    <div class="container">
-      <div class="row bg-white bg-opacity-10 justify-content-center">
+    <div class="container gallerylist">
+      <div class="row bg-white bg-opacity-10 justify-content-center ">
         <MovieCard
           v-for="movie in userLikeActorMovieList"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
+          :movie="movie"
           :key="movie.id"
           class="col-lg-2 col-md-3 col-sm-4"
         ></MovieCard>
@@ -46,8 +44,7 @@
       <div class="row bg-white bg-opacity-10 justify-content-center">
         <MovieCard
           v-for="movie in nowPlayingMovieList"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
+          :movie="movie"
           :key="movie.id"
           class="col-lg-2 col-md-3 col-sm-4"
         ></MovieCard>
@@ -122,6 +119,7 @@ export default {
   },
 
   methods: {
+   
     async getLikeActor(){
       const response1=await axios({
         url: drf.accounts.wishList(),
@@ -138,7 +136,6 @@ export default {
       })
 
       const casts=response2.data.cast
-      console.log(casts)
       const randCastsIndex=_.random(0,3)
       this.userLikeActor=casts[randCastsIndex].name
       this.userLikeActorId=casts[randCastsIndex].id
@@ -146,6 +143,7 @@ export default {
     },
 
     async getUserProfile(){
+
       const response=await axios({
         url: drf.accounts.getProfile(this.currentUser.username),
         method: 'get',

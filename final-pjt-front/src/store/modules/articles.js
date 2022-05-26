@@ -23,7 +23,7 @@ export default {
     async getPersonData({ commit }, query) {
       const response = await axios.get(drf.tmdb.searchPerson(query))
       commit('SET_PERSON', response.data.results)
-      console.log(response.data.results)
+
     },
 
   },

@@ -23,14 +23,11 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
-
-
+  import router from '@/router';
+  import { mapActions,mapGetters } from 'vuex'
   export default {
     name: 'SignupView',
-    components: {
-      
-    },
+
     data() {
       return {
         credentials: {
@@ -41,8 +38,18 @@
       }
     },
     methods: {
-      ...mapActions(['signup'])
+      ...mapActions(['signup']),
+      routingArticles(){
+      if (this.isLoggedIn === true)
+        router.push({name:'articles'})
+      }
     },
+    computed: {
+    ...mapGetters(['isLoggedIn'])
+    },
+    created(){
+    this.routingArticles()
+  },
   }
 </script>
 

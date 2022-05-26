@@ -2,7 +2,8 @@
   <div class="text-box">
     <br>
     <h1 class="p-3">장르 한번 골라보자!!</h1>
-    <h3 class="p-3" style="font-size:4.5vw"> {{getRound()}}강 </h3>
+    <h3 v-if="!result" class="p-3" style="font-size:4.5vw"> {{getRound()}}강 </h3>
+    <h3 v-if="result" class="p-3" style="font-size:4.5vw"> 결과 </h3>
     <div class="d-flex justify-content-between align-items-center" v-if="!result">
       <div class="background mx-3" @click="selected(randGenreIdList[index])">
         <genre-wc-card :genre-id="randGenreIdList[index]" ></genre-wc-card>
@@ -13,7 +14,6 @@
       </div>
     </div>
     <div v-if="result">
-      <p>결과</p>
       <genre-wc-card :genre-id="randGenreIdList[30]"></genre-wc-card>
       <div class="container">
         <div class="row bg-white bg-opacity-10 justify-content-center">
@@ -78,11 +78,9 @@ export default {
           },
           headers: this.authHeader,
         })
-        .then(res=>{
-          console.log(res.data)
-        })
+
       }
-      console.log(this.randGenreIdList)
+
     },
     getRound(){
       if(this.index<16) return 16

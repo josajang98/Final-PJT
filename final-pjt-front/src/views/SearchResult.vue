@@ -3,7 +3,8 @@
     <p>인물</p>
     <div class="section" style="max-height:200px">
       <person-card
-      v-for="person in personData"
+      v-for="(person,index) in personData"
+      :index="index"
       :person="person"
       :key="person.id"
       ></person-card>
@@ -56,7 +57,7 @@ export default {
       const response=await axios.get(drf.tmdb.searchMovie(this.query))
       
       this.movieData=response.data.results
-      console.log(this.movieData) 
+
     },
   },
   created(){

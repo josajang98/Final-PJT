@@ -71,7 +71,7 @@ export default {
       userId:'',
       isWishMovie:false,
       userRate:'',
-
+      
 
       // 영화 데이터
       movieId:parseInt(this.$route.params.movie_id),
