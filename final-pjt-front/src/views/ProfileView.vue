@@ -1,8 +1,8 @@
 <template>
   <div>
     <p>내가 쓴 리뷰</p>
-    <div class="container">
-      <div class="row justify-content-center">
+    <div class="container slider">
+      <div class="slides">
         <review-card 
         v-for="review in userWriteReviewList" 
         :review="review"
@@ -10,14 +10,13 @@
         :id="review.id"
         :u-name="userName"
         @getReview="getProfileData"
-        class="col-lg-4 col-md-6"
         ></review-card>
       </div>
     </div>
     <br>
     <p>내가 좋아요 단 리뷰</p>
-    <div class="container">
-      <div class="row justify-content-center">
+    <div class="container slider">
+      <div class="slides">
         <review-card 
         v-for="review in userLikeReviewList" 
         :review="review"
@@ -25,7 +24,6 @@
         :id="'i'+review.id"
         :u-name="userName"
         @getReview="getProfileData"
-        class="col-lg-4 col-md-6"
         ></review-card>
       </div>
     </div>
@@ -127,5 +125,65 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 슬라이더
 
+  .slider {
+    width: 100vw;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+ 
+  }
+  
+  .slides {
+    display: flex;
+    overflow-x: auto;
+    /* overflow: hidden; */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .slides::-webkit-scrollbar-thumb {
+    background: #ffffff50;
+    border-radius: 10px;
+  }
+  .slides::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .slides > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    margin-right: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    // transform-origin: center center;
+    // transform: scale(1);
+    // transition: transform 0.5s;
+    // position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  .author-info {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .author-info a {
+    color: white;
+  }
 </style>
