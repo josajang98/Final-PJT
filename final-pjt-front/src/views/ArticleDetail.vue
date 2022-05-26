@@ -6,16 +6,16 @@
         <div class="container">
           <div>
             <div class="d-flex align-items-start ">
-              <p class="btn btn-outline-secondary ">개봉 날짜 : {{movie.release_date}}</p>
-              <p class="btn btn-outline-secondary">평점 : {{movie.vote_average}}</p>
-              <p class="btn btn-outline-secondary">유저 평점 : {{userRate}}</p>
+              <p class="btn btn-outline-secondary detail-font">개봉 날짜 : {{movie.release_date}}</p>
+              <p class="btn btn-outline-secondary detail-font">평점 : {{movie.vote_average}}</p>
+              <p class="btn btn-outline-secondary detail-font">유저 평점 : {{userRate}}</p>
                
               <div class="d-flex align-items-center mx-3">
                 <div id="heart" @click.prevent="addWishList"><ToggleFavorite :isWishMovie="isWishMovie" class="haert-box"/></div>
               </div>  
             </div>
             <div class="container">
-              <p class="overview">{{movie.overview}}</p>
+              <p class="overview text-start">{{movie.overview}}</p>
             </div>
             <div class="d-flex align-items-start">
               <button @click="onClickRedirect" v-if="mainTrailerUrl" :href="mainTrailerUrl" 
@@ -185,9 +185,11 @@ export default {
   }
   .overview {
     font-size: 20px;
+    line-height: 1.6;
+    color: #bcbcbc;
   }
   .title{
-    font-size: 45px;
+    font-size: 39px;
   }
   .movie-detail{
     margin-left: 90px;
@@ -255,5 +257,8 @@ export default {
   }
   .author-info a {
     color: white;
+  }
+  .detail-font{
+    font-size:14.5px;
   }
 </style>

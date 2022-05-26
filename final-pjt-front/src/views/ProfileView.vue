@@ -1,30 +1,34 @@
 <template>
-  <div>
-    <p>내가 쓴 리뷰</p>
-    <div class="container slider">
-      <div class="slides">
-        <review-card 
-        v-for="review in userWriteReviewList" 
-        :review="review"
-        :key="review.id"
-        :id="review.id"
-        :u-name="userName"
-        @getReview="getProfileData"
-        ></review-card>
+  <div calss="container">
+    <div>
+      <p class="profile-title">내가 쓴 리뷰</p>
+      <div class="container slider">
+        <div class="slides">
+          <review-card 
+          v-for="review in userWriteReviewList" 
+          :review="review"
+          :key="review.id"
+          :id="review.id"
+          :u-name="userName"
+          @getReview="getProfileData"
+          ></review-card>
+        </div>
       </div>
     </div>
     <br>
-    <p>내가 좋아요 단 리뷰</p>
-    <div class="container slider">
-      <div class="slides">
-        <review-card 
-        v-for="review in userLikeReviewList" 
-        :review="review"
-        :key="review.created_at"
-        :id="'i'+review.id"
-        :u-name="userName"
-        @getReview="getProfileData"
-        ></review-card>
+    <div clsss="mt-5">
+      <p class="profile-title">내가 좋아요 단 리뷰</p>
+      <div class="container slider">
+        <div class="slides">
+          <review-card 
+          v-for="review in userLikeReviewList" 
+          :review="review"
+          :key="review.created_at"
+          :id="'i'+review.id"
+          :u-name="userName"
+          @getReview="getProfileData"
+          ></review-card>
+        </div>
       </div>
     </div>
 
@@ -185,5 +189,8 @@ export default {
   }
   .author-info a {
     color: white;
+  }
+  .profile-title{
+    font-size:32px;
   }
 </style>

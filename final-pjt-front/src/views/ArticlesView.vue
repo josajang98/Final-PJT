@@ -17,53 +17,58 @@
 
     <div class="con">
       <!-- 장르 영화 추천 목록 -->
-      <p v-if="userLikeGenreId">{{username}}님이 좋아하는 영화</p>
-      <div class="container">
-        <div class="row justify-content-center ">
-          <div class="slider">
-            <div class="slides">
-              <MovieCard
-                v-for="movie in userLikeGenreMovieList"
-                :movie="movie"
-                :key="movie.id"
-                class="col-lg-2 col-md-3 col-sm-4"
-              ></MovieCard>
-            </div>
-          </div>          
-          
+      <div class="container mb-4">
+        <p v-if="userLikeGenreId" class="title-font">{{username}}님이 좋아하는 영화</p>
+        <div class="container">
+          <div class="row justify-content-center ">
+            <div class="slider">
+              <div class="slides">
+                <MovieCard
+                  v-for="movie in userLikeGenreMovieList"
+                  :movie="movie"
+                  :key="movie.id"
+                  class="col-lg-2 col-md-3 col-sm-4"
+                ></MovieCard>
+              </div>
+            </div>          
+          </div>
         </div>
       </div>
       <!-- 배우 영화 추천 목록 -->
-      <p v-if="userLikeActorId">{{userLikeActor}} 배우님의 영화</p>
-      <div class="container gallerylist">
-        <div class="row justify-content-center ">
-          <div class="slider">
-            <div class="slides">
-              <MovieCard
-                v-for="movie in userLikeActorMovieList"
-                :movie="movie"
-                :key="movie.id"
-                class="col-lg-2 col-md-3 col-sm-4"
-              ></MovieCard>
-            </div>
-          </div>   
-          
+      <div class="container my-5">
+        <p v-if="userLikeActorId" class="title-font">{{userLikeActor}} 배우님의 영화</p>
+        <div class="container gallerylist">
+          <div class="row justify-content-center ">
+            <div class="slider">
+              <div class="slides">
+                <MovieCard
+                  v-for="movie in userLikeActorMovieList"
+                  :movie="movie"
+                  :key="movie.id"
+                  class="col-lg-2 col-md-3 col-sm-4"
+                ></MovieCard>
+              </div>
+            </div>   
+            
+          </div>
         </div>
       </div>
       <!-- 현재 상영중 영화 추천 목록 -->
-      <p>현재 상영중인 영화</p>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="slider">
-            <div class="slides">
-              <MovieCard
-                v-for="movie in nowPlayingMovieList"
-                :movie="movie"
-                :key="movie.id"
-                class="col-lg-2 col-md-3 col-sm-4"
-              ></MovieCard>
-            </div>
-          </div>  
+      <div class="container my-5">
+        <p class="title-font">현재 상영중인 영화</p>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="slider">
+              <div class="slides">
+                <MovieCard
+                  v-for="movie in nowPlayingMovieList"
+                  :movie="movie"
+                  :key="movie.id"
+                  class="col-lg-2 col-md-3 col-sm-4"
+                ></MovieCard>
+              </div>
+            </div>  
+          </div>
         </div>
       </div>
     </div>
@@ -417,6 +422,8 @@ export default {
   .author-info a {
     color: white;
   }
-
+  .title-font{
+    font-size:33px;
+  }
   
 </style>
