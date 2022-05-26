@@ -18,38 +18,53 @@
     <div class="con">
       <!-- 장르 영화 추천 목록 -->
       <p>{{username}}님이 좋아하는 영화</p>
-      <div class="container">
-        <div class="row bg-white bg-opacity-10 justify-content-center">
-          <MovieCard
-            v-for="movie in userLikeGenreMovieList"
-            :movie="movie"
-            :key="movie.id"
-            class="col-lg-2 col-md-3 col-sm-4"
-          ></MovieCard>
+      <div class="container slider">
+        <div class="row bg-white bg-opacity-10 justify-content-center ">
+          <div class="slider">
+            <div class="slides">
+              <MovieCard
+                v-for="movie in userLikeGenreMovieList"
+                :movie="movie"
+                :key="movie.id"
+                class="col-lg-2 col-md-3 col-sm-4"
+              ></MovieCard>
+            </div>
+          </div>          
+          
         </div>
       </div>
       <!-- 배우 영화 추천 목록 -->
       <p>{{userLikeActor}} 배우님의 영화</p>
       <div class="container gallerylist">
         <div class="row bg-white bg-opacity-10 justify-content-center ">
-          <MovieCard
-            v-for="movie in userLikeActorMovieList"
-            :movie="movie"
-            :key="movie.id"
-            class="col-lg-2 col-md-3 col-sm-4"
-          ></MovieCard>
+          <div class="slider">
+            <div class="slides">
+              <MovieCard
+                v-for="movie in userLikeActorMovieList"
+                :movie="movie"
+                :key="movie.id"
+                class="col-lg-2 col-md-3 col-sm-4"
+              ></MovieCard>
+            </div>
+          </div>   
+          
         </div>
       </div>
       <!-- 현재 상영중 영화 추천 목록 -->
       <p>현재 상영중인 영화</p>
       <div class="container">
         <div class="row bg-white bg-opacity-10 justify-content-center">
-          <MovieCard
-            v-for="movie in nowPlayingMovieList"
-            :movie="movie"
-            :key="movie.id"
-            class="col-lg-2 col-md-3 col-sm-4"
-          ></MovieCard>
+          <div class="slider">
+            <div class="slides">
+              <MovieCard
+                v-for="movie in nowPlayingMovieList"
+                :movie="movie"
+                :key="movie.id"
+                class="col-lg-2 col-md-3 col-sm-4"
+              ></MovieCard>
+            </div>
+          </div>  
+          
         </div>
       </div>
     </div>
@@ -120,10 +135,16 @@ export default {
     username() {
       return this.currentUser.username ? this.currentUser.username : 'guest'
     },
+    
   },
 
   methods: {
-   
+    slide(idx){
+      return `slide-${idx+1}`
+    },
+    shopSlide(idx){
+      return `#slide-${idx+1}`
+    },
     async getLikeActor(){
       const response1=await axios({
         url: drf.accounts.wishList(),
@@ -334,4 +355,100 @@ export default {
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
 }
+
+
+
+
+// 슬라이더
+* {
+    box-sizing: border-box;
+  }
+  
+  .slider {
+    width: 80vw;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .slides {
+    display: flex;
+    overflow-x: auto;
+    /* overflow: hidden; */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .slides::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+  }
+  .slides::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .slides > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    margin-right: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+  }
+  
+  .author-info {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+  }
+  .author-info a {
+    color: white;
+  }
+  img {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .slider > a {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #eee;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+  }
+  .slider > a:active {
+    top: 1px;
+  }
+  .slider > a:focus {
+    background: #000;
+  }
+  
+
 </style>

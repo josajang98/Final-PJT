@@ -101,6 +101,7 @@ export default {
       this.isEdit=!this.isEdit
     },
     async likeArticle() {
+      console.log(this.review)
       /* 좋아요
       POST: likeArticle URL(token)
         성공하면
