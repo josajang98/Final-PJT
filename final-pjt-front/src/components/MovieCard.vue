@@ -1,6 +1,6 @@
 <template>
-  <div v-if="moviePosterPath">
-    <img @click="routingDetail(movieId)" :src="posterPath" alt="">
+  <div v-if="movie.poster_path">
+    <img @click="routingDetail()" :src="posterPath" alt="">
   </div>
 </template>
 
@@ -10,19 +10,18 @@ const imgUrl='https://image.tmdb.org/t/p/w500/'
 export default {
   name: 'MovieCard',
   props:{
-    movieId:Number,
-    moviePosterPath:String
+    movie:Object,
   },
   computed:{
     posterPath(){
-      return imgUrl+this.moviePosterPath
+      return imgUrl+this.movie.poster_path
     }
   },
   methods:{
-    routingDetail(movieId){
+    routingDetail(){
       router.push({
         name:'detail',
-        params:{movie_id:movieId}
+        params:{movie_id:this.movie.id}
         })
     },
   }
