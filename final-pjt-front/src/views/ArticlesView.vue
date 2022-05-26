@@ -22,8 +22,8 @@
     </div>
     <!-- 배우 영화 추천 목록 -->
     <p>{{userLikeActor}} 배우님의 영화</p>
-    <div class="container">
-      <div class="row bg-white bg-opacity-10 justify-content-center">
+    <div class="container gallerylist">
+      <div class="row bg-white bg-opacity-10 justify-content-center ">
         <MovieCard
           v-for="movie in userLikeActorMovieList"
           :movie-id="movie.id"
@@ -246,4 +246,5 @@ export default {
 .font {
   font-size: 4vw;
 }
+
 </style>
