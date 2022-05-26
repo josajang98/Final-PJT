@@ -1,13 +1,13 @@
 <template>
   <div class="container mt-5">
     <div class="movie-detail">
-      <p class="d-flex p-2 title">{{title}}</p>
+      <p class="d-flex p-2 title">{{movie.title}}</p>
       <div class="d-flex justify-content-around" >
         <div class="container">
           <div>
             <div class="d-flex align-items-start ">
-              <p class="btn btn-outline-secondary ">개봉 날짜 : {{releaseDate}}</p>
-              <p class="btn btn-outline-secondary">평점 : {{voteAverage}}</p>
+              <p class="btn btn-outline-secondary ">개봉 날짜 : {{movie.release_date}}</p>
+              <p class="btn btn-outline-secondary">평점 : {{movie.vote_average}}</p>
               <p class="btn btn-outline-secondary">유저 평점 : {{userRate}}</p>
                
               <div class="d-flex align-items-center mx-3">
@@ -15,7 +15,7 @@
               </div>  
             </div>
             <div class="container">
-              <p class="overview">{{overview}}</p>
+              <p class="overview">{{movie.overview}}</p>
             </div>
             <div class="d-flex align-items-start">
               <button @click="onClickRedirect" v-if="mainTrailerUrl" :href="mainTrailerUrl" 
@@ -75,13 +75,9 @@ export default {
 
       // 영화 데이터
       movieId:parseInt(this.$route.params.movie_id),
-      posterPath:'',
-      title:'',
-      overview:'',
-      releaseDate:'',
-      voteAverage:'',
+      movie:{},
       mainTrailerUrl:'',
-      
+      moviePosterPath:'',
 
       // 리뷰 데이터
       reviewList:'',
@@ -96,6 +92,9 @@ export default {
 
   computed:{
     ...mapGetters(['authHeader','currentUser']),
+    posterPath(){
+      return imgUrl+this.movie.poster_path
+    }
   },
   methods: {
     addWishList(){
@@ -116,13 +115,7 @@ export default {
     },
     async getMovieData(){
       const response=await axios.get(drf.tmdb.detail(this.movieId))
-
-      this.posterPath=imgUrl+response.data.poster_path
-      this.title=response.data.title
-      this.overview=response.data.overview
-      this.releaseDate=response.data.release_date
-      this.voteAverage=response.data.vote_average
-      
+      this.movie=response.data
     },
     async getMovieVideo(){
       const response=await axios.get(drf.tmdb.videos(this.movieId))
@@ -144,6 +137,7 @@ export default {
           method: 'get',
           headers: this.authHeader,
         })
+        
         this.userRate=response.data.average_rate
         this.reviewList=response.data.serializer_data
         this.isWishMovie=response.data.wish_state

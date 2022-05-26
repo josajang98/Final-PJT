@@ -11,7 +11,6 @@
           <small>rate : {{review.rate}}</small>
         </div>
       </a>
-      
     </div>
 
     <!-- Modal -->
@@ -63,6 +62,9 @@ import {mapGetters} from 'vuex'
 import axios from 'axios'
 import drf from '@/api/drf'
 import VueStar from 'vue-star'
+
+const imgUrl='https://image.tmdb.org/t/p/w500/'
+
 export default {
   name: 'ReviewCard',
   components: {
@@ -94,6 +96,9 @@ export default {
     },
     getId2(){
       return 'id'+this.id
+    },
+    posterPath(){
+      return imgUrl+this.review.movie_poster_path
     }
   },
   methods: {
