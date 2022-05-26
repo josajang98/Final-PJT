@@ -1,12 +1,17 @@
 <template>
   <div class="font">
-    <MainMovieCard 
-      :backdrop-path="mainMovieBackdropPath" 
-      :title="mainMovietitle" 
-      :movie-id="mainMovieId"
+    <div class="d-flex align-content-center">
+      <MainMovieCard 
+        :backdrop-path="mainMovieBackdropPath" 
+        :title="mainMovietitle" 
+        :movie-id="mainMovieId"
+        >
+      </MainMovieCard>
+      <VideoDetail
+        :selected-video="selectedVideo"
       >
-    </MainMovieCard>
-
+      </VideoDetail>
+    </div>
     <!-- 장르 영화 추천 목록 -->
     <p>{{username}}님이 좋아하는 영화</p>
     <div class="container">
@@ -62,6 +67,11 @@ import router from '@/router'
 const imgUrl='https://image.tmdb.org/t/p/w500/'
 const count = 6
 
+// youtube
+const API_URL = 'https://www.googleapis.com/youtube/v3/search'
+const API_KEY = 'AIzaSyChEk90Jt2oKhJR6ECcAjNro7a1ryUS7Bk'
+import VideoDetail from '@/components/VideoDetail.vue'
+
 export default {
   
   name: 'ArticlesView',
@@ -82,6 +92,11 @@ export default {
       // 추천 영화 리스트
       userLikeGenreMovieList:[],
       userLikeActorMovieList:[],
+
+      // youtube
+      inputValue:null,
+      videos:[],
+      selectedVideo: null,
     };
   },
   created(){
@@ -94,7 +109,8 @@ export default {
   },
   components:{
     MainMovieCard,
-    MovieCard
+    MovieCard,
+    VideoDetail
   },
   computed: {
     ...mapGetters(['isLoggedIn','currentUser','authHeader']),
@@ -148,6 +164,7 @@ export default {
       
       this.nowPlayingMovieList=response.data.results
       this.getRandMovieData()
+      this.getTearVideo(this.mainMovietitle)
       const indexList = _.sampleSize(_.range(0,19),count)
       const movieListSlice=[]
 
@@ -236,6 +253,34 @@ export default {
           cnt++
         }   
       })
+    },
+    // youtube
+    getTearVideo(mainMovietitle){
+      console.log(API_KEY)
+      this.inputValue = mainMovietitle+'예고편'
+      const params = {
+        key:API_KEY,
+        part:'snippet',
+        type:'video',
+        q:this.inputValue,
+      }
+
+      axios({
+        method: 'get',
+        url: API_URL,
+        params,
+      })
+        .then(res =>{
+          this.videos = res.data.items
+          this.selectedVideo = this.videos[0]
+          console.log(res)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    },
+    onSelectVideo(video){
+      this.selectedVideo = video
     }
   },
 
