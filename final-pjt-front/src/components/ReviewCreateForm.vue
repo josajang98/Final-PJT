@@ -11,28 +11,28 @@
     </form> -->
     <form @submit.prevent="onSubmit" class="row g-3 needs-validation d-flex justify-content-start" novalidate>
       <div class="col-md-8">
-        <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control" id="title" placeholder="Write Title" v-model="title" required>
+        <label for="title" class="form-label sub-title">Title</label>
+        <input type="text" class="form-control sub-content" id="title" placeholder="Write Title" v-model="title" required>
         <div class="valid-feedback">
           Looks good!
         </div>
       </div>
       <div class="col-md-4">
-        <label for="rate" class="form-label" >Rate</label>
-        <input type="number" class="form-control" id="rate" step="0.1" max="10" v-model="rate" required>
+        <label for="rate" class="form-label sub-title" >Rate</label>
+        <input type="number" class="form-control sub-content" id="rate" step="0.1" max="10" v-model="rate" required>
         <div class="valid-feedback">
           Looks good!
         </div>
       </div>
       <div class="col-md-12 text-area">
-        <label for="content" class="form-label">Content</label>
-        <textarea class="form-control" id="content" rows="8" placeholder="Write Content" v-model="content" required></textarea>
+        <label for="content" class="form-label sub-title">Content</label>
+        <textarea class="form-control sub-content" id="content" rows="8" placeholder="Write Content" v-model="content" required></textarea>
         <div class="valid-feedback">
           Looks good!
         </div>
       </div>
       <div class="col-12">
-        <button class="btn btn-secondary" type="submit">Write Reivew</button>
+        <button class="btn btn-secondary write" type="submit">Write Reivew</button>
       </div>
     </form>
 
@@ -92,5 +92,18 @@ export default {
   .review-create{
     width: 80%;
   }
+  .sub-title{
+    font-size: 27px;
+  }
+  .write{
+    font-size: 20px;
+  }
 
+  .user-name{
+    font-size: 30px;
+  }
+
+  .sub-content{
+    font-size: 23px;
+  }
 </style>

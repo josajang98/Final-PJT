@@ -95,7 +95,7 @@ export default {
   components:{
     MainMovieCard,
     MovieCard
-},
+  },
   computed: {
     ...mapGetters(['isLoggedIn','currentUser','authHeader']),
     username() {
