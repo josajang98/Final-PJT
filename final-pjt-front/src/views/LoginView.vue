@@ -18,9 +18,7 @@
             <label for="password">password : </label>
             <input type="password" v-model="credentials.password" placeholder="비밀번호" id="password" prefix-icon="fas fa-lock">
           </div>
-          <form>
-            <button id="login-button" block><span style="color: rgba(255, 255, 255, 0.82);">로그인</span></button>
-          </form>
+          <button id="login-button" block><span style="color: rgba(255, 255, 255, 0.82);">로그인</span></button>
           <h6 class="signup-router text-secondary p-0 signup-font" @click="signup">회원가입</h6>
         </form>
       </div>
@@ -53,9 +51,6 @@
 import router from '@/router'
 import { mapActions,mapGetters } from 'vuex'
 
-
-// import Swal from 'sweetalert2/dist/sweetalert2.js'
-// import 'sweetalert2/src/sweetalert2.scss'
 export default {
   name: 'LoginView',
 
@@ -99,7 +94,7 @@ export default {
   margin: auto;
 }
 .login{
-  margin-top:300px;
+  margin-top:30px;
 }
 .login-cover {
   position: fixed;
