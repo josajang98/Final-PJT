@@ -130,7 +130,8 @@ export default {
           content:this.content,
           rate:this.rate,
           movie_id:this.movieId,
-          movie_title:this.review.movie_title
+          movie_title:this.review.movie_title,
+          movie_poster_path:this.review.movie_poster_path
         },
         headers: this.authHeader,
       })
