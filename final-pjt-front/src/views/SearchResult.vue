@@ -68,7 +68,7 @@ export default {
 
 <style lang="scss" scoped>
 .font {
-  font-size: 4vw;
+  font-size: 35px;
 }
 .section {
   // max-height: 400px;
@@ -91,12 +91,13 @@ export default {
 }
 
 .section::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
+  height: 10px;
 }
 
 .section::-webkit-scrollbar-track {
-  background-color: #e4e4e4;
-  border-radius: 100px;
+  background-color: #ffffff50;
+  border-radius: 10px;
 }
 
 .section::-webkit-scrollbar-thumb {
@@ -104,7 +105,7 @@ export default {
   border: 6px solid rgba(0, 0, 0, 0.18);
   border-left: 0;
   border-right: 0;
-  background-color: #8070d4;
+  background-color: #ffffff50;
 }
 
 body {

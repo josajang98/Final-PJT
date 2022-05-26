@@ -42,10 +42,8 @@
         </div>
       </div>
     </nav>
-    <footer class="fixed-bottom fs-6" style="">
-      <a href="https://github.com/ssomm-k/TIL.git" target="black">Kangjangho</a> <a href="https://github.com/ssomm-k/TIL.git" target="black">Kwondasom</a> <a href="https://github.com/josajang98" target="black">Chohangju</a> 
-    </footer>
   <router-view/>
+  
   </div>
 </template>
 <script>

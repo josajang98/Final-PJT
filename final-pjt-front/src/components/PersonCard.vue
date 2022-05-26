@@ -5,12 +5,12 @@
     </div>
     <div class="flex-grow-1 ms-3">
       <p class=" font">{{person.name}}</p>
-      <li style="font-size:25px">
+      <li style="font-size:15px">
         [ {{person.known_for_department}} ] 
         <span
         v-for="movie in person.known_for"
         :key="movie.id"
-        style="font-size:25px"
+        style="font-size:15px"
         class="px-2"
         >
         {{movie.name?movie.name:movie.title}}
@@ -53,7 +53,7 @@ export default {
 
 <style  lang="scss" scoped>
 .font {
-  font-size: 35px;
+  font-size: 20px;
 }
 div {
   margin: 20px;

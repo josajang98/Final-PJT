@@ -1,6 +1,6 @@
 <template>
-  <div calss="container">
-    <div>
+  <div class="container pb-5">
+    <div >
       <p class="profile-title">내가 쓴 리뷰</p>
       <div class="container slider">
         <div class="slides">
@@ -33,7 +33,7 @@
     </div>
 
 
-    <div class="input-group">
+    <div class="input-group pb-5">
       <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" v-model="genreValue">
         <option 
         v-for="genre in genreList"
