@@ -118,8 +118,8 @@
   -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   /* 폰트 */
-  /* font-family: 'SCoreDream'; */
-  font-family: 'East Sea Dokdo', cursive;
+  font-family: 'SCoreDream';
+  /* font-family: 'East Sea Dokdo', cursive; */
   /* font-family: 'Jalnan'; */
   /* font-family: 'Noto Sans KR', sans-serif; */
   /* font-weight : 0; */
@@ -136,7 +136,8 @@ nav a {
 nav a.active:hover {
   color: white;
   text-decoration:none;
-  background-color: #DBFF4560;
+  background-color: #ffffff50;
+  /* background-color: #DBFF4560; */
 }
 nav a.text:hover {
   color: white;
@@ -145,10 +146,12 @@ nav a.text:hover {
 nav li:hover {
   color: white;
   text-decoration:none;
-  background-color: #DBFF4560;
+  background-color: #ffffff50;
+  /* background-color: #DBFF4560; */
 }
 nav .back{
-  background-color: #DBFF4560;
+  background-color: #ffffff50;
+  /* background-color: #DBFF4560; */
 }
 nav a.router-link-exact-active:not(.active) {
   background-color: none;
