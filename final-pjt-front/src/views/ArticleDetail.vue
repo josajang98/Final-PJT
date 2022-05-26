@@ -30,7 +30,7 @@
     </div>
     <div class="review-list mt-5">
       <div>
-        <p>리뷰 리스트</p>
+        <p class="sub-title">리뷰 리스트</p>
         <div class="container">
           <review-card 
           v-for="review in reviewList" 
@@ -55,6 +55,8 @@ import ReviewCard from '../components/ReviewCard.vue'
 import ReviewCreateForm from '../components/ReviewCreateForm.vue';
 
 import ToggleFavorite from "../components/ToggleFavorite.vue";
+
+
 const imgUrl='https://image.tmdb.org/t/p/w500/'
 
 export default {
@@ -192,11 +194,10 @@ export default {
   .title{
     font-size: 45px;
   }
-  .for-center{
+  .movie-detail{
     margin-left: 90px;
   }
-  // .background{
-  //   background-image: url("paper.gif");
-  //   background-color: #cccccc;
-  // }
+  .sub-title{
+    font-size: 30px;
+  }
 </style>
