@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <review-create-form :movie-id="movieId" :movie-title="title" @getReview="getReviewList"></review-create-form>
+    <review-create-form :movie="movie" @getReview="getReviewList"></review-create-form>
   </div>
 </template>
 
