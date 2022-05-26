@@ -15,6 +15,17 @@
     <div v-if="result">
       <p>결과</p>
       <genre-wc-card :genre-id="randGenreIdList[30]"></genre-wc-card>
+      <div class="container">
+        <div class="row bg-white bg-opacity-10 justify-content-center">
+          <MovieCard
+            v-for="movie in userLikeGenreMovieList"
+            :movie-id="movie.id"
+            :movie-poster-path="movie.poster_path"
+            :key="movie.id"
+            class="col-lg-2 col-md-3 col-sm-4"
+          ></MovieCard>
+        </div>
+      </div>
     </div>
     <br>  
   </div>
@@ -26,8 +37,10 @@ import GenreWcCard from '@/components/GenreWcCard.vue';
 import axios from 'axios';
 import {mapGetters} from 'vuex'
 import drf from '@/api/drf'
+import MovieCard from '@/components/MovieCard.vue'
+const count = 6
 export default {
-  components: { GenreWcCard },
+  components: { GenreWcCard,MovieCard },
   name: 'GenreWc',
 
   data() {
@@ -35,6 +48,7 @@ export default {
       index:0,
       randGenreIdList:this.getRandGenreIdList(),
       result:'',
+      userLikeGenreMovieList:[],
     };
   },
 
@@ -55,17 +69,18 @@ export default {
       this.index+=2
       if (this.index==30){
         this.result=id
+        this.getUserLikeGenreMovieList()
         axios({
-        url: drf.accounts.genre(this.currentUser.username,this.result),
-        method: 'put',
-        data: {
-          username:this.currentUser.username
-        },
-        headers: this.authHeader,
-      })
-      .then(res=>{
-        console.log(res.data)
-      })
+          url: drf.accounts.genre(this.currentUser.username,this.result),
+          method: 'put',
+          data: {
+            username:this.currentUser.username
+          },
+          headers: this.authHeader,
+        })
+        .then(res=>{
+          console.log(res.data)
+        })
       }
       console.log(this.randGenreIdList)
     },
@@ -74,7 +89,35 @@ export default {
       else if(this.index<24) return 8
       else if (this.index<28) return 4
       else if (this.index<30) return 2
-    }
+    },
+    async getUserLikeGenreMovieList(){
+
+      if (this.result===''){
+        return
+      }
+      
+      const indexList = _.sampleSize(_.range(1,500),500)
+      let idx = 0
+      let cnt = 0
+      while (cnt < count){
+        const response = await axios.get(drf.tmdb.popular(indexList[idx++]))
+        
+        response.data.results.forEach(element => {
+          if (cnt >= count) return false
+
+          // 포스터 패스 없을 시 continue
+          if(!element.poster_path) return true
+
+          element.genre_ids.forEach(id => {
+            if (id == this.result){
+              this.userLikeGenreMovieList.push(element)
+              cnt++
+              return false
+            }
+          })
+        })
+      }
+    },
   },
 };
 </script>

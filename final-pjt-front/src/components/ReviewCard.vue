@@ -5,16 +5,18 @@
       <div class="d-flex justify-content-start mt-3 sub-title">
         {{review.user.username}}
       </div>
-      <a href="#exampleModal1" data-bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">
+      <a :href="getId1" data-bs-toggle="modal" class="list-group-item list-group-item-secondary" aria-hidden="true">
         <div class="d-flex w-100 justify-content-between sub-title">
           title : {{review.title}}
           <small>rate : {{review.rate}}</small>
         </div>
       </a>
+      
     </div>
 
     <!-- Modal -->
-    <div class="modal fade modal-dialog-scrollable" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-dialog-scrollable" :id="getId2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      
       <div class="modal-dialog">
         <div class="modal-content bg-dark p-2" style="--bs-bg-opacity: .75;">
           <div class="modal-header ">
@@ -24,6 +26,18 @@
             <h6 aria-label="Close" v-show="isEdit">점수 :<input type="number" step="0.1" max="10" id="rate" v-model="rate" required style="height:50px; width:50px;"></h6>
             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           </div>
+          
+          <!-- <div class="modal-body">
+            {{review.content}}
+          </div>
+          <div class="modal-footer">
+            <button @click.prevent="likeArticle"> 좋아요</button>
+            {{likeUserCount}}
+            {{review.user.username}}
+            {{currentUser.username}}
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button v-if="review.user.username===currentUser.username" type="button"  @click.prevent="edit" class="btn btn-primary">Save</button>
+            <button v-if="review.user.username===currentUser.username" type="button"  @click.prevent="onDelete" class="btn btn-primary">Delete</button> -->
           <div class="modal-body" v-show="!isEdit">{{review.content}}</div>
           <div class="modal-body" v-show="isEdit"><textarea name="content" id="content" cols="30" rows="10" v-model="content" class="madal-text" style="height:250px; width:430px; text-align=justify;"></textarea></div>
           <div class="modal-footer d-flex justify-content-between">
@@ -45,10 +59,10 @@
             </vue-star> -->
             <!-- <button @click.prevent="likeArticle"> 좋아요</button> -->
             <div>
-              <button type="button"  @click.prevent="edit" class="btn btn-primary" v-show="!isEdit">Edit</button>
+              <button type="button" v-if="review.user.username===currentUser.username" @click.prevent="edit" class="btn btn-primary" v-show="!isEdit">Edit</button>
               <button type="button"  @click.prevent="onSubmit" class="btn btn-primary" v-show="isEdit">Edit</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button"  @click.prevent="onDelete" class="btn btn-secondary">Delete</button>
+              <button type="button" v-if="review.user.username===currentUser.username" @click.prevent="onDelete" class="btn btn-secondary">Delete</button>
             </div>
             
             <!-- <form @submit.prevent="onSubmit" v-show="isEdit" >
@@ -102,17 +116,25 @@ export default {
       content:this.review.content,
       rate:this.review.rate,
       movieId:this.review.movie_id,
+
     };
   },
   props:{
     review:Object,
-    uName:String
+    uName:String,
+    id:String
   },
   mounted() {
     
   },
   computed:{
-    ...mapGetters(['authHeader'])
+    ...mapGetters(['authHeader','currentUser']),
+    getId1(){
+      return '#id'+this.id
+    },
+    getId2(){
+      return 'id'+this.id
+    }
   },
   methods: {
     async likeArticle() {

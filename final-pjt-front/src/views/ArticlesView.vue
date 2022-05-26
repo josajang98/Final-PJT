@@ -95,7 +95,7 @@ export default {
   components:{
     MainMovieCard,
     MovieCard
-},
+  },
   computed: {
     ...mapGetters(['isLoggedIn','currentUser','authHeader']),
     username() {
@@ -119,8 +119,11 @@ export default {
         method: 'get',
       })
 
-      this.userLikeActor=response2.data.cast[0].name
-      this.userLikeActorId=response2.data.cast[0].id
+      const casts=response2.data.cast
+      console.log(casts)
+      const randCastsIndex=_.random(0,3)
+      this.userLikeActor=casts[randCastsIndex].name
+      this.userLikeActorId=casts[randCastsIndex].id
       this.getUserLikeActorMovieList()
     },
 

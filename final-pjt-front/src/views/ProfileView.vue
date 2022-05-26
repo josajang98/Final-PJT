@@ -5,6 +5,7 @@
     v-for="review in userWriteReviewList" 
     :review="review"
     :key="review.id"
+    :id="review.id"
     :u-name="userName"
     @getReview="getProfileData"
     ></review-card>
@@ -14,6 +15,7 @@
     v-for="review in userLikeReviewList" 
     :review="review"
     :key="review.created_at"
+    :id="'i'+review.id"
     :u-name="userName"
     @getReview="getProfileData"
     ></review-card>
@@ -21,7 +23,6 @@
 
     <div class="input-group">
       <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" v-model="genreValue">
-        <option selected>Choose...</option>
         <option 
         v-for="genre in genreList"
         :value="genre.id"
@@ -94,6 +95,7 @@ export default {
       })
       this.userWriteReviewList=response.data.review_set
       this.userLikeReviewList=response.data.like_review
+      this.genreValue=response.data.genre_id
       console.log(response.data)
     },
     onSubmit(){
