@@ -29,7 +29,7 @@ export default {
     routingDetail(){
       router.push({
         name:'detail',
-        params:{movie_id:this.movie.id}
+        params:{movie_id:this.movie.movie_id?this.movie.movie_id:this.movie.id}
         })
     },
   }

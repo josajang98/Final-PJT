@@ -10,7 +10,7 @@ class Review(models.Model):
     movie_id    = models.IntegerField()
     movie_title = models.CharField(max_length=100)
     like_users  = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_review')
-    title       = models.CharField(max_length=100)
+    title       = models.CharField(max_length=20)
     content     = models.TextField()
     rate        = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(10)])
     created_at  = models.DateTimeField(auto_now_add=True)

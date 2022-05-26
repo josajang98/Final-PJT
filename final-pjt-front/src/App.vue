@@ -3,9 +3,6 @@
     <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg sticky-top">
       <router-link to="/" exact-active-class="active" style="color:white;">
         <i class="bi bi-check-all"></i>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
-          <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
-        </svg>
         잘골라줘유
         <!-- <img src="./assets/logo.png" alt="asd"> -->
       </router-link> 
@@ -14,12 +11,16 @@
       <div class="container-fluid">
         <div exact-active-class="active" @click="routingHome" class="logo">
           <i class="bi bi-check-all"></i>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
-            <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
-          </svg>
           잘골라줘유
           <!-- <img src="./assets/logo.png" alt="asd"> -->
         </div>
+        <!-- <button class="navbar-toggler toggle-color"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button> -->
+        <!-- <i class="bi bi-list navbar-toggler toggle-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation"></i> -->
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg> -->
         <button class="navbar-toggler toggle-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +38,7 @@
             <button class="btn btn-outline-success">Search</button>
           </form>
           <li class="p-3 active" @click="routingProfile" :class="back(selectProfile)">{{username}}</li>
-          <router-link class="p-3" :to="{ name: 'logout'}"><button>로그아웃</button></router-link>
+          <router-link class="p-3" :to="{ name: 'logout'}">로그아웃</router-link>
         </div>
       </div>
     </nav>
@@ -133,8 +134,6 @@ nav a {
 nav a.active:hover {
   color: white;
   text-decoration:none;
-  background-color: #ffffff50;
-  /* background-color: #DBFF4560; */
 }
 nav a.text:hover {
   color: white;
@@ -143,12 +142,10 @@ nav a.text:hover {
 nav li:hover {
   color: white;
   text-decoration:none;
-  background-color: #ffffff50;
-  /* background-color: #DBFF4560; */
+  font-weight: 1000;
 }
 nav .back{
-  background-color: #ffffff50;
-  /* background-color: #DBFF4560; */
+  font-weight: 1000;
 }
 nav a.router-link-exact-active:not(.active) {
   background-color: none;
@@ -158,7 +155,7 @@ nav a.router-link-exact-active {
   text-decoration:none;
 }
 nav {
-  font-size: 1.5vw;
+  font-size: 20px;
 }
 li {
   list-style:none;
