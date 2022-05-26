@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <iframe 
-    v-if="selectedVideo" 
-    :src="videoUrl" 
-    frameborder="0"
-    width="640"
-    height="380"
-    ></iframe>
-  </div>
+  <iframe 
+  v-if="selectedVideo" 
+  :src="videoUrl" 
+  frameborder="0"
+  width="640"
+  height="380"
+  ></iframe>
 </template>
 
 <script>
@@ -20,7 +18,7 @@ export default {
     videoUrl(){
       const baseUrl = "https://www.youtube.com/embed/"
       const videoId = this.selectedVideo.id.videoId
-      return baseUrl + videoId + '?autoplay=1'
+      return baseUrl + videoId + '?autoplay=1&loop=1&playlist='+videoId
     }
   }
 }
@@ -29,9 +27,6 @@ export default {
 <style lang="scss" scoped>
 div {
     position: relative;
-    // padding-top: 56.25%;
-    // height:0px;
-    // overflow:hidden;
 }
 
 /* iframe */
