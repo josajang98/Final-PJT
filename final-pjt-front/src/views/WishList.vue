@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row bg-white bg-opacity-10 justify-content-center">
       <movie-card
-      v-for="movie in wishList"
+        v-for="movie in wishList"
         :movie="movie"
         :key="movie.id"
         class="col-lg-2 col-md-3 col-sm-4"
@@ -39,7 +39,7 @@ export default {
         headers: this.authHeader,
       }).then((res)=>{
         this.wishList=res.data
-        
+        console.log(this.wishList)
       })
     }
   },
