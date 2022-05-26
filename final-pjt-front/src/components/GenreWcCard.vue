@@ -3,22 +3,11 @@
 </template>
 
 <script>
-
 export default {
   name: 'GenreWcCard',
-
-  data() {
-    return {
-      
-    };
-  },
   props:{
     genreId:Number
   },
-  mounted() {
-    
-  },
-
   computed: {
     genreWcImgPath(){
       return require(`../assets/genre/${this.genreId}.png`)
@@ -31,5 +20,16 @@ export default {
 img{
   width: 95%;
   height: auto;
+  
+}
+img:active{
+  position:relative; animation:ani .1s infinite;
+}
+  
+@keyframes ani {
+  from{
+    left:-10px
+  }
+  to{left:10px}
 }
 </style>
