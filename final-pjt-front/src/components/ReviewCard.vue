@@ -5,7 +5,7 @@
         <img :src="posterPath">
       </div>
       <div class="contentBx">
-        <h2 @click="routingDetail">{{review.movie_title}}</h2>
+        <h2 @click="routingDetail" style="cursor:pointer;">{{review.movie_title}}</h2>
         <div class="size">
           <h3>작성자 : {{review.user.username}}</h3>
         </div>
@@ -295,6 +295,7 @@ export default {
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-right: 10px;
+  cursor:default;
 }
 
 .container .card .contentBx a{
@@ -307,15 +308,12 @@ export default {
   font-weight: 600;
   color: #111;
   opacity: 0;
-  transform: translateY(50px);
-  transition: 0.5s;
-  margin-top: 0;
 }
 
 .container .card:hover .contentBx a{
   opacity: 1;
-  transform: translateY(0px);
-  transition-delay: 0.75s;
+  // transform: translateY(0px);
+  // transition-delay: 0.75s;
   
 }
 
