@@ -4,7 +4,7 @@
     <!-- 커버 화면 -->
     <div class="login-cover"></div>
     <!-- 로그인 폼 -->
-    <div class="login">
+    <div class="login box01">
       <!-- <div class="box01"></div> -->
       <div class="login-card pb-1 user-pwd">
         <span style="color: #f1f1f1; opacity: 0.7;">"드루와 드루와"</span><br><br>
@@ -94,7 +94,7 @@ export default {
   margin: auto;
 }
 .login{
-  margin-top:30px;
+  margin-top:50px;
 }
 .login-cover {
   position: fixed;
@@ -247,18 +247,18 @@ a {
   // opacity:0.5;
 
 }
-// .box01::before{
-//   content:"";
-//   opacity:0.5;
-//   position:absolute;
-//   top:0px;
-//   left:0px;
-//   right:0px;
-//   bottom:0px;
-//   background-color: #000;
-// }
-// .box01 p{
-//   color:#fff;
-//   text-align:center;
-//   position:relative;}
+.box01::before{
+  content:"";
+  opacity:0.5;
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  background-color: #000;
+}
+.box01 .login-card{
+  color:#fff;
+  text-align:center;
+  position:relative;}
 </style>
