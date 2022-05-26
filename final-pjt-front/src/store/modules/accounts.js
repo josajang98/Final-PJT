@@ -72,6 +72,7 @@ export default {
         .catch(err => {
           console.error(err.response.data)
           commit('SET_AUTH_ERROR', err.response.data)
+          alert('로그인 실패~~')
         })
     },
 
@@ -99,6 +100,7 @@ export default {
         .catch(err => {
           console.error(err.response.data)
           commit('SET_AUTH_ERROR', err.response.data)
+          alert('회원가입 실패~~')
         })
     },
 
