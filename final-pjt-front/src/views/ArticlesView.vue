@@ -8,54 +8,58 @@
         </VideoDetail>
       </div>
     </div>
-    <MainMovieCard 
+    <!-- <MainMovieCard 
       :backdrop-path="mainMovieBackdropPath" 
       :title="mainMovietitle" 
       :movie-id="mainMovieId"
       >
-    </MainMovieCard>
-    <!-- 장르 영화 추천 목록 -->
-    <p>{{username}}님이 좋아하는 영화</p>
-    <div class="container">
-      <div class="row bg-white bg-opacity-10 justify-content-center">
-        <MovieCard
-          v-for="movie in userLikeGenreMovieList"
-          :movie="movie"
-          :key="movie.id"
-          class="col-lg-2 col-md-3 col-sm-4"
-        ></MovieCard>
+    </MainMovieCard> -->
+
+    <div class="con">
+      <!-- 장르 영화 추천 목록 -->
+      <p>{{username}}님이 좋아하는 영화</p>
+      <div class="container">
+        <div class="row bg-white bg-opacity-10 justify-content-center">
+          <MovieCard
+            v-for="movie in userLikeGenreMovieList"
+            :movie="movie"
+            :key="movie.id"
+            class="col-lg-2 col-md-3 col-sm-4"
+          ></MovieCard>
+        </div>
+      </div>
+      <!-- 배우 영화 추천 목록 -->
+      <p>{{userLikeActor}} 배우님의 영화</p>
+      <div class="container gallerylist">
+        <div class="row bg-white bg-opacity-10 justify-content-center ">
+          <MovieCard
+            v-for="movie in userLikeActorMovieList"
+            :movie="movie"
+            :key="movie.id"
+            class="col-lg-2 col-md-3 col-sm-4"
+          ></MovieCard>
+        </div>
+      </div>
+      <!-- 현재 상영중 영화 추천 목록 -->
+      <p>현재 상영중인 영화</p>
+      <div class="container">
+        <div class="row bg-white bg-opacity-10 justify-content-center">
+          <MovieCard
+            v-for="movie in nowPlayingMovieList"
+            :movie="movie"
+            :key="movie.id"
+            class="col-lg-2 col-md-3 col-sm-4"
+          ></MovieCard>
+        </div>
       </div>
     </div>
-    <!-- 배우 영화 추천 목록 -->
-    <p>{{userLikeActor}} 배우님의 영화</p>
-    <div class="container gallerylist">
-      <div class="row bg-white bg-opacity-10 justify-content-center ">
-        <MovieCard
-          v-for="movie in userLikeActorMovieList"
-          :movie="movie"
-          :key="movie.id"
-          class="col-lg-2 col-md-3 col-sm-4"
-        ></MovieCard>
-      </div>
-    </div>
-    <!-- 현재 상영중 영화 추천 목록 -->
-    <p>현재 상영중인 영화</p>
-    <div class="container">
-      <div class="row bg-white bg-opacity-10 justify-content-center">
-        <MovieCard
-          v-for="movie in nowPlayingMovieList"
-          :movie="movie"
-          :key="movie.id"
-          class="col-lg-2 col-md-3 col-sm-4"
-        ></MovieCard>
-      </div>
-    </div>
+    
 
   </div>
 </template>
 
 <script>
-import MainMovieCard from '@/components/MainMovieCard.vue'
+// import MainMovieCard from '@/components/MainMovieCard.vue'
 import MovieCard from '@/components/MovieCard.vue'
 import axios from 'axios'
 import drf from '@/api/drf'
@@ -68,7 +72,7 @@ const count = 6
 
 // youtube
 const API_URL = 'https://www.googleapis.com/youtube/v3/search'
-const API_KEY = 'AIzaSyCQiMI5RfCs4DJTlqYmUbvqHtwKAkO9hhs'
+const API_KEY = 'AIzaSyBNUyuZwfivxHQ_91ebAcTDQ5iTNbL9bQA'
 import VideoDetail from '@/components/VideoDetail.vue'
 
 export default {
@@ -107,7 +111,7 @@ export default {
 
   },
   components:{
-    MainMovieCard,
+    // MainMovieCard,
     MovieCard,
     VideoDetail
   },
@@ -273,7 +277,7 @@ export default {
         .then(res =>{
           this.videos = res.data.items
           this.selectedVideo = this.videos[0]
-          console.log(res)
+          console.log(this.selectedVideo)
         })
         .catch(err=>{
           console.log(err)
@@ -288,6 +292,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.con{
+  position:relative;
+  top:90vh;
+}
 .font {
   font-size: 4vw;
 }
