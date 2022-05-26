@@ -1,5 +1,5 @@
 <template>
-  <div class="font">
+  <div class="font" >
     <div class="video-background">
       <div class="video-foreground">
         <VideoDetail
@@ -8,14 +8,7 @@
         </VideoDetail>
       </div>
     </div>
-    <!-- <MainMovieCard 
-      :backdrop-path="mainMovieBackdropPath" 
-      :title="mainMovietitle" 
-      :movie-id="mainMovieId"
-      >
-    </MainMovieCard> -->
-
-    <div class="con">
+    <div class="con pb-5">
       <!-- 장르 영화 추천 목록 -->
       <div class="container mb-4">
         <p v-if="userLikeGenreId" class="title-font">{{username}}님이 좋아하는 영화</p>
@@ -72,8 +65,6 @@
         </div>
       </div>
     </div>
-    
-
   </div>
 </template>
 
