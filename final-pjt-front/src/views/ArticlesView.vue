@@ -21,8 +21,7 @@
       <div class="row bg-white bg-opacity-10 justify-content-center">
         <MovieCard
           v-for="movie in userLikeGenreMovieList"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
+          :movie="movie"
           :key="movie.id"
           class="col-lg-2 col-md-3 col-sm-4"
         ></MovieCard>
@@ -34,8 +33,7 @@
       <div class="row bg-white bg-opacity-10 justify-content-center ">
         <MovieCard
           v-for="movie in userLikeActorMovieList"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
+          :movie="movie"
           :key="movie.id"
           class="col-lg-2 col-md-3 col-sm-4"
         ></MovieCard>
@@ -47,8 +45,7 @@
       <div class="row bg-white bg-opacity-10 justify-content-center">
         <MovieCard
           v-for="movie in nowPlayingMovieList"
-          :movie-id="movie.id"
-          :movie-poster-path="movie.poster_path"
+          :movie="movie"
           :key="movie.id"
           class="col-lg-2 col-md-3 col-sm-4"
         ></MovieCard>
