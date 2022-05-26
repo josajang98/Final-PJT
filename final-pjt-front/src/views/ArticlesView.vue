@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font">
     <MainMovieCard 
       :backdrop-path="mainMovieBackdropPath" 
       :title="mainMovietitle" 
@@ -77,21 +77,20 @@ export default {
       userLikeGenreId:'',
       // 사용자가 찜한 목록 배우
       userLikeActor:'',
-      userLikeActorId:91225,
+      userLikeActorId:'',
       
-
       // 추천 영화 리스트
       userLikeGenreMovieList:[],
       userLikeActorMovieList:[],
     };
   },
   created(){
+    this.getUserProfile()
+    this.getLikeActor()
     
     this.routingArticles()
     this.getNowPlayingMovieList()
-    
-    this.getUserLikeActorMovieList()
-    this.getUserProfile()
+
   },
   components:{
     MainMovieCard,
@@ -103,19 +102,36 @@ export default {
       return this.currentUser.username ? this.currentUser.username : 'guest'
     },
   },
-  mounted() {
 
-  },
   methods: {
-    async getUserProfile(){
+    async getLikeActor(){
+      const response1=await axios({
+        url: drf.accounts.wishList(),
+        method: 'get',
+        headers: this.authHeader,
+      })
+      const wishList=response1.data
+      const randNum=_.random(0,wishList.length-1)
+      const randMovieData=wishList[randNum]
 
+      const response2=await axios({
+        url: drf.tmdb.credits(randMovieData.movie_id),
+        method: 'get',
+      })
+
+      this.userLikeActor=response2.data.cast[0].name
+      this.userLikeActorId=response2.data.cast[0].id
+      this.getUserLikeActorMovieList()
+    },
+
+    async getUserProfile(){
       const response=await axios({
         url: drf.accounts.getProfile(this.currentUser.username),
         method: 'get',
         headers: this.authHeader,
       })
       this.userLikeGenreId=response.data.genre_id
-      // console.log(this.userLikeGenreId)
+      
       this.getUserLikeGenreMovieList()
     },
     /**
@@ -170,7 +186,6 @@ export default {
      */
     async getUserLikeGenreMovieList(){
 
-      // console.log(123,this.userLikeGenreId)
       if (this.userLikeGenreId===''){
         return
       }
@@ -203,18 +218,21 @@ export default {
      * 배우id가 있다면 person요청으로 데이터를 가져온 후 count만큼 랜덤으로 저장
      */
     async getUserLikeActorMovieList(){
-
+      
       if (this.userLikeActorId===''){
         return
       }
+      let cnt=0
       const response=await axios.get(drf.tmdb.person(this.userLikeActorId))
-      const indexList = _.sampleSize(_.range(0,response.data.cast.length),count)
+      const indexList = _.sampleSize(_.range(0,response.data.cast.length),response.data.cast.length-1)
       indexList.forEach(el=>{
+        if(count==cnt) return true
         // 포스터패스가 있을 시에만 추가
-        if(response.data.cast[el].poster_path)
+        if(response.data.cast[el].poster_path){
           this.userLikeActorMovieList.push(response.data.cast[el])
+          cnt++
+        }   
       })
-
     }
   },
 
@@ -222,5 +240,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.font {
+  font-size: 4vw;
+}
 </style>
