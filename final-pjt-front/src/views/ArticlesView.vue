@@ -87,7 +87,7 @@ const count = 6
 
 // youtube
 const API_URL = 'https://www.googleapis.com/youtube/v3/search'
-const API_KEY = 'AIzaSyBNUyuZwfivxHQ_91ebAcTDQ5iTNbL9bQA'
+const API_KEY = 'AIzaSyCPzWMYkEMemaKAbD7oniRloOnxI5CSggU'
 import VideoDetail from '@/components/VideoDetail.vue'
 
 export default {
@@ -189,7 +189,7 @@ export default {
       
       this.nowPlayingMovieList=response.data.results
       this.getRandMovieData()
-      // this.getTearVideo(this.mainMovietitle)
+      this.getTearVideo(this.mainMovietitle)
       const indexList = _.sampleSize(_.range(0,19),count)
       const movieListSlice=[]
 
