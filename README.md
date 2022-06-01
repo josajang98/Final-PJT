@@ -1,22 +1,38 @@
 [TOC]
 
-# final-pjt
 
-| 항목        | 설명                                                         |
-| ----------- | ------------------------------------------------------------ |
-| 팀명        | 잘굴러가유<br /><img src="README.assets/KakaoTalk_20220516_170422236.jpg" style="zoom: 10%;" /> |
-| 팀원        | 강장호,권다솜,조항주                                         |
-| 역할        | front : 권다솜, 조항주<br />back : 강장호                    |
-| 프로젝트 명 | 잘골라줘유<br />![](README.assets/Free_Sample_By_Wix.jpg)    |
+
+# 🏆Final-pjt
+
+SSAFY 상반기 관통 최종 프로젝트 **최우수상** 수상작
+
+# 결과물 Preview
+
+- 로그인 & 회원가입
+  ![login](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\login.gif)
+- 메인페이지
+  ![mainpage](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\mainpage.gif)
+- 장르월드컵
+  ![genrewc](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\genrewc.gif)
+- 영화 상세페이지
+  ![detail](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\detail.gif)
+- 유저페이지
+  ![userpage](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\userpage.gif)
+- 검색페이지
+  ![search](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\search.gif)
 
 ## 1.목표
 
 `잘골라줘유`를 사용하는 user 개인의 취향을 반영하여 영화를 추천한다.
 
+
+
 ## 2.준비사항
 
 - 언어 : django, vue, python, javascript
 - 도구 : vscode, chrome, figma, ERDCloud, TMDB API, git, Typora
+
+
 
 ## 3.팀원 정보 및 업무 분담 내역
 
