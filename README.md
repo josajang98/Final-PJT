@@ -9,17 +9,17 @@ SSAFY 상반기 관통 최종 프로젝트 **최우수상** 수상작
 # 결과물 Preview
 
 - 로그인 & 회원가입
-  ![login](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\login.gif)
+  ![login](README.assets/login.gif)
 - 메인페이지
-  ![mainpage](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\mainpage.gif)
+  ![mainpage](README.assets/mainpage.gif)
 - 장르월드컵
-  ![genrewc](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\genrewc.gif)
+  ![genrewc](README.assets/genrewc.gif)
 - 영화 상세페이지
-  ![detail](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\detail.gif)
+  ![detail](README.assets/detail.gif)
 - 유저페이지
-  ![userpage](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\userpage.gif)
+  ![userpage](README.assets/userpage.gif)
 - 검색페이지
-  ![search](C:\Users\jo\Desktop\ssafy7\pjt\final-pjt\README.assets\search.gif)
+  ![search](README.assets/search.gif)
 
 ## 1.목표
 
